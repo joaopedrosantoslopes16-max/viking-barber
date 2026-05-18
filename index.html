@@ -531,6 +531,10 @@ section{padding:6rem 2.5rem}
   nav{padding:1rem 4rem}
 }
 </style>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -799,7 +803,7 @@ section{padding:6rem 2.5rem}
         <div class="err-msg" id="login-error">E-mail ou senha incorretos.</div>
         <div class="field"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"></div>
         <div class="field"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••"></div>
-        <button class="auth-btn" onclick="doLogin()">Entrar</button>
+        <button class="auth-btn" id="login-btn" onclick="doLogin()">Entrar</button>
         <p style="text-align:center;margin-top:.8rem;font-size:.82rem;color:var(--gray)"><span onclick="showPage('home')" style="cursor:pointer">← Voltar ao site</span></p>
       </div>
       <!-- REGISTER -->
@@ -813,7 +817,7 @@ section{padding:6rem 2.5rem}
         <div class="field"><label>E-mail</label><input type="email" id="reg-email" placeholder="seu@email.com"></div>
         <div class="field"><label>WhatsApp</label><input type="tel" id="reg-tel" placeholder="(11) 99999-9999"></div>
         <div class="field"><label>Senha (mín 6 caracteres)</label><input type="password" id="reg-pass" placeholder="••••••"></div>
-        <button class="auth-btn" onclick="doRegister()">Criar Conta</button>
+        <button class="auth-btn" id="reg-btn" onclick="doRegister()">Criar Conta</button>
         <p style="text-align:center;margin-top:.8rem;font-size:.82rem;color:var(--gray)"><span onclick="showPage('home')" style="cursor:pointer">← Voltar ao site</span></p>
       </div>
     </div>
@@ -1063,6 +1067,39 @@ section{padding:6rem 2.5rem}
 </div>
 
 <script>
+// ============ FIREBASE CONFIG ============
+// SUBSTITUA os valores abaixo com os do seu Firebase Console
+var firebaseConfig = {
+  apiKey:            "COLE_AQUI",
+  authDomain:        "COLE_AQUI",
+  projectId:         "COLE_AQUI",
+  storageBucket:     "COLE_AQUI",
+  messagingSenderId: "COLE_AQUI",
+  appId:             "COLE_AQUI"
+};
+firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth();
+var db   = firebase.firestore();
+
+// Estado global do usuário autenticado
+var fbUser    = null;  // Firebase Auth user
+var fbProfile = null;  // Dados do perfil (Firestore)
+
+auth.onAuthStateChanged(function(user){
+  fbUser = user;
+  if (user){
+    db.collection('users').doc(user.uid).get().then(function(doc){
+      fbProfile = doc.exists ? doc.data() : {nome:'', sob:'', email:user.email, tel:''};
+      updateNav();
+      var dash = document.getElementById('page-dashboard');
+      if (dash && dash.classList.contains('active')) loadDashboard();
+    }).catch(function(){ fbProfile = {nome:'', sob:'', email:user.email, tel:''}; updateNav(); });
+  } else {
+    fbProfile = null;
+    updateNav();
+  }
+});
+
 // ============ DADOS ============
 var WPP_NUMBER = '5511969438850';
 
@@ -1112,32 +1149,18 @@ var barbers = [
   {id:'qualquer', name:'Sem Preferência', photo:null}
 ];
 
-// ============ STORAGE ============
-function getUsers(){ try { return JSON.parse(localStorage.getItem('vbs_users') || '[]'); } catch(e){ return []; } }
-function saveUsers(u){ try { localStorage.setItem('vbs_users', JSON.stringify(u)); } catch(e){} }
-function getSession(){ try { return JSON.parse(localStorage.getItem('vbs_session') || 'null'); } catch(e){ return null; } }
-function setSession(u){ try { localStorage.setItem('vbs_session', JSON.stringify(u)); } catch(e){} }
-function clearSession(){ try { localStorage.removeItem('vbs_session'); } catch(e){} }
-function getBookings(email){ try { return JSON.parse(localStorage.getItem('vbs_b_' + email) || '[]'); } catch(e){ return []; } }
-function saveBookings(email, b){ try { localStorage.setItem('vbs_b_' + email, JSON.stringify(b)); } catch(e){} }
+// ============ STORAGE (Firebase) ============
+function getSession(){ return fbProfile; }
 
-function parseDate(ds){
-  if (!ds) return null;
-  var p = ds.split('/');
-  if (p.length !== 3) return null;
-  return new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0]));
-}
-function isExpired(b){
-  var d = parseDate(b.data);
-  if (!d) return false;
-  var t = new Date(); t.setHours(0,0,0,0);
-  return d < t;
-}
-function cleanBookings(email){
-  var b = getBookings(email);
-  var u = b.filter(function(x){ return !isExpired(x); });
-  if (u.length !== b.length) saveBookings(email, u);
-  return u;
+function getBookingsFS(callback){
+  if (!fbUser){ callback([]); return; }
+  db.collection('users').doc(fbUser.uid).collection('bookings')
+    .orderBy('when','asc').get()
+    .then(function(snap){
+      var bks = [];
+      snap.forEach(function(d){ bks.push(d.data()); });
+      callback(bks);
+    }).catch(function(){ callback([]); });
 }
 
 // ============ MOBILE MENU ============
@@ -1202,57 +1225,58 @@ function switchAuthTab(tab, btn){
 // ============ AUTH ============
 function doLogin(){
   var email = document.getElementById('login-email').value.trim();
-  var pass = document.getElementById('login-pass').value;
-  var err = document.getElementById('login-error');
-  var users = getUsers();
-  var user = null;
-  for (var i = 0; i < users.length; i++){
-    if (users[i].email === email && users[i].pass === pass){ user = users[i]; break; }
-  }
-  if (!user){ if (err) err.classList.add('show'); return; }
+  var pass  = document.getElementById('login-pass').value;
+  var err   = document.getElementById('login-error');
+  var btn   = document.getElementById('login-btn');
   if (err) err.classList.remove('show');
-  setSession(user);
-  showPage('dashboard');
-  updateNav();
+  if (btn){ btn.disabled = true; btn.textContent = 'Entrando...'; }
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(function(){ showPage('dashboard'); })
+    .catch(function(){
+      if (err){ err.textContent = 'E-mail ou senha incorretos.'; err.classList.add('show'); }
+      if (btn){ btn.disabled = false; btn.textContent = 'Entrar'; }
+    });
 }
 
 function doRegister(){
   var nome = document.getElementById('reg-nome').value.trim();
-  var sob = document.getElementById('reg-sobrenome').value.trim();
-  var email = document.getElementById('reg-email').value.trim();
-  var tel = document.getElementById('reg-tel').value.trim();
+  var sob  = document.getElementById('reg-sobrenome').value.trim();
+  var email= document.getElementById('reg-email').value.trim();
+  var tel  = document.getElementById('reg-tel').value.trim();
   var pass = document.getElementById('reg-pass').value;
-  var err = document.getElementById('reg-error');
-  var suc = document.getElementById('reg-success');
+  var err  = document.getElementById('reg-error');
+  var suc  = document.getElementById('reg-success');
+  var btn  = document.getElementById('reg-btn');
   if (err) err.classList.remove('show');
   if (suc) suc.classList.remove('show');
   if (!nome || !sob || !email || !pass){
-    if (err){ err.textContent = 'Preencha todos os campos.'; err.classList.add('show'); }
-    return;
+    if (err){ err.textContent = 'Preencha todos os campos.'; err.classList.add('show'); } return;
   }
   if (pass.length < 6){
-    if (err){ err.textContent = 'Senha deve ter ao menos 6 caracteres.'; err.classList.add('show'); }
-    return;
+    if (err){ err.textContent = 'Senha deve ter ao menos 6 caracteres.'; err.classList.add('show'); } return;
   }
-  var users = getUsers();
-  for (var i = 0; i < users.length; i++){
-    if (users[i].email === email){
-      if (err){ err.textContent = 'E-mail já cadastrado.'; err.classList.add('show'); }
-      return;
-    }
-  }
-  var user = {nome:nome, sob:sob, email:email, tel:tel, pass:pass};
-  users.push(user);
-  saveUsers(users);
-  setSession(user);
-  if (suc) suc.classList.add('show');
-  setTimeout(function(){ showPage('dashboard'); updateNav(); }, 1200);
+  if (btn){ btn.disabled = true; btn.textContent = 'Criando...'; }
+  auth.createUserWithEmailAndPassword(email, pass)
+    .then(function(cred){
+      return db.collection('users').doc(cred.user.uid).set({nome:nome, sob:sob, email:email, tel:tel});
+    })
+    .then(function(){
+      if (suc) suc.classList.add('show');
+      if (btn){ btn.disabled = false; btn.textContent = 'Criar Conta'; }
+      setTimeout(function(){ showPage('dashboard'); }, 1200);
+    })
+    .catch(function(e){
+      var msg = 'Erro ao criar conta.';
+      if (e.code === 'auth/email-already-in-use') msg = 'E-mail já cadastrado.';
+      if (e.code === 'auth/invalid-email')        msg = 'E-mail inválido.';
+      if (e.code === 'auth/weak-password')        msg = 'Senha fraca (mínimo 6 caracteres).';
+      if (err){ err.textContent = msg; err.classList.add('show'); }
+      if (btn){ btn.disabled = false; btn.textContent = 'Criar Conta'; }
+    });
 }
 
 function doLogout(){
-  clearSession();
-  showPage('home');
-  updateNav();
+  auth.signOut().then(function(){ showPage('home'); });
 }
 
 function updateNav(){
@@ -1274,7 +1298,10 @@ function updateNav(){
 function loadDashboard(){
   try {
   var s = getSession();
-  if (!s){ showPage('auth'); return; }
+  if (!s){
+    if (fbUser) return; // Perfil ainda carregando — onAuthStateChanged vai chamar de novo
+    showPage('auth'); return;
+  }
   var el;
   el = document.getElementById('dash-avatar'); if (el) el.textContent = s.nome.charAt(0).toUpperCase();
   el = document.getElementById('dash-username'); if (el) el.textContent = s.nome + ' ' + (s.sob || '');
@@ -1294,22 +1321,23 @@ function loadDashboard(){
   el = document.getElementById('prof-input-tel'); if (el) el.value = s.tel || '';
   el = document.getElementById('prof-input-email'); if (el) el.value = s.email;
 
-  // Bookings
-  var bookings = cleanBookings(s.email);
-  var total = document.getElementById('total-appt');
-  if (total) total.textContent = bookings.length;
-  var next = document.getElementById('next-appt');
-  if (next){
-    if (bookings.length > 0){
-      var b = bookings[bookings.length - 1];
-      next.textContent = b.data + ' ' + b.hora;
-      next.style.fontSize = '1.3rem';
-    } else {
-      next.textContent = 'Nenhum';
-      next.style.fontSize = '1.3rem';
-      next.style.color = 'var(--gray)';
+  // Bookings — carregados do Firestore de forma assíncrona
+  getBookingsFS(function(bookings){
+    var total = document.getElementById('total-appt');
+    if (total) total.textContent = bookings.length;
+    var next = document.getElementById('next-appt');
+    if (next){
+      if (bookings.length > 0){
+        var b = bookings[bookings.length - 1];
+        next.textContent = b.data + ' ' + b.hora;
+        next.style.fontSize = '1.3rem';
+      } else {
+        next.textContent = 'Nenhum';
+        next.style.fontSize = '1.3rem';
+        next.style.color = 'var(--gray)';
+      }
     }
-  }
+  });
 
   renderHistorico();
   renderServiceGrid();
@@ -1364,27 +1392,20 @@ function switchDashView(view, el){
 }
 
 function saveProfile(){
-  var s = getSession();
-  if (!s) return;
+  if (!fbUser || !fbProfile) return;
   var fullName = document.getElementById('prof-input-name').value.trim();
   var tel = document.getElementById('prof-input-tel').value.trim();
   var parts = fullName.split(' ');
-  s.nome = parts[0];
-  s.sob = parts.slice(1).join(' ');
-  s.tel = tel;
-  setSession(s);
-  // Atualiza no users
-  var users = getUsers();
-  for (var i = 0; i < users.length; i++){
-    if (users[i].email === s.email){
-      users[i].nome = s.nome; users[i].sob = s.sob; users[i].tel = s.tel;
-      saveUsers(users);
-      break;
-    }
-  }
-  loadDashboard();
-  var suc = document.getElementById('prof-success');
-  if (suc){ suc.classList.add('show'); setTimeout(function(){ suc.classList.remove('show'); }, 2500); }
+  fbProfile.nome = parts[0] || fbProfile.nome;
+  fbProfile.sob  = parts.slice(1).join(' ');
+  fbProfile.tel  = tel;
+  db.collection('users').doc(fbUser.uid).update({
+    nome: fbProfile.nome, sob: fbProfile.sob, tel: fbProfile.tel
+  }).then(function(){
+    loadDashboard();
+    var suc = document.getElementById('prof-success');
+    if (suc){ suc.classList.add('show'); setTimeout(function(){ suc.classList.remove('show'); }, 2500); }
+  });
 }
 
 // ============ AGENDAMENTO ============
@@ -1525,7 +1546,7 @@ function buildConfirmBox(){
 
 function confirmBooking(){
   var s = getSession();
-  if (!s) return;
+  if (!s || !fbUser) return;
   var data = document.getElementById('ap-data').value;
   var hora = document.getElementById('ap-hora').value;
   var p = data.split('-');
@@ -1552,9 +1573,7 @@ function confirmBooking(){
     total: hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total),
     when: new Date().getTime()
   };
-  var bks = getBookings(s.email);
-  bks.push(booking);
-  saveBookings(s.email, bks);
+  db.collection('users').doc(fbUser.uid).collection('bookings').add(booking);
 
   var suc = document.getElementById('booking-success');
   if (suc) suc.classList.add('show');
@@ -1588,28 +1607,29 @@ function confirmBooking(){
 }
 
 function renderHistorico(){
-  var s = getSession();
-  if (!s) return;
+  if (!fbUser) return;
   var list = document.getElementById('hist-list');
   if (!list) return;
-  var bks = cleanBookings(s.email);
-  if (bks.length === 0){
-    list.innerHTML = '<div class="hist-empty">Nenhum agendamento ainda.<br><br><button class="btn-primary" onclick="switchDashView(\'agendar\',document.querySelector(\'.dash-menu li[data-view=agendar]\'))">+ Novo Agendamento</button></div>';
-    return;
-  }
-  list.innerHTML = '';
-  for (var i = bks.length - 1; i >= 0; i--){
-    var b = bks[i];
-    var div = document.createElement('div');
-    div.className = 'hist-item';
-    div.innerHTML =
-      '<div class="hist-info">' +
-        '<div class="hist-svc">' + b.servicos + '</div>' +
-        '<div class="hist-dt">' + b.data + ' às ' + b.hora + ' · ' + b.barbeiro + ' · ' + b.total + '</div>' +
-      '</div>' +
-      '<div class="hist-status">Confirmado</div>';
-    list.appendChild(div);
-  }
+  list.innerHTML = '<div style="color:var(--gray);text-align:center;padding:2rem;font-family:\'Barlow\',sans-serif">Carregando...</div>';
+  getBookingsFS(function(bks){
+    if (bks.length === 0){
+      list.innerHTML = '<div class="hist-empty">Nenhum agendamento ainda.<br><br><button class="btn-primary" onclick="switchDashView(\'agendar\',null)">+ Novo Agendamento</button></div>';
+      return;
+    }
+    list.innerHTML = '';
+    for (var i = bks.length - 1; i >= 0; i--){
+      var b = bks[i];
+      var div = document.createElement('div');
+      div.className = 'hist-item';
+      div.innerHTML =
+        '<div class="hist-info">' +
+          '<div class="hist-svc">' + b.servicos + '</div>' +
+          '<div class="hist-dt">' + b.data + ' às ' + b.hora + ' · ' + b.barbeiro + ' · ' + b.total + '</div>' +
+        '</div>' +
+        '<div class="hist-status">Confirmado</div>';
+      list.appendChild(div);
+    }
+  });
 }
 
 // ============ PLANOS ============
