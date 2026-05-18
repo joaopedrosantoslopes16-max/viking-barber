@@ -316,9 +316,10 @@ section{padding:6rem 2.5rem}
 .dbn-item{flex:1;text-align:center;color:var(--gray);cursor:pointer;padding:.3rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;border-radius:2px;transition:color .2s}
 .dbn-item .ic{font-size:1.3rem;margin-bottom:.1rem}
 .dbn-item.active{color:var(--red-light)}
-/* Mostra automaticamente no mobile quando estiver no dashboard */
+/* Mostra automaticamente no mobile quando estiver no dashboard - 2 seletores pra garantir */
 @media(max-width:768px){
-  body.on-dashboard .dash-bottom-nav{display:flex!important}
+  body.on-dashboard .dash-bottom-nav,
+  #page-dashboard.active ~ .dash-bottom-nav{display:flex!important}
 }
 
 /* CTA AGENDAR */
