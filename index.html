@@ -353,6 +353,17 @@ section{padding:6rem 2.5rem}
 .mobile-menu-btns{display:flex;gap:.5rem;padding:.9rem 1.5rem 0}
 .mobile-menu-btns .nav-login,.mobile-menu-btns .nav-cta{flex:1;justify-content:center;text-align:center}
 
+/* DASHBOARD TABS MOBILE */
+.dash-tabs{display:none}
+@media(max-width:768px){
+  .dash-tabs{display:flex;overflow-x:auto;overflow-y:hidden;background:var(--dark);border-bottom:1px solid rgba(255,255,255,.06);padding:0;margin:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:sticky;top:56px;z-index:80}
+  .dash-tabs::-webkit-scrollbar{display:none}
+  .dash-tab{flex:1;min-width:64px;text-align:center;padding:.7rem .3rem;cursor:pointer;color:var(--gray);font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+  .dash-tab .ic{display:block;font-size:1.3rem;margin-bottom:.15rem;line-height:1}
+  .dash-tab .lb{display:block;line-height:1}
+  .dash-tab.active{color:var(--white);border-bottom-color:var(--red)}
+}
+
 /* DASHBOARD MOBILE BAR */
 .dash-mobile-bar{display:none;align-items:center;justify-content:space-between;padding:.8rem 0 1.2rem;margin-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
 .dm-user{display:flex;align-items:center;gap:.8rem}
@@ -393,7 +404,7 @@ section{padding:6rem 2.5rem}
   #page-dashboard{background:var(--dark)}
   .dashboard{display:block!important;padding:56px 0 0;min-height:100vh;background:var(--dark);overflow-x:hidden}
   .dash-sidebar{display:none!important}
-  .dash-content{display:block!important;width:100%;box-sizing:border-box;padding:0 0 80px;-webkit-overflow-scrolling:touch;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  .dash-content{display:block!important;width:100%;box-sizing:border-box;padding:0 0 2rem;-webkit-overflow-scrolling:touch;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 
   /* Barra do usuário no topo */
   .dash-mobile-bar{display:flex!important;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;margin:0;border-bottom:none;background:var(--dark2);border-bottom:2px solid rgba(192,41,42,.5)}
@@ -837,6 +848,15 @@ section{padding:6rem 2.5rem}
           </div>
         </div>
         <button class="dm-logout" onclick="doLogout()">🚪 Sair</button>
+      </div>
+
+      <!-- TABS MOBILE (visível apenas no celular) -->
+      <div class="dash-tabs" id="dash-tabs">
+        <div class="dash-tab active" data-view="overview" onclick="switchDashView('overview',null)"><span class="ic">🏠</span><span class="lb">Início</span></div>
+        <div class="dash-tab" data-view="agendar" onclick="switchDashView('agendar',null)"><span class="ic">📅</span><span class="lb">Agendar</span></div>
+        <div class="dash-tab" data-view="historico" onclick="switchDashView('historico',null)"><span class="ic">📋</span><span class="lb">Histórico</span></div>
+        <div class="dash-tab" data-view="planos" onclick="switchDashView('planos',null)"><span class="ic">👑</span><span class="lb">Planos</span></div>
+        <div class="dash-tab" data-view="perfil" onclick="switchDashView('perfil',null)"><span class="ic">👤</span><span class="lb">Perfil</span></div>
       </div>
 
       <!-- OVERVIEW -->
@@ -1314,6 +1334,11 @@ function switchDashView(view, el){
   var bs = document.querySelectorAll('.dbn-item');
   for (var k = 0; k < bs.length; k++){
     bs[k].classList.toggle('active', bs[k].getAttribute('data-view') === view);
+  }
+  // Abas mobile no topo
+  var tabs = document.querySelectorAll('.dash-tab');
+  for (var t = 0; t < tabs.length; t++){
+    tabs[t].classList.toggle('active', tabs[t].getAttribute('data-view') === view);
   }
   // Reseta agendamento sempre que entrar na view
   if (view === 'agendar') {
