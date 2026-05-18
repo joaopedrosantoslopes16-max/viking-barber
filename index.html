@@ -312,10 +312,14 @@ section{padding:6rem 2.5rem}
 .prof-info .meta{color:var(--gray);font-size:.85rem;margin-top:.3rem}
 
 /* DASHBOARD BOTTOM NAV (mobile) */
-.dash-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark2);border-top:1px solid rgba(192,41,42,.25);padding:.6rem .3rem;z-index:90;justify-content:space-around;align-items:center}
+.dash-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark2);border-top:1px solid rgba(192,41,42,.25);padding:.6rem .3rem;z-index:95;justify-content:space-around;align-items:center}
 .dbn-item{flex:1;text-align:center;color:var(--gray);cursor:pointer;padding:.3rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;border-radius:2px;transition:color .2s}
 .dbn-item .ic{font-size:1.3rem;margin-bottom:.1rem}
 .dbn-item.active{color:var(--red-light)}
+/* Mostra automaticamente no mobile quando estiver no dashboard */
+@media(max-width:768px){
+  body.on-dashboard .dash-bottom-nav{display:flex!important}
+}
 
 /* CTA AGENDAR */
 .cta-section{background:var(--dark2);position:relative;overflow:hidden;text-align:center;padding:6rem 2.5rem}
@@ -1139,8 +1143,8 @@ function showPage(p){
   window.scrollTo(0, 0);
   var bar = document.getElementById('quick-bar');
   if (bar) bar.style.display = (p === 'home') ? 'flex' : 'none';
-  var dbn = document.getElementById('dash-bottom-nav');
-  if (dbn) dbn.style.display = (p === 'dashboard' && window.innerWidth <= 768) ? 'flex' : 'none';
+  // Adiciona classe no body pra controlar o nav inferior via CSS (mais confiável que JS)
+  document.body.classList.toggle('on-dashboard', p === 'dashboard');
   if (p === 'dashboard') requestAnimationFrame(function(){ loadDashboard(); });
 }
 
@@ -1795,13 +1799,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var qd = document.getElementById('q-data'); if (qd) qd.min = today;
 
   // Reposiciona bottom-nav ao redimensionar/rotacionar
-  window.addEventListener('resize', function(){
-    var dbn = document.getElementById('dash-bottom-nav');
-    var activePage = document.querySelector('.page.active');
-    if (dbn && activePage){
-      dbn.style.display = (activePage.id === 'page-dashboard' && window.innerWidth <= 768) ? 'flex' : 'none';
-    }
-  });
+  // Nav inferior agora é controlado por CSS (body.on-dashboard) - sem JS de resize
 });
 </script>
 </body>
