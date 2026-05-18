@@ -244,7 +244,7 @@ section{padding:6rem 2.5rem}
 .dash-menu li{padding:.7rem 1rem;color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;text-transform:uppercase;font-size:.85rem;cursor:pointer;border-radius:2px;margin-bottom:.2rem;transition:all .2s}
 .dash-menu li:hover{background:rgba(192,41,42,.1);color:var(--white)}
 .dash-menu li.active{background:var(--red);color:var(--white)}
-.dash-content{padding:2rem;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.dash-content{padding:2rem;min-width:0}
 .dash-view{display:none}.dash-view.active{display:block}
 .welcome-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);letter-spacing:2px;margin-bottom:.3rem}
 .welcome-sub{color:var(--gray);font-size:.9rem;margin-bottom:2rem}
@@ -379,10 +379,9 @@ section{padding:6rem 2.5rem}
   section{padding:4rem 1.2rem}
   .hero{padding:6rem 1.2rem 3rem}
   .first-cut{padding:4rem 1.2rem}
-  .dashboard{display:flex;flex-direction:column;padding-top:5rem;padding-bottom:80px;min-height:100vh}
+  .dashboard{display:block;padding:5rem 0 0;min-height:auto;background:var(--dark)}
   .dash-sidebar{display:none}
-  .dash-bottom-nav{display:flex}
-  .dash-content{flex:1;width:100%;min-width:0;padding:1rem 1rem 100px;-webkit-overflow-scrolling:touch}
+  .dash-content{display:block;width:100%;padding:1rem 1rem 100px;-webkit-overflow-scrolling:touch}
   .dash-mobile-bar{display:flex}
   .welcome-title{font-size:1.6rem;margin-bottom:.2rem}
   .welcome-sub{font-size:.82rem;margin-bottom:1.2rem}
@@ -929,17 +928,17 @@ section{padding:6rem 2.5rem}
       </div>
 
     </main>
-
-    <!-- BOTTOM NAV MOBILE -->
-    <nav class="dash-bottom-nav" id="dash-bottom-nav">
-      <div class="dbn-item active" data-view="overview" onclick="switchDashView('overview',null)"><div class="ic">🏠</div>Início</div>
-      <div class="dbn-item" data-view="agendar" onclick="switchDashView('agendar',null)"><div class="ic">📅</div>Agendar</div>
-      <div class="dbn-item" data-view="historico" onclick="switchDashView('historico',null)"><div class="ic">📋</div>Histórico</div>
-      <div class="dbn-item" data-view="planos" onclick="switchDashView('planos',null)"><div class="ic">👑</div>Planos</div>
-      <div class="dbn-item" data-view="perfil" onclick="switchDashView('perfil',null)"><div class="ic">👤</div>Perfil</div>
-    </nav>
   </div>
 </div>
+
+<!-- BOTTOM NAV MOBILE (fora do dashboard para position:fixed funcionar no iOS) -->
+<nav class="dash-bottom-nav" id="dash-bottom-nav">
+  <div class="dbn-item active" data-view="overview" onclick="switchDashView('overview',null)"><div class="ic">🏠</div>Início</div>
+  <div class="dbn-item" data-view="agendar" onclick="switchDashView('agendar',null)"><div class="ic">📅</div>Agendar</div>
+  <div class="dbn-item" data-view="historico" onclick="switchDashView('historico',null)"><div class="ic">📋</div>Histórico</div>
+  <div class="dbn-item" data-view="planos" onclick="switchDashView('planos',null)"><div class="ic">👑</div>Planos</div>
+  <div class="dbn-item" data-view="perfil" onclick="switchDashView('perfil',null)"><div class="ic">👤</div>Perfil</div>
+</nav>
 
 <!-- QUICK BAR (HOME ONLY) -->
 <div class="quick-bar" id="quick-bar">
@@ -1089,6 +1088,8 @@ function showPage(p){
   window.scrollTo(0, 0);
   var bar = document.getElementById('quick-bar');
   if (bar) bar.style.display = (p === 'home') ? 'flex' : 'none';
+  var dbn = document.getElementById('dash-bottom-nav');
+  if (dbn) dbn.style.display = (p === 'dashboard' && window.innerWidth <= 768) ? 'flex' : 'none';
   if (p === 'dashboard') loadDashboard();
 }
 
@@ -1730,6 +1731,15 @@ document.addEventListener('DOMContentLoaded', function(){
   var today = new Date().toISOString().split('T')[0];
   var apd = document.getElementById('ap-data'); if (apd) apd.min = today;
   var qd = document.getElementById('q-data'); if (qd) qd.min = today;
+
+  // Reposiciona bottom-nav ao redimensionar/rotacionar
+  window.addEventListener('resize', function(){
+    var dbn = document.getElementById('dash-bottom-nav');
+    var activePage = document.querySelector('.page.active');
+    if (dbn && activePage){
+      dbn.style.display = (activePage.id === 'page-dashboard' && window.innerWidth <= 768) ? 'flex' : 'none';
+    }
+  });
 });
 </script>
 </body>
