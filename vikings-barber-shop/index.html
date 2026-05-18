@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vikings Barber Shop - Atibaia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+:root{
+  --red:#C0292A;--red-dark:#8B1A1A;--red-light:#E8453A;
+  --gold:#C9922A;--gold-light:#E8B04A;
+  --black:#0A0A0A;--dark:#111;--dark2:#1A1A1A;--dark3:#242424;
+  --gray:#888;--white:#fff;--light:#F0EDE8;
+}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--light);padding-bottom:80px}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,10,10,0.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(192,41,42,0.2)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--white);cursor:pointer}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:1.2rem;list-style:none}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);text-decoration:none;cursor:pointer;white-space:nowrap;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-actions{display:flex;gap:.7rem}
+.nav-login{border:1px solid rgba(255,255,255,.2);color:var(--white);padding:.45rem 1.1rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:none;transition:border-color .2s}
+.nav-login:hover{border-color:var(--white)}
+.nav-cta{background:var(--red);color:var(--white);padding:.45rem 1.2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:background .2s}
+.nav-cta:hover{background:var(--red-light)}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* BTNS */
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:var(--white);padding:.9rem 2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:background .2s;text-decoration:none}
+.btn-primary:hover{background:var(--red-light)}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.3);color:var(--white);padding:.9rem 2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;background:none;cursor:pointer;transition:border-color .2s;text-decoration:none}
+.btn-outline:hover{border-color:var(--white)}
+.btn-wpp{display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:var(--white);padding:.9rem 2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:background .2s}
+.btn-wpp:hover{background:#1da851}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:8rem 2.5rem 4rem}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(30%)}
+.hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(10,10,10,.97) 45%,rgba(10,10,10,.55) 100%)}
+.hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;background:linear-gradient(to top,var(--black),transparent)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(192,41,42,.15);border:1px solid rgba(192,41,42,.4);padding:.35rem .9rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);margin-bottom:1.5rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,8rem);line-height:.9;letter-spacing:4px;color:var(--white);margin-bottom:1rem}
+.hero h1 span{color:var(--red);display:block}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero p{font-size:1rem;color:#aaa;line-height:1.7;max-width:480px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{position:absolute;right:5%;bottom:12%;z-index:2;display:flex;flex-direction:column;gap:1rem}
+.stat-card{background:rgba(26,26,26,.9);border:1px solid rgba(192,41,42,.25);border-left:3px solid var(--red);padding:1rem 1.5rem;min-width:160px}
+.stat-number{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);line-height:1}
+.stat-number span{color:var(--gold)}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:.2rem}
+
+/* SECTIONS */
+section{padding:6rem 2.5rem}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:3px;color:var(--white);line-height:1;margin-bottom:1rem}
+.section-title span{color:var(--red)}
+.divider{width:50px;height:3px;background:var(--red);margin:1rem 0 2rem}
+
+/* ESPACO */
+.espaco-section{background:var(--black)}
+.espaco-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.espaco-bento{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:300px 300px;gap:12px;margin-bottom:3rem}
+.bento-item{position:relative;overflow:hidden;border-radius:3px;cursor:pointer;background:var(--dark2)}
+.bento-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .4s;filter:grayscale(15%)}
+.bento-item:hover img{transform:scale(1.06);filter:grayscale(0%)}
+.bento-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85) 0%,transparent 50%);pointer-events:none}
+.bento-item.span2v{grid-row:span 2}
+.bento-item.span2h{grid-column:span 2}
+.bento-label{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:1.2rem;pointer-events:none}
+.bento-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);background:rgba(192,41,42,.2);border:1px solid rgba(192,41,42,.3);padding:.2rem .6rem;border-radius:2px;margin-bottom:.4rem}
+.bento-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;color:var(--white);display:block}
+.diferenciais{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:3rem}
+.dif-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-top:2px solid var(--red);border-radius:2px;padding:1.5rem;text-align:center;transition:transform .2s}
+.dif-card:hover{transform:translateY(-3px)}
+.dif-icon{font-size:2rem;margin-bottom:.7rem}
+.dif-name{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:.3rem}
+.dif-desc{font-size:.8rem;color:var(--gray);line-height:1.5}
+
+/* GALERIA */
+.gallery-section{background:var(--dark)}
+.gallery-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.gallery-tabs{display:flex;margin-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.tab-btn{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:none;border:none;padding:.8rem 2rem;cursor:pointer;position:relative;transition:color .2s}
+.tab-btn::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transition:transform .25s}
+.tab-btn.active{color:var(--white)}.tab-btn.active::after{transform:scaleX(1)}
+.tab-count{display:inline-block;background:rgba(192,41,42,.2);color:var(--red-light);font-size:.7rem;padding:.15rem .5rem;border-radius:10px;margin-left:.5rem}
+.gallery-panel{display:none}
+.gallery-panel.active{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:12px}
+.gal-item{position:relative;overflow:hidden;border-radius:2px;cursor:pointer;background:var(--dark2)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s,filter .45s;filter:grayscale(20%)}
+.gal-item:hover img{transform:scale(1.07);filter:grayscale(0%)}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.75) 0%,transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
+.gal-item:hover::after{opacity:1}
+.gal-label{position:absolute;bottom:.8rem;left:.8rem;z-index:2;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.9);opacity:0;transition:opacity .3s;pointer-events:none}
+.gal-item:hover .gal-label{opacity:1}
+.gal-zoom{position:absolute;top:.8rem;right:.8rem;z-index:2;width:32px;height:32px;background:rgba(192,41,42,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);opacity:0;transition:opacity .3s;font-size:1.2rem;pointer-events:none}
+.gal-item:hover .gal-zoom{opacity:1}
+
+/* SERVICOS */
+.services-section{background:var(--black)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.service-item{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1.8rem;transition:transform .2s,border-color .2s}
+.service-item:hover{transform:translateY(-3px);border-color:rgba(192,41,42,.3)}
+.service-icon{font-size:2rem;margin-bottom:.8rem}
+.service-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--white);margin-bottom:.5rem}
+.service-desc{color:var(--gray);font-size:.85rem;line-height:1.5;margin-bottom:1rem;min-height:50px}
+.service-price{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);letter-spacing:1px}
+.service-price small{font-size:.7rem;color:var(--gray);font-family:'Barlow',sans-serif;letter-spacing:1px}
+
+/* PLANOS */
+.planos-section{background:var(--dark);position:relative}
+.planos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.plano-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1.8rem;position:relative;transition:transform .2s,border-color .2s;display:flex;flex-direction:column}
+.plano-card:hover{transform:translateY(-5px);border-color:rgba(192,41,42,.3)}
+.plano-card.featured{border:1px solid var(--red);border-top:3px solid var(--red)}
+.plano-badge{position:absolute;top:-12px;left:1.5rem;background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px}
+.plano-icon{font-size:2rem;margin-bottom:.6rem}
+.plano-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--white);margin-bottom:.5rem}
+.plano-price{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--gold);margin-bottom:1.2rem}
+.plano-price span{font-size:.85rem;color:var(--gray);font-family:'Barlow',sans-serif;letter-spacing:1px}
+.plano-features{list-style:none;margin-bottom:1.5rem;flex-grow:1}
+.plano-features li{padding:.4rem 0;color:var(--light);font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.plano-features li::before{content:'✓ ';color:var(--gold)}
+.plano-btn{background:rgba(192,41,42,.15);color:var(--red-light);border:1px solid rgba(192,41,42,.4);padding:.7rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:background .2s,color .2s}
+.plano-btn:hover{background:var(--red);color:var(--white)}
+
+/* PRIMEIRO CORTE */
+.first-cut{background:var(--black);padding:6rem 2.5rem}
+.first-cut-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto}
+.first-cut p{color:var(--gray);line-height:1.7;font-size:.95rem;margin-bottom:1.5rem}
+.highlight-list{list-style:none;margin-bottom:2rem}
+.highlight-list li{padding:.6rem 0;color:var(--light);font-size:.92rem;border-bottom:1px solid rgba(255,255,255,.05);position:relative;padding-left:1.5rem}
+.highlight-list li::before{content:'★';color:var(--gold);position:absolute;left:0}
+.first-cut-photos{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(2,200px);gap:10px}
+.photo-main{grid-row:span 2;overflow:hidden;border-radius:3px;background:var(--dark2)}
+.photo-side{overflow:hidden;border-radius:3px;background:var(--dark2)}
+.first-cut-photos img{width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .4s}
+.first-cut-photos img:hover{transform:scale(1.05)}
+
+/* AVALIACOES */
+.reviews-section{background:var(--dark);text-align:center}
+.reviews-stats{display:inline-flex;align-items:center;gap:2rem;background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-radius:3px;padding:2rem 3rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
+.review-big{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--gold);line-height:1}
+.review-stars{font-size:1.3rem;color:var(--gold);letter-spacing:5px}
+.review-count{color:var(--gray);font-size:.95rem;margin-top:.3rem}
+
+/* HORARIOS */
+.hours-section{background:var(--black)}
+.hours-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;margin-top:3rem;max-width:1100px;margin-left:auto;margin-right:auto}
+.hours-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:2rem}
+.hours-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--white);margin-bottom:1.2rem;letter-spacing:2px}
+.hours-list{list-style:none}
+.hours-list li{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.05);color:var(--light);font-size:.92rem}
+.hours-list li span:last-child{color:var(--gold)}
+.map-card{border-radius:2px;overflow:hidden;background:var(--dark2);position:relative;min-height:300px}
+.map-card iframe{width:100%;height:100%;min-height:300px;border:0;filter:grayscale(40%) invert(85%) contrast(1.1)}
+
+/* QUICK BAR (rodape) */
+.quick-bar{position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(10,10,10,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(192,41,42,.2);padding:.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.quick-bar-text{font-family:'Barlow Condensed',sans-serif;color:var(--white);font-size:.95rem;letter-spacing:1px}
+.quick-bar-text small{display:block;font-size:.75rem;color:var(--gray);text-transform:none;letter-spacing:0}
+.quick-bar-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.quick-btn-1{background:#25D366;color:var(--white);border:none;padding:.7rem 1.4rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600}
+.quick-btn-2{background:none;border:1px solid rgba(255,255,255,.3);color:var(--white);padding:.7rem 1.4rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+
+/* MODAL QUICK */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-bg.active{display:flex}
+.modal-quick{background:var(--dark2);border:1px solid rgba(192,41,42,.3);border-radius:4px;padding:2rem;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-quick h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:2px;margin-bottom:.3rem}
+.modal-quick .sub{color:var(--gray);font-size:.85rem;margin-bottom:1.5rem}
+.q-field{margin-bottom:1rem}
+.q-field label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.q-field input,.q-field textarea{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.7rem;border-radius:2px;font-family:'Barlow',sans-serif;font-size:.95rem}
+.q-field input:focus,.q-field textarea:focus{outline:none;border-color:var(--red)}
+.q-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.q-svc-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:2px;padding:.7rem;cursor:pointer;transition:all .2s;text-align:center}
+.q-svc-card.selected{border-color:var(--red);background:rgba(192,41,42,.15)}
+.q-svc-card .ic{font-size:1.3rem;margin-bottom:.2rem}
+.q-svc-card .nm{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--white);font-weight:600;letter-spacing:1px}
+.q-svc-card .pr{font-size:.75rem;color:var(--gold);margin-top:.2rem}
+.q-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.q-total{background:var(--dark3);border-left:3px solid var(--gold);padding:.8rem 1rem;margin:.8rem 0;display:none;border-radius:2px}
+.q-total.show{display:block}
+.q-total-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase}
+.q-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold)}
+.modal-btns{display:flex;gap:.5rem;margin-top:1rem}
+.modal-close{background:none;border:1px solid rgba(255,255,255,.2);color:var(--gray);padding:.7rem 1.2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;cursor:pointer}
+.modal-send{flex:1;background:#25D366;color:var(--white);border:none;padding:.7rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600}
+
+/* LIGHTBOX */
+.lb-bg{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;padding:2rem}
+.lb-bg.active{display:flex}
+.lb-wrap{position:relative;max-width:90vw;max-height:90vh}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:2px}
+.lb-label{text-align:center;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;margin-top:1rem}
+.lb-close{position:absolute;top:-50px;right:0;background:var(--red);color:var(--white);border:none;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+.lb-prev,.lb-next{position:fixed;top:50%;background:rgba(192,41,42,.85);color:var(--white);border:none;width:50px;height:50px;border-radius:50%;font-size:1.6rem;cursor:pointer;transform:translateY(-50%);z-index:301}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-counter{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;font-size:.85rem}
+
+/* AUTH */
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5rem 1rem 2rem;background:linear-gradient(135deg,var(--black),var(--dark2))}
+.auth-card{background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-radius:4px;padding:2.5rem;max-width:430px;width:100%}
+.auth-card h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--white);text-align:center;margin-bottom:.3rem}
+.auth-card .auth-sub{text-align:center;color:var(--gray);font-size:.85rem;margin-bottom:1.5rem}
+.auth-tabs{display:flex;margin-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.auth-tab{flex:1;background:none;border:none;color:var(--gray);padding:.7rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-size:.9rem;position:relative}
+.auth-tab.active{color:var(--white)}
+.auth-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--red)}
+.auth-form{display:none}.auth-form.active{display:block}
+.field{margin-bottom:1rem}
+.field label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.field input{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.7rem;border-radius:2px;font-size:.95rem;font-family:'Barlow',sans-serif}
+.field input:focus{outline:none;border-color:var(--red)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.auth-btn{width:100%;background:var(--red);color:var(--white);border:none;padding:.85rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600;margin-top:.5rem}
+.auth-btn:hover{background:var(--red-light)}
+.err-msg{display:none;background:rgba(192,41,42,.15);border:1px solid rgba(192,41,42,.4);color:var(--red-light);padding:.6rem;border-radius:2px;font-size:.85rem;margin-bottom:.8rem;text-align:center}
+.err-msg.show{display:block}
+.suc-msg{display:none;background:rgba(40,180,80,.15);border:1px solid rgba(40,180,80,.4);color:#7be07b;padding:.6rem;border-radius:2px;font-size:.85rem;margin-bottom:.8rem;text-align:center}
+.suc-msg.show{display:block}
+
+/* DASHBOARD */
+.dashboard{min-height:100vh;padding:5rem 0 2rem;display:grid;grid-template-columns:240px 1fr;gap:0;background:var(--dark)}
+.dash-sidebar{background:var(--dark2);border-right:1px solid rgba(255,255,255,.05);padding:1.5rem 1rem;min-height:calc(100vh - 5rem)}
+.dash-profile{padding:1rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:1rem;text-align:center}
+.dash-avatar{width:60px;height:60px;background:var(--red);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin:0 auto .6rem}
+.dash-username{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--white);letter-spacing:1px}
+.dash-email{font-size:.75rem;color:var(--gray);margin-top:.2rem;word-break:break-word}
+.dash-menu{list-style:none}
+.dash-menu li{padding:.7rem 1rem;color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;text-transform:uppercase;font-size:.85rem;cursor:pointer;border-radius:2px;margin-bottom:.2rem;transition:all .2s}
+.dash-menu li:hover{background:rgba(192,41,42,.1);color:var(--white)}
+.dash-menu li.active{background:var(--red);color:var(--white)}
+.dash-content{padding:2rem;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.dash-view{display:none}.dash-view.active{display:block}
+.welcome-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);letter-spacing:2px;margin-bottom:.3rem}
+.welcome-sub{color:var(--gray);font-size:.9rem;margin-bottom:2rem}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.dash-stat{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--red);padding:1.2rem;border-radius:2px}
+.dash-stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:.3rem}
+.dash-stat-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white)}
+.dash-section{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:3px;padding:1.5rem;margin-bottom:1.5rem}
+.dash-section h3{font-family:'Bebas Neue',sans-serif;color:var(--white);font-size:1.3rem;letter-spacing:2px;margin-bottom:1rem}
+
+/* AGENDAR */
+.step-row{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.step{flex:1;min-width:80px;text-align:center;padding:.6rem;background:var(--dark3);color:var(--gray);font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px;border:1px solid rgba(255,255,255,.05)}
+.step.active{background:var(--red);color:var(--white)}
+.step.done{background:rgba(192,41,42,.2);color:var(--red-light);border-color:rgba(192,41,42,.3)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin-bottom:1rem}
+.svc-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:1rem;cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.svc-card.selected{border-color:var(--red);background:rgba(192,41,42,.12)}
+.svc-card.selected::after{content:'✓';position:absolute;top:6px;right:8px;color:var(--red);font-weight:bold}
+.svc-card .svc-ic{font-size:1.6rem;margin-bottom:.4rem}
+.svc-card .svc-nm{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);letter-spacing:1px;margin-bottom:.2rem}
+.svc-card .svc-pr{font-size:.8rem;color:var(--gold)}
+.selected-svcs{background:var(--dark3);border-left:3px solid var(--gold);padding:.8rem 1rem;margin-bottom:1rem;border-radius:2px;display:none}
+.selected-svcs.show{display:block}
+.selected-svcs .lbl{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase}
+.selected-svcs .val{color:var(--white);font-size:.9rem;margin-top:.2rem}
+.selected-svcs .tot{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1.3rem;margin-top:.3rem}
+.barber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.7rem;margin-bottom:1rem}
+.barber-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:1rem;cursor:pointer;text-align:center;transition:all .2s}
+.barber-card.selected{border-color:var(--red);background:rgba(192,41,42,.12)}
+.barber-av{width:50px;height:50px;border-radius:50%;background:var(--red);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;margin:0 auto .5rem}
+.barber-nm{font-family:'Bebas Neue',sans-serif;color:var(--white);font-size:1rem;letter-spacing:1px}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.dt-row label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.dt-row input,.dt-row select{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.7rem;border-radius:2px;font-family:'Barlow',sans-serif;font-size:.95rem}
+.step-nav{display:flex;justify-content:space-between;gap:.5rem;margin-top:1.5rem}
+.btn-back{background:none;border:1px solid rgba(255,255,255,.2);color:var(--gray);padding:.7rem 1.2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-size:.85rem}
+.btn-next{background:var(--red);color:var(--white);border:none;padding:.7rem 1.4rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-size:.85rem;font-weight:600}
+.confirm-box{background:var(--dark3);border-left:3px solid var(--red);padding:1.2rem;border-radius:2px;margin-bottom:1rem}
+.confirm-box .ln{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem}
+.confirm-box .ln:last-child{border-bottom:none}
+.confirm-box .ln span:first-child{color:var(--gray)}
+.confirm-box .ln span:last-child{color:var(--white)}
+.success-msg{text-align:center;padding:2rem;background:rgba(40,180,80,.1);border:1px solid rgba(40,180,80,.3);border-radius:3px;display:none}
+.success-msg.show{display:block}
+.success-msg .ic{font-size:3rem;margin-bottom:.5rem}
+.success-msg h3{font-family:'Bebas Neue',sans-serif;color:#7be07b;font-size:1.5rem;letter-spacing:2px;margin-bottom:.3rem}
+
+/* HISTORICO */
+.hist-item{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--red);padding:1rem 1.2rem;margin-bottom:.7rem;border-radius:2px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.hist-empty{text-align:center;color:var(--gray);padding:2rem;font-size:.9rem}
+.hist-info{flex:1;min-width:200px}
+.hist-svc{color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:1px}
+.hist-dt{color:var(--gray);font-size:.82rem;margin-top:.2rem}
+.hist-status{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;padding:.3rem .7rem;border-radius:2px;background:rgba(201,146,42,.2);color:var(--gold-light)}
+
+/* PROFILE */
+.prof-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:3px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.prof-av{width:80px;height:80px;background:var(--red);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2.5rem}
+.prof-info{flex:1;min-width:200px}
+.prof-info h3{font-family:'Bebas Neue',sans-serif;color:var(--white);font-size:1.5rem;letter-spacing:2px}
+.prof-info .meta{color:var(--gray);font-size:.85rem;margin-top:.3rem}
+
+/* DASHBOARD BOTTOM NAV (mobile) */
+.dash-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark2);border-top:1px solid rgba(192,41,42,.25);padding:.6rem .3rem;z-index:90;justify-content:space-around;align-items:center}
+.dbn-item{flex:1;text-align:center;color:var(--gray);cursor:pointer;padding:.3rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;border-radius:2px;transition:color .2s}
+.dbn-item .ic{font-size:1.3rem;margin-bottom:.1rem}
+.dbn-item.active{color:var(--red-light)}
+
+/* CTA AGENDAR */
+.cta-section{background:var(--dark2);position:relative;overflow:hidden;text-align:center;padding:6rem 2.5rem}
+.cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(192,41,42,.12) 0%,transparent 60%);pointer-events:none}
+.cta-section::after{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(192,41,42,.06);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(192,41,42,.15);border:1px solid rgba(192,41,42,.4);padding:.35rem 1rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);margin-bottom:1.5rem}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6rem);line-height:.95;letter-spacing:3px;color:var(--white);margin-bottom:.8rem}
+.cta-title span{color:var(--red)}
+.cta-sub{color:var(--gray);font-size:1rem;line-height:1.6;max-width:480px;margin:0 auto 2.5rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-btns .btn-wpp{font-size:1.1rem;padding:1.1rem 2.5rem;border-radius:3px}
+.cta-btns .btn-outline{font-size:1.1rem;padding:1.1rem 2.5rem;border-radius:3px}
+.cta-info{margin-top:2rem;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.cta-info-item{display:flex;align-items:center;gap:.5rem;color:var(--gray);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;text-transform:uppercase}
+.cta-info-item span:first-child{color:var(--gold);font-size:1.1rem}
+
+/* HAMBURGER */
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;z-index:101}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--white);border-radius:1px;transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;left:0;right:0;top:0;background:rgba(10,10,10,.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(192,41,42,.2);z-index:97;flex-direction:column;padding:.5rem 0 1rem;transition:opacity .2s}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:color .2s,background .2s;display:block}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--white);background:rgba(255,255,255,.03)}
+.mobile-menu-btns{display:flex;gap:.5rem;padding:.9rem 1.5rem 0}
+.mobile-menu-btns .nav-login,.mobile-menu-btns .nav-cta{flex:1;justify-content:center;text-align:center}
+
+/* DASHBOARD MOBILE BAR */
+.dash-mobile-bar{display:none;align-items:center;justify-content:space-between;padding:.8rem 0 1.2rem;margin-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.dm-user{display:flex;align-items:center;gap:.8rem}
+.dm-av{width:40px;height:40px;background:var(--red);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;flex-shrink:0}
+.dm-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);letter-spacing:1px;line-height:1.2}
+.dm-email{font-size:.68rem;color:var(--gray);word-break:break-all}
+.dm-logout{background:none;border:1px solid rgba(255,255,255,.15);color:var(--gray);padding:.45rem .8rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;flex-shrink:0;white-space:nowrap}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .first-cut-inner{grid-template-columns:1fr;gap:2.5rem}
+  .hours-grid{grid-template-columns:1fr}
+  .dashboard{grid-template-columns:200px 1fr}
+}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  nav{padding:.8rem 1.2rem}
+  .nav-logo{font-size:1.3rem}
+  .hero{flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-bottom:3rem}
+  .hero-content{width:100%}
+  .hero-stats{position:static;flex-direction:row;flex-wrap:wrap;width:100%;margin-top:2rem;gap:.7rem}
+  .stat-card{min-width:0;flex:1}
+  .espaco-bento{grid-template-columns:repeat(2,1fr)}
+  .gallery-panel.active{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+}
+@media(max-width:768px){
+  section{padding:4rem 1.2rem}
+  .hero{padding:6rem 1.2rem 3rem}
+  .first-cut{padding:4rem 1.2rem}
+  .dashboard{display:flex;flex-direction:column;padding-top:5rem;padding-bottom:80px;min-height:100vh}
+  .dash-sidebar{display:none}
+  .dash-bottom-nav{display:flex}
+  .dash-content{flex:1;width:100%;min-width:0;padding:1rem 1rem 100px;-webkit-overflow-scrolling:touch}
+  .dash-mobile-bar{display:flex}
+  .welcome-title{font-size:1.6rem;margin-bottom:.2rem}
+  .welcome-sub{font-size:.82rem;margin-bottom:1.2rem}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1.2rem}
+  .dash-stat{padding:.8rem .9rem}
+  .dash-stat-label{font-size:.62rem;letter-spacing:1px}
+  .dash-stat-val{font-size:1.5rem}
+  .dash-section{padding:1rem;margin-bottom:1rem}
+  .dash-section h3{font-size:1.1rem;margin-bottom:.7rem}
+  .svc-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}
+  .svc-card{padding:.75rem .5rem}
+  .svc-card .svc-ic{font-size:1.3rem}
+  .svc-card .svc-nm{font-size:.85rem}
+  .barber-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}
+  .step-row{gap:.25rem;margin-bottom:1rem}
+  .step{font-size:.6rem;padding:.45rem .15rem;letter-spacing:.2px;min-width:0;flex:1}
+  .step-nav{flex-direction:column-reverse;gap:.5rem;margin-top:1rem}
+  .btn-next,.btn-back{width:100%;justify-content:center;padding:.9rem;text-align:center;font-size:.9rem;display:block;box-sizing:border-box}
+  .dt-row{grid-template-columns:1fr;gap:.7rem}
+  .field-row{grid-template-columns:1fr}
+  .q-row{grid-template-columns:1fr}
+  .confirm-box{padding:.9rem}
+  .confirm-box .ln{flex-wrap:wrap;gap:.1rem;font-size:.85rem}
+  .confirm-box .ln span:last-child{word-break:break-word}
+  .hist-item{flex-direction:column;align-items:flex-start;gap:.4rem;padding:.8rem 1rem}
+  .hist-info{min-width:0;width:100%}
+  .hist-svc{font-size:.95rem}
+  .planos-grid{grid-template-columns:1fr}
+  .plano-card{padding:1.2rem}
+  .plano-name{font-size:1.2rem}
+  .plano-price{font-size:1.8rem;margin-bottom:.8rem}
+  .plano-features li{font-size:.82rem}
+  .prof-card{padding:1.2rem;gap:1rem;flex-direction:column;text-align:center;align-items:center}
+  .prof-av{width:64px;height:64px;font-size:2rem}
+  .prof-info{min-width:0;text-align:center}
+  .prof-info h3{font-size:1.2rem}
+  .first-cut-photos{grid-template-columns:1fr;grid-auto-rows:200px}
+  .photo-main{grid-row:auto}
+  .services-grid{grid-template-columns:1fr}
+  .quick-bar{padding:.7rem 1rem}
+  .quick-bar-text{font-size:.85rem}
+  input,select,textarea{font-size:16px;color-scheme:dark}
+}
+@media(max-width:480px){
+  .espaco-bento{grid-template-columns:1fr;grid-auto-rows:220px}
+  .bento-item.span2v,.bento-item.span2h{grid-column:span 1;grid-row:span 1}
+  .gallery-panel.active{grid-template-columns:1fr;grid-auto-rows:240px}
+  .q-svc-grid{grid-template-columns:repeat(2,1fr)}
+  .quick-bar{flex-direction:column;align-items:stretch}
+  .quick-bar-actions{justify-content:stretch}
+  .quick-btn-1,.quick-btn-2{flex:1}
+  .hero h1{font-size:3rem;letter-spacing:2px}
+  .nav-actions{display:none}
+  .stat-card{min-width:0}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .modal-quick{padding:1.2rem}
+  .auth-card{padding:1.2rem}
+  .welcome-title{font-size:1.4rem}
+  .dash-section{padding:.8rem}
+  .dash-stat-val{font-size:1.4rem}
+  .dash-stat-label{font-size:.6rem}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .barber-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn-wpp,.cta-btns .btn-outline{width:100%;justify-content:center;text-align:center}
+  .cta-info{gap:1rem}
+  .cta-section{padding:4rem 1.2rem}
+}
+@media(max-width:360px){
+  .hero h1{font-size:2.6rem}
+  .section-title{font-size:2.2rem}
+  .hero-badge{font-size:.65rem;letter-spacing:1.5px;padding:.3rem .6rem}
+  .btn-primary,.btn-outline,.btn-wpp{padding:.8rem 1.2rem;font-size:.9rem}
+  .svc-grid{grid-template-columns:1fr}
+  .barber-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr}
+}
+@media(min-width:1400px){
+  .hero-content{max-width:800px}
+  section{padding:7rem 4rem}
+  nav{padding:1rem 4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo" onclick="showPage('home')">VIKINGS<span>.</span></span>
+  <ul class="nav-links">
+    <li><a onclick="goTo('#espaco')">O Espaço</a></li>
+    <li><a onclick="goTo('#galeria')">Galeria</a></li>
+    <li><a onclick="goTo('#servicos')">Serviços</a></li>
+    <li><a onclick="goTo('#planos')">Planos</a></li>
+    <li><a onclick="goTo('#primeiro-corte')">1° Corte</a></li>
+    <li><a onclick="goTo('#horarios')">Horários</a></li>
+  </ul>
+  <div class="nav-actions" id="nav-actions">
+    <button class="nav-login" onclick="showPage('auth')">Entrar</button>
+    <button class="nav-cta" onclick="showPage('auth')">Agendar</button>
+  </div>
+  <button class="nav-burger" id="nav-burger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="closeMobileMenu();goTo('#espaco')">O Espaço</a>
+  <a onclick="closeMobileMenu();goTo('#galeria')">Galeria</a>
+  <a onclick="closeMobileMenu();goTo('#servicos')">Serviços</a>
+  <a onclick="closeMobileMenu();goTo('#planos')">Planos</a>
+  <a onclick="closeMobileMenu();goTo('#primeiro-corte')">1° Corte</a>
+  <a onclick="closeMobileMenu();goTo('#horarios')">Horários</a>
+  <div class="mobile-menu-btns" id="mobile-menu-btns">
+    <button class="nav-login" onclick="closeMobileMenu();showPage('auth')">Entrar</button>
+    <button class="nav-cta" onclick="closeMobileMenu();showPage('auth')">Agendar</button>
+  </div>
+</div>
+
+<!-- PAGE HOME -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><img src="images/hero.jpeg" alt="Vikings Barber Shop"></div>
+    <div class="hero-content">
+      <div class="hero-badge">★ 4.9 Estrelas · 269 Avaliações · Centro, Atibaia</div>
+      <h1>VIKINGS<span>BARBER</span></h1>
+      <p class="hero-sub">Barbearia em Centro, Atibaia - SP</p>
+      <p>Cortes precisos, traçados artísticos e um ambiente único. Do primeiro corte da vida até o estilo da semana.</p>
+      <div class="hero-btns">
+        <button class="btn-wpp" onclick="openQuick()">⚡ Agendamento Rápido</button>
+        <button class="btn-outline" onclick="showPage('auth')">Entrar / Criar conta</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-number">4.9<span>★</span></div><div class="stat-label">Nota no Google</div></div>
+      <div class="stat-card"><div class="stat-number">269</div><div class="stat-label">Avaliações</div></div>
+      <div class="stat-card"><div class="stat-number">+5K</div><div class="stat-label">Clientes</div></div>
+    </div>
+  </section>
+
+  <!-- ESPACO -->
+  <section class="espaco-section" id="espaco">
+    <div class="espaco-intro reveal">
+      <div>
+        <p class="section-label">Mais que uma barbearia</p>
+        <h2 class="section-title">O ESPAÇO<br><span>VIKINGS</span></h2>
+      </div>
+      <p style="max-width:400px;color:var(--gray);line-height:1.7;font-size:.95rem">Cortes de cabelo, loja de roupas streetwear, arcade, bebidas e muito mais. Um ambiente completo para quem se preocupa com estilo.</p>
+    </div>
+    <div class="espaco-bento reveal">
+      <div class="bento-item span2v" onclick="openSingle('images/fachada-real.webp','Fachada - Rua José Alvim, 287')">
+        <img src="images/fachada-real.webp" alt="Fachada">
+        <div class="bento-label"><span class="bento-tag">Localização</span><span class="bento-name">Fachada</span></div>
+      </div>
+      <div class="bento-item" onclick="openSingle('images/interior-real.webp','Interior')">
+        <img src="images/interior-real.webp" alt="Interior">
+        <div class="bento-label"><span class="bento-tag">Ambiente</span><span class="bento-name">Interior</span></div>
+      </div>
+      <div class="bento-item" onclick="openSingle('images/nba-raptors.jpeg','Coleção NBA')">
+        <img src="images/nba-raptors.jpeg" alt="NBA">
+        <div class="bento-label"><span class="bento-tag">Roupas</span><span class="bento-name">Coleção NBA</span></div>
+      </div>
+      <div class="bento-item span2h" onclick="openSingle('images/nba-lakers.jpeg','Streetwear NBA')">
+        <img src="images/nba-lakers.jpeg" alt="Streetwear">
+        <div class="bento-label"><span class="bento-tag">Streetwear</span><span class="bento-name">Coleção Premium</span></div>
+      </div>
+    </div>
+    <div class="espaco-bento reveal" style="grid-template-rows:300px">
+      <div class="bento-item" onclick="openSingle('images/sinuca.jpeg','Sinuca Vikings')">
+        <img src="images/sinuca.jpeg" alt="Sinuca">
+        <div class="bento-label"><span class="bento-tag">Lazer</span><span class="bento-name">Mesa de Sinuca</span></div>
+      </div>
+      <div class="bento-item" onclick="openSingle('images/arcade.jpeg','Dunk Store Arcade')">
+        <img src="images/arcade.jpeg" alt="Arcade">
+        <div class="bento-label"><span class="bento-tag">Arcade</span><span class="bento-name">Dunk Store</span></div>
+      </div>
+      <div class="bento-item" onclick="openSingle('images/camisetas.jpeg','Camisetas Streetwear')">
+        <img src="images/camisetas.jpeg" alt="Camisetas">
+        <div class="bento-label"><span class="bento-tag">Moda</span><span class="bento-name">Camisetas</span></div>
+      </div>
+    </div>
+    <div class="diferenciais reveal">
+      <div class="dif-card"><div class="dif-icon">🪑</div><div class="dif-name">3 Cadeiras</div><div class="dif-desc">Barbeiros profissionais</div></div>
+      <div class="dif-card"><div class="dif-icon">🚗</div><div class="dif-name">Cadeirinha Kids</div><div class="dif-desc">Para os pequenos</div></div>
+      <div class="dif-card"><div class="dif-icon">🕹️</div><div class="dif-name">Arcade Game</div><div class="dif-desc">Jogue enquanto espera</div></div>
+      <div class="dif-card"><div class="dif-icon">🥃</div><div class="dif-name">Bebidas</div><div class="dif-desc">Bebidas geladas</div></div>
+      <div class="dif-card"><div class="dif-icon">👕</div><div class="dif-name">Loja de Roupas</div><div class="dif-desc">Streetwear e NBA</div></div>
+      <div class="dif-card"><div class="dif-icon">📺</div><div class="dif-name">TV + Wi-Fi</div><div class="dif-desc">Ambiente completo</div></div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="gallery-section" id="galeria">
+    <div class="gallery-intro reveal">
+      <div><p class="section-label">Nosso trabalho</p><h2 class="section-title">CADA CORTE<br><span>UMA OBRA</span></h2></div>
+      <p style="max-width:400px;color:var(--gray);line-height:1.7;font-size:.95rem">Fades precisos, traçados artísticos, boxer braids e muito mais.</p>
+    </div>
+    <div class="gallery-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('normal',this)">Cortes <span class="tab-count" id="cnt-n">0</span></button>
+      <button class="tab-btn" onclick="switchTab('infantil',this)">Infantil <span class="tab-count" id="cnt-i">0</span></button>
+    </div>
+    <div id="panel-normal" class="gallery-panel active reveal"></div>
+    <div id="panel-infantil" class="gallery-panel reveal"></div>
+    <p style="margin-top:1.5rem;text-align:center;color:var(--gray);font-size:.85rem">Veja mais em <a href="https://instagram.com/vikingsbarbershopatibaia" target="_blank" style="color:var(--red-light);text-decoration:none">@vikingsbarbershopatibaia</a></p>
+  </section>
+
+  <!-- SERVICOS -->
+  <section class="services-section" id="servicos">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+      <p class="section-label">O que oferecemos</p>
+      <h2 class="section-title">SERVIÇOS &amp;<br><span>PREÇOS</span></h2>
+      <div class="divider" style="margin:1rem auto 0"></div>
+      <p style="color:var(--gray);font-size:.9rem;margin-top:1rem">Valores de referência — confirme na hora do agendamento.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-item"><div class="service-icon">✂️</div><div class="service-name">Corte Masculino</div><div class="service-desc">Corte completo com lavagem, finalização e styling.</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba</div><div class="service-desc">Modelagem e acabamento com navalha e produtos premium.</div><div class="service-price">R$ 35<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Corte + Barba</div><div class="service-desc">Combo completo — visual perfeito do cabelo à barba.</div><div class="service-price">R$ 70<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Traçado / Design</div><div class="service-desc">Arabescos, riscos e designs artísticos.</div><div class="service-price">R$ 20<small>/adicional</small></div></div>
+      <div class="service-item"><div class="service-icon">🧒</div><div class="service-name">Corte Infantil</div><div class="service-desc">Para os pequenos vikings, com atenção especial.</div><div class="service-price">R$ 35<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">✏️</div><div class="service-name">Sobrancelha</div><div class="service-desc">Design e acabamento de sobrancelha com precisão.</div><div class="service-price">R$ 10<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🏅</div><div class="service-name">1° Corte da Vida</div><div class="service-desc">Experiência inesquecível com certificado incluso.</div><div class="service-price" style="font-size:1.2rem;color:var(--gold-light)">Consultar</div></div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="planos-section" id="planos">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+      <p class="section-label">Assinatura mensal</p>
+      <h2 class="section-title">PLANOS<br><span>VIKINGS</span></h2>
+      <div class="divider" style="margin:1rem auto 0"></div>
+      <p style="color:var(--gray);line-height:1.7;font-size:.95rem;margin-top:1rem">Assine e economize todo mês. Cancele quando quiser.</p>
+    </div>
+    <div class="planos-grid reveal">
+      <div class="plano-card"><div class="plano-icon">✂️</div><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li><li>Sem taxa de cancelamento</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-icon">👑</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li><li>Fila preferencial</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li><li>Atendimento exclusivo</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-icon">✨</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-icon">💎</div><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+    </div>
+  </section>
+
+  <!-- PRIMEIRO CORTE -->
+  <section class="first-cut" id="primeiro-corte">
+    <div class="first-cut-inner">
+      <div class="reveal">
+        <div style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(201,146,42,.1);border:1px solid rgba(201,146,42,.3);padding:.5rem 1rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">Tradição Vikings</div>
+        <p class="section-label">Um momento único</p>
+        <h2 class="section-title">O PRIMEIRO<br><span>CORTE</span></h2>
+        <div class="divider"></div>
+        <p>Na Vikings, o primeiro corte do seu filho vira um momento inesquecível com certificado personalizado e foto lembrança.</p>
+        <ul class="highlight-list">
+          <li>Atendimento especial para os pequenos</li>
+          <li>Certificado oficial do primeiro corte</li>
+          <li>Foto lembrança com a família</li>
+          <li>Ambiente aconchegante e seguro</li>
+        </ul>
+        <button class="btn-primary" onclick="showPage('auth')">Agendar o 1° Corte</button>
+      </div>
+      <div class="reveal" style="transition-delay:.2s">
+        <div class="first-cut-photos">
+          <div class="photo-main"><img src="images/cert1.png" alt="Primeiro Corte" onclick="openSingle('images/cert1.png','Primeiro Corte')"></div>
+          <div class="photo-side"><img src="images/cert2.png" alt="Certificado" onclick="openSingle('images/cert2.png','Certificado')"></div>
+          <div class="photo-side"><img src="images/infantil3.png" alt="Bebê" onclick="openSingle('images/infantil3.png','Bebê Vikings')"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIACOES -->
+  <section class="reviews-section">
+    <div class="reveal">
+      <p class="section-label">Clientes felizes</p>
+      <h2 class="section-title">AVALIAÇÕES<br><span>VIKINGS</span></h2>
+      <div class="divider" style="margin:1rem auto 0"></div>
+      <div class="reviews-stats">
+        <div><div class="review-big">4.9</div><div class="review-stars">★★★★★</div></div>
+        <div style="text-align:left">
+          <div style="font-family:'Bebas Neue',sans-serif;color:var(--white);font-size:1.5rem;letter-spacing:1px">269 avaliações</div>
+          <div class="review-count">no Google Maps</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section class="hours-section" id="horarios">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+      <p class="section-label">Funcionamento</p>
+      <h2 class="section-title">HORÁRIOS<br><span>&amp; LOCAL</span></h2>
+      <div class="divider" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="hours-grid reveal">
+      <div class="hours-card">
+        <h3>Horário de Funcionamento</h3>
+        <ul class="hours-list">
+          <li><span>Segunda</span><span>09:00 - 20:00</span></li>
+          <li><span>Terça</span><span>09:00 - 20:00</span></li>
+          <li><span>Quarta</span><span>09:00 - 20:00</span></li>
+          <li><span>Quinta</span><span>09:00 - 20:00</span></li>
+          <li><span>Sexta</span><span>09:00 - 20:00</span></li>
+          <li><span>Sábado</span><span>09:00 - 18:00</span></li>
+          <li><span>Domingo</span><span style="color:var(--red-light)">Fechado</span></li>
+        </ul>
+        <p style="color:var(--gray);font-size:.85rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.05)">📍 Rua José Alvim, 287 — Centro, Atibaia - SP</p>
+      </div>
+      <div class="map-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.3!2d-46.5504!3d-23.1168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua+Jos%C3%A9+Alvim%2C+287!5e0!3m2!1spt-BR!2sbr!4v1" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA AGENDAR -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <div class="cta-badge">★ Atendimento de Segunda a Sábado</div>
+      <h2 class="cta-title">PRONTO PARA<br><span>AGENDAR?</span></h2>
+      <p class="cta-sub">Sem espera, sem complicação. Agende agora pelo WhatsApp ou crie sua conta e gerencie seus horários online.</p>
+      <div class="cta-btns">
+        <button class="btn-wpp" onclick="openQuick()">⚡ Agendamento Rápido</button>
+        <button class="btn-outline" onclick="showPage('auth')">Criar Conta / Entrar</button>
+      </div>
+      <div class="cta-info">
+        <div class="cta-info-item"><span>📍</span><span>Rua José Alvim, 287 — Atibaia</span></div>
+        <div class="cta-info-item"><span>⏰</span><span>Seg–Sex 09h–20h · Sáb 09h–18h</span></div>
+        <div class="cta-info-item"><span>★</span><span>4.9 · 269 avaliações no Google</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- PAGE AUTH -->
+<div class="page" id="page-auth">
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>VIKINGS<span style="color:var(--red)">.</span></h2>
+      <p class="auth-sub">Acesse sua conta ou crie uma nova</p>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login',this)">Entrar</button>
+        <button class="auth-tab" onclick="switchAuthTab('register',this)">Criar Conta</button>
+      </div>
+      <!-- LOGIN -->
+      <div class="auth-form active" id="form-login">
+        <div class="err-msg" id="login-error">E-mail ou senha incorretos.</div>
+        <div class="field"><label>E-mail</label><input type="email" id="login-email" placeholder="seu@email.com"></div>
+        <div class="field"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••"></div>
+        <button class="auth-btn" onclick="doLogin()">Entrar</button>
+        <p style="text-align:center;margin-top:.8rem;font-size:.82rem;color:var(--gray)"><span onclick="showPage('home')" style="cursor:pointer">← Voltar ao site</span></p>
+      </div>
+      <!-- REGISTER -->
+      <div class="auth-form" id="form-register">
+        <div class="err-msg" id="reg-error">Preencha todos os campos.</div>
+        <div class="suc-msg" id="reg-success">Conta criada! Entrando...</div>
+        <div class="field-row">
+          <div class="field"><label>Nome</label><input type="text" id="reg-nome" placeholder="Seu nome"></div>
+          <div class="field"><label>Sobrenome</label><input type="text" id="reg-sobrenome" placeholder="Sobrenome"></div>
+        </div>
+        <div class="field"><label>E-mail</label><input type="email" id="reg-email" placeholder="seu@email.com"></div>
+        <div class="field"><label>WhatsApp</label><input type="tel" id="reg-tel" placeholder="(11) 99999-9999"></div>
+        <div class="field"><label>Senha (mín 6 caracteres)</label><input type="password" id="reg-pass" placeholder="••••••"></div>
+        <button class="auth-btn" onclick="doRegister()">Criar Conta</button>
+        <p style="text-align:center;margin-top:.8rem;font-size:.82rem;color:var(--gray)"><span onclick="showPage('home')" style="cursor:pointer">← Voltar ao site</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE DASHBOARD -->
+<div class="page" id="page-dashboard">
+  <div class="dashboard">
+    <aside class="dash-sidebar">
+      <div class="dash-profile">
+        <div class="dash-avatar" id="dash-avatar">V</div>
+        <div class="dash-username" id="dash-username">—</div>
+        <div class="dash-email" id="dash-email">—</div>
+      </div>
+      <ul class="dash-menu">
+        <li class="active" data-view="overview" onclick="switchDashView('overview',this)">🏠 Início</li>
+        <li data-view="agendar" onclick="switchDashView('agendar',this)">📅 Novo Agendamento</li>
+        <li data-view="historico" onclick="switchDashView('historico',this)">📋 Histórico</li>
+        <li data-view="planos" onclick="switchDashView('planos',this)">👑 Planos</li>
+        <li data-view="perfil" onclick="switchDashView('perfil',this)">👤 Meu Perfil</li>
+        <li onclick="doLogout()" style="margin-top:1rem;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem">🚪 Sair</li>
+      </ul>
+    </aside>
+    <main class="dash-content">
+
+      <!-- MOBILE USER BAR (oculto no desktop) -->
+      <div class="dash-mobile-bar" id="dash-mobile-bar">
+        <div class="dm-user">
+          <div class="dm-av" id="dm-av">V</div>
+          <div>
+            <div class="dm-name" id="dm-name">—</div>
+            <div class="dm-email" id="dm-email-m">—</div>
+          </div>
+        </div>
+        <button class="dm-logout" onclick="doLogout()">🚪 Sair</button>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="dash-view active" id="view-overview">
+        <h2 class="welcome-title" id="welcome-title">OLÁ!</h2>
+        <p class="welcome-sub">Bem-vindo de volta à sua área Vikings.</p>
+        <div class="stats-row">
+          <div class="dash-stat"><div class="dash-stat-label">Próximo Agendamento</div><div class="dash-stat-val" id="next-appt">—</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">Total Agendamentos</div><div class="dash-stat-val" id="total-appt">0</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">Status</div><div class="dash-stat-val" style="font-size:1.2rem;color:var(--gold)">Ativo</div></div>
+        </div>
+        <div class="dash-section">
+          <h3>Ações rápidas</h3>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <button class="btn-primary" onclick="switchDashView('agendar',document.querySelector('.dash-menu li[data-view=agendar]'))">Novo Agendamento</button>
+            <button class="btn-outline" onclick="switchDashView('historico',document.querySelector('.dash-menu li[data-view=historico]'))">Ver Histórico</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENDAR -->
+      <div class="dash-view" id="view-agendar">
+        <h2 class="welcome-title">NOVO AGENDAMENTO</h2>
+        <p class="welcome-sub">Em 4 passos simples.</p>
+
+        <div class="dash-section">
+          <div class="step-row">
+            <div class="step active" id="step-1">1. Serviço</div>
+            <div class="step" id="step-2">2. Barbeiro</div>
+            <div class="step" id="step-3">3. Data/Hora</div>
+            <div class="step" id="step-4">4. Confirmar</div>
+          </div>
+
+          <!-- Step 1 -->
+          <div class="step-content active" id="content-step-1">
+            <h3 style="margin-bottom:1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--white)">Escolha um ou mais serviços</h3>
+            <div class="svc-grid" id="svc-grid"></div>
+            <div class="selected-svcs" id="sel-svcs">
+              <div class="lbl">Selecionados:</div>
+              <div class="val" id="sel-val">—</div>
+              <div class="tot" id="sel-tot">R$ 0</div>
+            </div>
+            <div class="step-nav"><span></span><button class="btn-next" onclick="nextStep(2)">Próximo →</button></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-content" id="content-step-2" style="display:none">
+            <h3 style="margin-bottom:1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--white)">Escolha o barbeiro</h3>
+            <div class="barber-grid" id="barber-grid"></div>
+            <div class="step-nav">
+              <button class="btn-back" onclick="prevStep(1)">← Voltar</button>
+              <button class="btn-next" onclick="nextStep(3)">Próximo →</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-content" id="content-step-3" style="display:none">
+            <h3 style="margin-bottom:1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--white)">Escolha data e horário</h3>
+            <div class="dt-row">
+              <div><label>Data</label><input type="date" id="ap-data"></div>
+              <div><label>Horário</label>
+                <select id="ap-hora">
+                  <option value="">Selecione</option>
+                  <option>09:00</option><option>10:00</option><option>11:00</option>
+                  <option>13:00</option><option>14:00</option><option>15:00</option>
+                  <option>16:00</option><option>17:00</option><option>18:00</option>
+                  <option>19:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back" onclick="prevStep(2)">← Voltar</button>
+              <button class="btn-next" onclick="nextStep(4)">Próximo →</button>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-content" id="content-step-4" style="display:none">
+            <h3 style="margin-bottom:1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--white)">Confirme os detalhes</h3>
+            <div class="confirm-box" id="confirm-box"></div>
+            <div class="step-nav">
+              <button class="btn-back" onclick="prevStep(3)">← Voltar</button>
+              <button class="btn-next" onclick="confirmBooking()">✓ Confirmar Agendamento</button>
+            </div>
+            <div class="success-msg" id="booking-success">
+              <div class="ic">✓</div>
+              <h3>AGENDAMENTO CONFIRMADO!</h3>
+              <p style="color:var(--gray);font-size:.9rem;margin-top:.5rem">Enviamos para o WhatsApp da barbearia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORICO -->
+      <div class="dash-view" id="view-historico">
+        <h2 class="welcome-title">MEUS AGENDAMENTOS</h2>
+        <p class="welcome-sub">Histórico completo.</p>
+        <div class="dash-section">
+          <div id="hist-list"></div>
+        </div>
+      </div>
+
+      <!-- PLANOS -->
+      <div class="dash-view" id="view-planos">
+        <h2 class="welcome-title">PLANOS VIKINGS</h2>
+        <p class="welcome-sub">Assine e economize.</p>
+        <div class="planos-grid" style="margin-top:1rem">
+          <div class="plano-card"><div class="plano-icon">✂️</div><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Ilimitado','R$ 81,90')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-icon">👑</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Ilimitado','R$ 99,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-icon">✨</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Vip','R$ 199,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-icon">💎</div><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Ilimitado','R$ 154,90')">Assinar pelo WhatsApp</button></div>
+        </div>
+      </div>
+
+      <!-- PERFIL -->
+      <div class="dash-view" id="view-perfil">
+        <h2 class="welcome-title">MEU PERFIL</h2>
+        <p class="welcome-sub">Suas informações.</p>
+        <div class="prof-card">
+          <div class="prof-av" id="prof-av">V</div>
+          <div class="prof-info">
+            <h3 id="prof-name">—</h3>
+            <p class="meta" id="prof-email">—</p>
+            <p class="meta" id="prof-tel">—</p>
+          </div>
+        </div>
+        <div class="dash-section">
+          <h3>Editar dados</h3>
+          <div class="suc-msg" id="prof-success">Dados salvos com sucesso!</div>
+          <div class="field"><label>Nome completo</label><input type="text" id="prof-input-name"></div>
+          <div class="field"><label>WhatsApp</label><input type="tel" id="prof-input-tel"></div>
+          <div class="field"><label>E-mail (não pode mudar)</label><input type="email" id="prof-input-email" disabled style="opacity:.5"></div>
+          <button class="btn-primary" onclick="saveProfile()">💾 Salvar alterações</button>
+        </div>
+        <div class="dash-section" style="border-left:3px solid rgba(192,41,42,.4);margin-top:.5rem">
+          <h3 style="color:var(--red-light)">Sair da conta</h3>
+          <p style="color:var(--gray);font-size:.85rem;margin-bottom:1rem">Encerra sua sessão neste dispositivo.</p>
+          <button class="btn-outline" onclick="doLogout()" style="border-color:rgba(192,41,42,.4);color:var(--red-light)">🚪 Sair da conta</button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- BOTTOM NAV MOBILE -->
+    <nav class="dash-bottom-nav" id="dash-bottom-nav">
+      <div class="dbn-item active" data-view="overview" onclick="switchDashView('overview',null)"><div class="ic">🏠</div>Início</div>
+      <div class="dbn-item" data-view="agendar" onclick="switchDashView('agendar',null)"><div class="ic">📅</div>Agendar</div>
+      <div class="dbn-item" data-view="historico" onclick="switchDashView('historico',null)"><div class="ic">📋</div>Histórico</div>
+      <div class="dbn-item" data-view="planos" onclick="switchDashView('planos',null)"><div class="ic">👑</div>Planos</div>
+      <div class="dbn-item" data-view="perfil" onclick="switchDashView('perfil',null)"><div class="ic">👤</div>Perfil</div>
+    </nav>
+  </div>
+</div>
+
+<!-- QUICK BAR (HOME ONLY) -->
+<div class="quick-bar" id="quick-bar">
+  <div class="quick-bar-text">⚡ Quer agendar agora?<small>Sem cadastro · direto no WhatsApp</small></div>
+  <div class="quick-bar-actions">
+    <button class="quick-btn-1" onclick="openQuick()">Agendamento Rápido</button>
+    <button class="quick-btn-2" onclick="showPage('auth')">Entrar / Criar Conta</button>
+  </div>
+</div>
+
+<!-- MODAL AGENDAMENTO RAPIDO -->
+<div class="modal-bg" id="modal-quick">
+  <div class="modal-quick">
+    <h3>⚡ AGENDAMENTO RÁPIDO</h3>
+    <p class="sub">Preencha e envie direto pelo WhatsApp.</p>
+    <div class="q-field"><label>Seu nome</label><input type="text" id="q-nome" placeholder="Nome completo"></div>
+    <div class="q-field">
+      <label>Serviços (selecione um ou mais)</label>
+      <div class="q-svc-grid" id="q-svc-grid"></div>
+    </div>
+    <div class="q-total" id="q-total">
+      <div class="q-total-label">Total estimado</div>
+      <div class="q-total-val" id="q-total-val">R$ 0</div>
+    </div>
+    <div class="q-row">
+      <div class="q-field"><label>Data</label><input type="date" id="q-data"></div>
+      <div class="q-field"><label>Horário</label><input type="time" id="q-hora"></div>
+    </div>
+    <div class="q-field"><label>Observações (opcional)</label><textarea id="q-obs" rows="2" placeholder="Ex: prefiro barbeiro X..."></textarea></div>
+    <div class="modal-btns">
+      <button class="modal-close" onclick="closeQuick()">Cancelar</button>
+      <button class="modal-send" onclick="sendToWhatsApp()">Enviar pelo WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-bg" id="lb-bg">
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-wrap">
+    <button class="lb-close" onclick="closeLb()">×</button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+    <div class="lb-label" id="lb-label"></div>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+</div>
+
+<script>
+// ============ DADOS ============
+var WPP_NUMBER = '5511969438850';
+
+var normalImgs = [
+  {src:'images/hero.jpeg', label:'Barbeiro em Ação'},
+  {src:'images/barbeiro.jpeg', label:'Navalha Vikings'},
+  {src:'images/corte1.png', label:'Fade com Traçado'},
+  {src:'images/corte2.png', label:'Design nas Costas'},
+  {src:'images/corte3.png', label:'Barbeiro em Ação'},
+  {src:'images/corte4.png', label:'Boxer Braids'},
+  {src:'images/corte5.png', label:'Platinado'},
+  {src:'images/corte6.png', label:'Traçado Chamas'},
+  {src:'images/corte7.png', label:'Arabesco'},
+  {src:'images/corte10.png', label:'Afro Fade'},
+  {src:'images/corte11.png', label:'Barba Artística'},
+  {src:'images/corte12.png', label:'Traçado Espiral'},
+  {src:'images/corte13.png', label:'Barba Vikings'}
+];
+
+var infantilImgs = [
+  {src:'images/infantil1.png', label:'Pompadour Infantil'},
+  {src:'images/infantil2.png', label:'Criança com Design'},
+  {src:'images/corte8.png', label:'Criança Traçado'},
+  {src:'images/corte9.png', label:'Criança Degradê'},
+  {src:'images/infantil3.png', label:'Primeiro Corte'},
+  {src:'images/infantil4.png', label:'Bebê e Pai'},
+  {src:'images/cert1.png', label:'Certificado Vikings'},
+  {src:'images/cert2.png', label:'Certificado Família'}
+];
+
+var services = [
+  {id:'corte', name:'Corte Masculino', icon:'✂️', price:45},
+  {id:'barba', name:'Barba', icon:'🪒', price:35},
+  {id:'combo', name:'Corte + Barba', icon:'✨', price:70},
+  {id:'tracado', name:'Traçado / Design', icon:'🎨', price:20},
+  {id:'infantil', name:'Corte Infantil', icon:'🧒', price:35},
+  {id:'sobrancelha', name:'Sobrancelha', icon:'✏️', price:10},
+  {id:'primeiro', name:'1° Corte da Vida', icon:'🏅', price:0}
+];
+
+var barbers = [
+  {id:'vinicius', name:'Vinicius'},
+  {id:'qualquer', name:'Sem Preferência'}
+];
+
+// ============ STORAGE ============
+function getUsers(){ try { return JSON.parse(localStorage.getItem('vbs_users') || '[]'); } catch(e){ return []; } }
+function saveUsers(u){ try { localStorage.setItem('vbs_users', JSON.stringify(u)); } catch(e){} }
+function getSession(){ try { return JSON.parse(localStorage.getItem('vbs_session') || 'null'); } catch(e){ return null; } }
+function setSession(u){ try { localStorage.setItem('vbs_session', JSON.stringify(u)); } catch(e){} }
+function clearSession(){ try { localStorage.removeItem('vbs_session'); } catch(e){} }
+function getBookings(email){ try { return JSON.parse(localStorage.getItem('vbs_b_' + email) || '[]'); } catch(e){ return []; } }
+function saveBookings(email, b){ try { localStorage.setItem('vbs_b_' + email, JSON.stringify(b)); } catch(e){} }
+
+function parseDate(ds){
+  if (!ds) return null;
+  var p = ds.split('/');
+  if (p.length !== 3) return null;
+  return new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0]));
+}
+function isExpired(b){
+  var d = parseDate(b.data);
+  if (!d) return false;
+  var t = new Date(); t.setHours(0,0,0,0);
+  return d < t;
+}
+function cleanBookings(email){
+  var b = getBookings(email);
+  var u = b.filter(function(x){ return !isExpired(x); });
+  if (u.length !== b.length) saveBookings(email, u);
+  return u;
+}
+
+// ============ MOBILE MENU ============
+function toggleMobileMenu(){
+  var burger = document.getElementById('nav-burger');
+  var menu = document.getElementById('mobile-menu');
+  if (!burger || !menu) return;
+  var nav = document.querySelector('nav');
+  if (nav) menu.style.paddingTop = nav.getBoundingClientRect().height + 'px';
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+function closeMobileMenu(){
+  var burger = document.getElementById('nav-burger');
+  var menu = document.getElementById('mobile-menu');
+  if (burger) burger.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+}
+
+// ============ NAVEGACAO ============
+function showPage(p){
+  closeMobileMenu();
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+  var pg = document.getElementById('page-' + p);
+  if (pg) pg.classList.add('active');
+  window.scrollTo(0, 0);
+  var bar = document.getElementById('quick-bar');
+  if (bar) bar.style.display = (p === 'home') ? 'flex' : 'none';
+  if (p === 'dashboard') loadDashboard();
+}
+
+function goTo(id){
+  var cur = document.querySelector('.page.active');
+  if (cur && cur.id !== 'page-home') {
+    showPage('home');
+    setTimeout(function(){
+      var el = document.querySelector(id);
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 300);
+  } else {
+    var el = document.querySelector(id);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function switchAuthTab(tab, btn){
+  var tabs = document.querySelectorAll('.auth-tab');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  btn.classList.add('active');
+  var forms = document.querySelectorAll('.auth-form');
+  for (var j = 0; j < forms.length; j++) forms[j].classList.remove('active');
+  var frm = document.getElementById('form-' + tab);
+  if (frm) frm.classList.add('active');
+}
+
+// ============ AUTH ============
+function doLogin(){
+  var email = document.getElementById('login-email').value.trim();
+  var pass = document.getElementById('login-pass').value;
+  var err = document.getElementById('login-error');
+  var users = getUsers();
+  var user = null;
+  for (var i = 0; i < users.length; i++){
+    if (users[i].email === email && users[i].pass === pass){ user = users[i]; break; }
+  }
+  if (!user){ if (err) err.classList.add('show'); return; }
+  if (err) err.classList.remove('show');
+  setSession(user);
+  showPage('dashboard');
+  updateNav();
+}
+
+function doRegister(){
+  var nome = document.getElementById('reg-nome').value.trim();
+  var sob = document.getElementById('reg-sobrenome').value.trim();
+  var email = document.getElementById('reg-email').value.trim();
+  var tel = document.getElementById('reg-tel').value.trim();
+  var pass = document.getElementById('reg-pass').value;
+  var err = document.getElementById('reg-error');
+  var suc = document.getElementById('reg-success');
+  if (err) err.classList.remove('show');
+  if (suc) suc.classList.remove('show');
+  if (!nome || !sob || !email || !pass){
+    if (err){ err.textContent = 'Preencha todos os campos.'; err.classList.add('show'); }
+    return;
+  }
+  if (pass.length < 6){
+    if (err){ err.textContent = 'Senha deve ter ao menos 6 caracteres.'; err.classList.add('show'); }
+    return;
+  }
+  var users = getUsers();
+  for (var i = 0; i < users.length; i++){
+    if (users[i].email === email){
+      if (err){ err.textContent = 'E-mail já cadastrado.'; err.classList.add('show'); }
+      return;
+    }
+  }
+  var user = {nome:nome, sob:sob, email:email, tel:tel, pass:pass};
+  users.push(user);
+  saveUsers(users);
+  setSession(user);
+  if (suc) suc.classList.add('show');
+  setTimeout(function(){ showPage('dashboard'); updateNav(); }, 1200);
+}
+
+function doLogout(){
+  clearSession();
+  showPage('home');
+  updateNav();
+}
+
+function updateNav(){
+  var s = getSession();
+  var nav = document.getElementById('nav-actions');
+  var mbtns = document.getElementById('mobile-menu-btns');
+  if (s){
+    var loggedNav = '<button class="nav-login" onclick="showPage(\'dashboard\')">' + s.nome + '</button><button class="nav-cta" onclick="showPage(\'dashboard\')">Painel</button>';
+    var loggedMobile = '<button class="nav-login" onclick="closeMobileMenu();showPage(\'dashboard\')">' + s.nome + '</button><button class="nav-cta" onclick="closeMobileMenu();showPage(\'dashboard\')">Painel</button>';
+    if (nav) nav.innerHTML = loggedNav;
+    if (mbtns) mbtns.innerHTML = loggedMobile;
+  } else {
+    if (nav) nav.innerHTML = '<button class="nav-login" onclick="showPage(\'auth\')">Entrar</button><button class="nav-cta" onclick="showPage(\'auth\')">Agendar</button>';
+    if (mbtns) mbtns.innerHTML = '<button class="nav-login" onclick="closeMobileMenu();showPage(\'auth\')">Entrar</button><button class="nav-cta" onclick="closeMobileMenu();showPage(\'auth\')">Agendar</button>';
+  }
+}
+
+// ============ DASHBOARD ============
+function loadDashboard(){
+  var s = getSession();
+  if (!s){ showPage('auth'); return; }
+  var el;
+  el = document.getElementById('dash-avatar'); if (el) el.textContent = s.nome.charAt(0).toUpperCase();
+  el = document.getElementById('dash-username'); if (el) el.textContent = s.nome + ' ' + (s.sob || '');
+  el = document.getElementById('dash-email'); if (el) el.textContent = s.email;
+  // Barra mobile
+  el = document.getElementById('dm-av'); if (el) el.textContent = s.nome.charAt(0).toUpperCase();
+  el = document.getElementById('dm-name'); if (el) el.textContent = s.nome + ' ' + (s.sob || '');
+  el = document.getElementById('dm-email-m'); if (el) el.textContent = s.email;
+  el = document.getElementById('welcome-title'); if (el) el.textContent = 'OLÁ, ' + s.nome.toUpperCase() + '!';
+
+  // Perfil
+  el = document.getElementById('prof-av'); if (el) el.textContent = s.nome.charAt(0).toUpperCase();
+  el = document.getElementById('prof-name'); if (el) el.textContent = s.nome + ' ' + (s.sob || '');
+  el = document.getElementById('prof-email'); if (el) el.textContent = '✉ ' + s.email;
+  el = document.getElementById('prof-tel'); if (el) el.textContent = '📱 ' + (s.tel || 'Não informado');
+  el = document.getElementById('prof-input-name'); if (el) el.value = s.nome + (s.sob ? ' ' + s.sob : '');
+  el = document.getElementById('prof-input-tel'); if (el) el.value = s.tel || '';
+  el = document.getElementById('prof-input-email'); if (el) el.value = s.email;
+
+  // Bookings
+  var bookings = cleanBookings(s.email);
+  var total = document.getElementById('total-appt');
+  if (total) total.textContent = bookings.length;
+  var next = document.getElementById('next-appt');
+  if (next){
+    if (bookings.length > 0){
+      var b = bookings[bookings.length - 1];
+      next.textContent = b.data + ' ' + b.hora;
+      next.style.fontSize = '1.3rem';
+    } else {
+      next.textContent = 'Nenhum';
+      next.style.fontSize = '1.3rem';
+      next.style.color = 'var(--gray)';
+    }
+  }
+
+  renderHistorico();
+  renderServiceGrid();
+  renderBarberGrid();
+}
+
+function switchDashView(view, el){
+  var views = document.querySelectorAll('.dash-view');
+  for (var i = 0; i < views.length; i++) views[i].classList.remove('active');
+  var v = document.getElementById('view-' + view);
+  if (v) v.classList.add('active');
+  // Sidebar
+  var items = document.querySelectorAll('.dash-menu li[data-view]');
+  for (var j = 0; j < items.length; j++){
+    items[j].classList.toggle('active', items[j].getAttribute('data-view') === view);
+  }
+  // Bottom nav
+  var bs = document.querySelectorAll('.dbn-item');
+  for (var k = 0; k < bs.length; k++){
+    bs[k].classList.toggle('active', bs[k].getAttribute('data-view') === view);
+  }
+  // Reseta agendamento sempre que entrar na view
+  if (view === 'agendar') {
+    selectedSvcs = [];
+    selectedBarber = null;
+    var apData = document.getElementById('ap-data');
+    var apHora = document.getElementById('ap-hora');
+    if (apData) apData.value = '';
+    if (apHora) apHora.value = '';
+    var suc = document.getElementById('booking-success');
+    if (suc) suc.classList.remove('show');
+    setStep(1);
+    renderServiceGrid();
+    renderBarberGrid();
+  }
+  window.scrollTo(0, 0);
+}
+
+function saveProfile(){
+  var s = getSession();
+  if (!s) return;
+  var fullName = document.getElementById('prof-input-name').value.trim();
+  var tel = document.getElementById('prof-input-tel').value.trim();
+  var parts = fullName.split(' ');
+  s.nome = parts[0];
+  s.sob = parts.slice(1).join(' ');
+  s.tel = tel;
+  setSession(s);
+  // Atualiza no users
+  var users = getUsers();
+  for (var i = 0; i < users.length; i++){
+    if (users[i].email === s.email){
+      users[i].nome = s.nome; users[i].sob = s.sob; users[i].tel = s.tel;
+      saveUsers(users);
+      break;
+    }
+  }
+  loadDashboard();
+  var suc = document.getElementById('prof-success');
+  if (suc){ suc.classList.add('show'); setTimeout(function(){ suc.classList.remove('show'); }, 2500); }
+}
+
+// ============ AGENDAMENTO ============
+var selectedSvcs = [];
+var selectedBarber = null;
+var currentStep = 1;
+
+function renderServiceGrid(){
+  var grid = document.getElementById('svc-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (var i = 0; i < services.length; i++){
+    var s = services[i];
+    var priceStr = s.price > 0 ? 'R$ ' + s.price : 'Consultar';
+    var div = document.createElement('div');
+    div.className = 'svc-card';
+    div.setAttribute('data-id', s.id);
+    div.innerHTML = '<div class="svc-ic">' + s.icon + '</div><div class="svc-nm">' + s.name + '</div><div class="svc-pr">' + priceStr + '</div>';
+    div.onclick = (function(id){ return function(){ toggleService(id); }; })(s.id);
+    grid.appendChild(div);
+  }
+  updateSelectedSvcs();
+}
+
+function toggleService(id){
+  var idx = selectedSvcs.indexOf(id);
+  if (idx >= 0) selectedSvcs.splice(idx, 1);
+  else selectedSvcs.push(id);
+  var cards = document.querySelectorAll('#svc-grid .svc-card');
+  for (var i = 0; i < cards.length; i++){
+    cards[i].classList.toggle('selected', selectedSvcs.indexOf(cards[i].getAttribute('data-id')) >= 0);
+  }
+  updateSelectedSvcs();
+}
+
+function updateSelectedSvcs(){
+  var box = document.getElementById('sel-svcs');
+  var val = document.getElementById('sel-val');
+  var tot = document.getElementById('sel-tot');
+  if (!box) return;
+  if (selectedSvcs.length === 0){ box.classList.remove('show'); return; }
+  box.classList.add('show');
+  var names = [], total = 0, hasC = false;
+  for (var i = 0; i < selectedSvcs.length; i++){
+    for (var j = 0; j < services.length; j++){
+      if (services[j].id === selectedSvcs[i]){
+        names.push(services[j].name);
+        if (services[j].price === 0) hasC = true;
+        else total += services[j].price;
+        break;
+      }
+    }
+  }
+  if (val) val.textContent = names.join(' + ');
+  if (tot) tot.textContent = hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total);
+}
+
+function renderBarberGrid(){
+  var grid = document.getElementById('barber-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (var i = 0; i < barbers.length; i++){
+    var b = barbers[i];
+    var div = document.createElement('div');
+    div.className = 'barber-card';
+    div.setAttribute('data-id', b.id);
+    div.innerHTML = '<div class="barber-av">' + b.name.charAt(0) + '</div><div class="barber-nm">' + b.name + '</div>';
+    div.onclick = (function(id){ return function(){ selectBarber(id); }; })(b.id);
+    grid.appendChild(div);
+  }
+}
+
+function selectBarber(id){
+  selectedBarber = id;
+  var cards = document.querySelectorAll('#barber-grid .barber-card');
+  for (var i = 0; i < cards.length; i++){
+    cards[i].classList.toggle('selected', cards[i].getAttribute('data-id') === id);
+  }
+}
+
+function nextStep(n){
+  if (n === 2 && selectedSvcs.length === 0){ alert('Selecione ao menos um serviço.'); return; }
+  if (n === 3 && !selectedBarber){ alert('Escolha um barbeiro.'); return; }
+  if (n === 4){
+    var d = document.getElementById('ap-data').value;
+    var h = document.getElementById('ap-hora').value;
+    if (!d || !h){ alert('Escolha data e horário.'); return; }
+    buildConfirmBox();
+  }
+  setStep(n);
+}
+function prevStep(n){ setStep(n); }
+
+function setStep(n){
+  currentStep = n;
+  for (var i = 1; i <= 4; i++){
+    var s = document.getElementById('step-' + i);
+    var c = document.getElementById('content-step-' + i);
+    if (s){ s.classList.remove('active', 'done'); if (i < n) s.classList.add('done'); if (i === n) s.classList.add('active'); }
+    if (c) c.style.display = (i === n) ? 'block' : 'none';
+  }
+}
+
+function buildConfirmBox(){
+  var box = document.getElementById('confirm-box');
+  if (!box) return;
+  var names = [], total = 0, hasC = false;
+  for (var i = 0; i < selectedSvcs.length; i++){
+    for (var j = 0; j < services.length; j++){
+      if (services[j].id === selectedSvcs[i]){
+        names.push(services[j].name);
+        if (services[j].price === 0) hasC = true;
+        else total += services[j].price;
+        break;
+      }
+    }
+  }
+  var barberName = '';
+  for (var k = 0; k < barbers.length; k++) if (barbers[k].id === selectedBarber) barberName = barbers[k].name;
+  var data = document.getElementById('ap-data').value;
+  var hora = document.getElementById('ap-hora').value;
+  var dataFmt = '';
+  if (data){
+    var p = data.split('-');
+    dataFmt = p[2] + '/' + p[1] + '/' + p[0];
+  }
+  var totalStr = hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total);
+  box.innerHTML =
+    '<div class="ln"><span>Serviços:</span><span>' + names.join(', ') + '</span></div>' +
+    '<div class="ln"><span>Barbeiro:</span><span>' + barberName + '</span></div>' +
+    '<div class="ln"><span>Data:</span><span>' + dataFmt + '</span></div>' +
+    '<div class="ln"><span>Horário:</span><span>' + hora + '</span></div>' +
+    '<div class="ln" style="font-size:1.1rem;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.1)"><span>Total:</span><span style="color:var(--gold);font-family:\'Bebas Neue\',sans-serif">' + totalStr + '</span></div>';
+}
+
+function confirmBooking(){
+  var s = getSession();
+  if (!s) return;
+  var data = document.getElementById('ap-data').value;
+  var hora = document.getElementById('ap-hora').value;
+  var p = data.split('-');
+  var dataFmt = p[2] + '/' + p[1] + '/' + p[0];
+  var names = [], total = 0, hasC = false;
+  for (var i = 0; i < selectedSvcs.length; i++){
+    for (var j = 0; j < services.length; j++){
+      if (services[j].id === selectedSvcs[i]){
+        names.push(services[j].name);
+        if (services[j].price === 0) hasC = true;
+        else total += services[j].price;
+        break;
+      }
+    }
+  }
+  var barberName = '';
+  for (var k = 0; k < barbers.length; k++) if (barbers[k].id === selectedBarber) barberName = barbers[k].name;
+
+  var booking = {
+    servicos: names.join(' + '),
+    barbeiro: barberName,
+    data: dataFmt,
+    hora: hora,
+    total: hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total),
+    when: new Date().getTime()
+  };
+  var bks = getBookings(s.email);
+  bks.push(booking);
+  saveBookings(s.email, bks);
+
+  var suc = document.getElementById('booking-success');
+  if (suc) suc.classList.add('show');
+
+  // WhatsApp do dono
+  setTimeout(function(){
+    var msg = '🗓️ *NOVO AGENDAMENTO - Vikings*%0A%0A';
+    msg += '👤 *Cliente:* ' + encodeURIComponent(s.nome + ' ' + (s.sob || '')) + '%0A';
+    msg += '✉ *E-mail:* ' + encodeURIComponent(s.email) + '%0A';
+    msg += '📱 *Tel:* ' + encodeURIComponent(s.tel || '—') + '%0A';
+    msg += '✂️ *Serviços:* ' + encodeURIComponent(booking.servicos) + '%0A';
+    msg += '💈 *Barbeiro:* ' + encodeURIComponent(booking.barbeiro) + '%0A';
+    msg += '📅 *Data:* ' + encodeURIComponent(booking.data) + '%0A';
+    msg += '⏰ *Hora:* ' + encodeURIComponent(booking.hora) + '%0A';
+    msg += '💰 *Total:* ' + encodeURIComponent(booking.total) + '%0A%0A';
+    msg += 'Feito pelo site Vikings Barber Shop';
+    window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
+  }, 1500);
+
+  // Reset
+  setTimeout(function(){
+    selectedSvcs = []; selectedBarber = null;
+    document.getElementById('ap-data').value = '';
+    document.getElementById('ap-hora').value = '';
+    if (suc) suc.classList.remove('show');
+    setStep(1);
+    renderServiceGrid();
+    renderBarberGrid();
+    switchDashView('historico', document.querySelector('.dash-menu li[data-view=historico]'));
+  }, 4000);
+}
+
+function renderHistorico(){
+  var s = getSession();
+  if (!s) return;
+  var list = document.getElementById('hist-list');
+  if (!list) return;
+  var bks = cleanBookings(s.email);
+  if (bks.length === 0){
+    list.innerHTML = '<div class="hist-empty">Nenhum agendamento ainda.<br><br><button class="btn-primary" onclick="switchDashView(\'agendar\',document.querySelector(\'.dash-menu li[data-view=agendar]\'))">+ Novo Agendamento</button></div>';
+    return;
+  }
+  list.innerHTML = '';
+  for (var i = bks.length - 1; i >= 0; i--){
+    var b = bks[i];
+    var div = document.createElement('div');
+    div.className = 'hist-item';
+    div.innerHTML =
+      '<div class="hist-info">' +
+        '<div class="hist-svc">' + b.servicos + '</div>' +
+        '<div class="hist-dt">' + b.data + ' às ' + b.hora + ' · ' + b.barbeiro + ' · ' + b.total + '</div>' +
+      '</div>' +
+      '<div class="hist-status">Confirmado</div>';
+    list.appendChild(div);
+  }
+}
+
+// ============ PLANOS ============
+function assinarPlano(nome, valor){
+  var s = getSession();
+  var msg = '👑 *INTERESSE EM PLANO - Vikings*%0A%0A';
+  if (s) {
+    msg += 'Cliente: ' + encodeURIComponent(s.nome + ' ' + (s.sob || '')) + '%0A';
+    msg += 'E-mail: ' + encodeURIComponent(s.email) + '%0A%0A';
+  }
+  msg += '*Plano:* ' + encodeURIComponent(nome) + '%0A*Valor:* ' + encodeURIComponent(valor);
+  window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
+}
+
+// ============ AGENDAMENTO RAPIDO ============
+var qServices = [];
+var qTotal = 0;
+
+function openQuick(){
+  var m = document.getElementById('modal-quick');
+  if (m) m.classList.add('active');
+  renderQuickServices();
+}
+
+function closeQuick(){
+  var m = document.getElementById('modal-quick');
+  if (m) m.classList.remove('active');
+}
+
+function renderQuickServices(){
+  var grid = document.getElementById('q-svc-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (var i = 0; i < services.length; i++){
+    var s = services[i];
+    var priceStr = s.price > 0 ? 'R$ ' + s.price : 'Consultar';
+    var div = document.createElement('div');
+    div.className = 'q-svc-card';
+    div.setAttribute('data-id', s.id);
+    div.innerHTML = '<div class="ic">' + s.icon + '</div><div class="nm">' + s.name + '</div><div class="pr">' + priceStr + '</div>';
+    div.onclick = (function(id){ return function(){ toggleQuickSvc(id); }; })(s.id);
+    grid.appendChild(div);
+  }
+  qServices = [];
+  qTotal = 0;
+  updateQuickTotal();
+}
+
+function toggleQuickSvc(id){
+  var found = -1;
+  for (var i = 0; i < qServices.length; i++) if (qServices[i].id === id) { found = i; break; }
+  if (found >= 0) qServices.splice(found, 1);
+  else {
+    for (var j = 0; j < services.length; j++){
+      if (services[j].id === id){
+        qServices.push({id:services[j].id, name:services[j].name, price:services[j].price});
+        break;
+      }
+    }
+  }
+  var cards = document.querySelectorAll('#q-svc-grid .q-svc-card');
+  for (var k = 0; k < cards.length; k++){
+    var on = false;
+    for (var l = 0; l < qServices.length; l++) if (qServices[l].id === cards[k].getAttribute('data-id')) on = true;
+    cards[k].classList.toggle('selected', on);
+  }
+  updateQuickTotal();
+}
+
+function updateQuickTotal(){
+  qTotal = 0;
+  var hasC = false;
+  for (var i = 0; i < qServices.length; i++){
+    if (qServices[i].price === 0) hasC = true;
+    else qTotal += qServices[i].price;
+  }
+  var box = document.getElementById('q-total');
+  var val = document.getElementById('q-total-val');
+  if (!box) return;
+  if (qServices.length === 0){ box.classList.remove('show'); return; }
+  box.classList.add('show');
+  if (val) val.textContent = hasC ? ('R$ ' + qTotal + ' + Consultar') : ('R$ ' + qTotal);
+}
+
+function sendToWhatsApp(){
+  var nomeEl = document.getElementById('q-nome');
+  var dataEl = document.getElementById('q-data');
+  var horaEl = document.getElementById('q-hora');
+  var obsEl = document.getElementById('q-obs');
+  var nome = nomeEl ? nomeEl.value.trim() : '';
+  var data = dataEl ? dataEl.value : '';
+  var hora = horaEl ? horaEl.value : '';
+  var obs = obsEl ? obsEl.value.trim() : '';
+  if (!nome){ alert('Informe seu nome.'); return; }
+  if (qServices.length === 0){ alert('Selecione ao menos um serviço.'); return; }
+  var dataFmt = 'a definir';
+  if (data){ var p = data.split('-'); dataFmt = p[2] + '/' + p[1] + '/' + p[0]; }
+  var svc = '';
+  for (var i = 0; i < qServices.length; i++) svc += (i > 0 ? ' + ' : '') + qServices[i].name;
+  var hasC = false;
+  for (var j = 0; j < qServices.length; j++) if (qServices[j].price === 0) hasC = true;
+  var totStr = hasC ? ('R$ ' + qTotal + ' + Consultar') : ('R$ ' + qTotal);
+  var msg = 'Olá! Gostaria de agendar na Vikings Barber Shop%0A%0A';
+  msg += '*Nome:* ' + encodeURIComponent(nome) + '%0A';
+  msg += '*Serviço:* ' + encodeURIComponent(svc) + '%0A';
+  msg += '*Total:* ' + encodeURIComponent(totStr) + '%0A';
+  msg += '*Data:* ' + encodeURIComponent(dataFmt) + '%0A';
+  msg += '*Horário:* ' + encodeURIComponent(hora || 'a definir') + '%0A';
+  if (obs) msg += '*Obs:* ' + encodeURIComponent(obs) + '%0A';
+  msg += '%0AAguardo confirmação!';
+  window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
+  closeQuick();
+}
+
+// ============ GALERIA ============
+function buildPanel(id, arr){
+  var el = document.getElementById('panel-' + id);
+  if (!el) return;
+  el.innerHTML = '';
+  for (var i = 0; i < arr.length; i++){
+    var div = document.createElement('div');
+    div.className = 'gal-item';
+    var img = document.createElement('img');
+    img.src = arr[i].src;
+    img.alt = arr[i].label;
+    img.loading = 'lazy';
+    var lbl = document.createElement('div');
+    lbl.className = 'gal-label';
+    lbl.textContent = arr[i].label;
+    var zm = document.createElement('div');
+    zm.className = 'gal-zoom';
+    zm.textContent = '+';
+    div.appendChild(img); div.appendChild(lbl); div.appendChild(zm);
+    (function(a, idx){
+      div.addEventListener('click', function(){ openLb(a, idx); });
+    })(arr, i);
+    el.appendChild(div);
+  }
+}
+
+function switchTab(tab, btn){
+  var tabs = document.querySelectorAll('.tab-btn');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  if (btn) btn.classList.add('active');
+  var panels = document.querySelectorAll('.gallery-panel');
+  for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
+  var p = document.getElementById('panel-' + tab);
+  if (p) p.classList.add('active');
+}
+
+// ============ LIGHTBOX ============
+var lbArr = [];
+var lbIdx = 0;
+
+function openLb(arr, idx){
+  lbArr = arr; lbIdx = idx;
+  showLbItem();
+  var bg = document.getElementById('lb-bg');
+  if (bg) bg.classList.add('active');
+}
+
+function openSingle(src, label){
+  lbArr = [{src:src, label:label}];
+  lbIdx = 0;
+  showLbItem();
+  var bg = document.getElementById('lb-bg');
+  if (bg) bg.classList.add('active');
+}
+
+function showLbItem(){
+  var img = document.getElementById('lb-img');
+  if (img) img.src = lbArr[lbIdx].src;
+  var lbl = document.getElementById('lb-label');
+  if (lbl) lbl.textContent = lbArr[lbIdx].label;
+  var cnt = document.getElementById('lb-counter');
+  if (cnt) cnt.textContent = (lbIdx + 1) + ' / ' + lbArr.length;
+}
+
+function lbNav(d){
+  lbIdx += d;
+  if (lbIdx < 0) lbIdx = lbArr.length - 1;
+  if (lbIdx >= lbArr.length) lbIdx = 0;
+  showLbItem();
+}
+
+function closeLb(){
+  var bg = document.getElementById('lb-bg');
+  if (bg) bg.classList.remove('active');
+}
+
+document.addEventListener('keydown', function(e){
+  var bg = document.getElementById('lb-bg');
+  if (!bg || !bg.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded', function(){
+  // Reveal animation
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.1});
+  var rev = document.querySelectorAll('.reveal');
+  for (var i = 0; i < rev.length; i++) obs.observe(rev[i]);
+
+  // Build galleries
+  buildPanel('normal', normalImgs);
+  buildPanel('infantil', infantilImgs);
+
+  // Counts
+  var cN = document.getElementById('cnt-n'); if (cN) cN.textContent = normalImgs.length;
+  var cI = document.getElementById('cnt-i'); if (cI) cI.textContent = infantilImgs.length;
+
+  // Nav update
+  try { updateNav(); } catch(e){ console.warn('updateNav:', e); }
+
+  // Min date for agendamento
+  var today = new Date().toISOString().split('T')[0];
+  var apd = document.getElementById('ap-data'); if (apd) apd.min = today;
+  var qd = document.getElementById('q-data'); if (qd) qd.min = today;
+});
+</script>
+</body>
+</html>
