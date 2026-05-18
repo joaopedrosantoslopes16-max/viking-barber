@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Vikings Barber Shop - Atibaia</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -379,9 +382,9 @@ section{padding:6rem 2.5rem}
   section{padding:4rem 1.2rem}
   .hero{padding:6rem 1.2rem 3rem}
   .first-cut{padding:4rem 1.2rem}
-  .dashboard{display:block;padding:5rem 0 0;min-height:auto;background:var(--dark)}
-  .dash-sidebar{display:none}
-  .dash-content{display:block;width:100%;padding:1rem 1rem 100px;-webkit-overflow-scrolling:touch}
+  .dashboard{display:block!important;padding:56px 0 0;min-height:100vh;background:var(--dark);overflow-x:hidden}
+  .dash-sidebar{display:none!important}
+  .dash-content{display:block!important;width:100%;padding:1rem 1rem 100px;-webkit-overflow-scrolling:touch;-webkit-backface-visibility:hidden;backface-visibility:hidden}
   .dash-mobile-bar{display:flex}
   .welcome-title{font-size:1.6rem;margin-bottom:.2rem}
   .welcome-sub{font-size:.82rem;margin-bottom:1.2rem}
@@ -1084,13 +1087,16 @@ function showPage(p){
   var pages = document.querySelectorAll('.page');
   for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
   var pg = document.getElementById('page-' + p);
-  if (pg) pg.classList.add('active');
+  if (pg) {
+    pg.classList.add('active');
+    void pg.offsetHeight; // força repaint no iOS Safari
+  }
   window.scrollTo(0, 0);
   var bar = document.getElementById('quick-bar');
   if (bar) bar.style.display = (p === 'home') ? 'flex' : 'none';
   var dbn = document.getElementById('dash-bottom-nav');
   if (dbn) dbn.style.display = (p === 'dashboard' && window.innerWidth <= 768) ? 'flex' : 'none';
-  if (p === 'dashboard') loadDashboard();
+  if (p === 'dashboard') requestAnimationFrame(function(){ loadDashboard(); });
 }
 
 function goTo(id){
@@ -1190,6 +1196,7 @@ function updateNav(){
 
 // ============ DASHBOARD ============
 function loadDashboard(){
+  try {
   var s = getSession();
   if (!s){ showPage('auth'); return; }
   var el;
@@ -1231,13 +1238,23 @@ function loadDashboard(){
   renderHistorico();
   renderServiceGrid();
   renderBarberGrid();
+  // Força repaint no iOS após popular o conteúdo
+  var dc = document.querySelector('.dash-content');
+  if (dc) { void dc.offsetHeight; }
+  } catch(e) {
+    var dc2 = document.querySelector('.dash-content');
+    if (dc2) dc2.innerHTML = '<div style="padding:2rem;color:#fff;font-family:sans-serif"><b>Erro ao carregar dashboard.</b><br>Tente recarregar a página.</div>';
+  }
 }
 
 function switchDashView(view, el){
   var views = document.querySelectorAll('.dash-view');
   for (var i = 0; i < views.length; i++) views[i].classList.remove('active');
   var v = document.getElementById('view-' + view);
-  if (v) v.classList.add('active');
+  if (v) {
+    v.classList.add('active');
+    void v.offsetHeight; // força repaint no iOS Safari
+  }
   // Sidebar
   var items = document.querySelectorAll('.dash-menu li[data-view]');
   for (var j = 0; j < items.length; j++){
