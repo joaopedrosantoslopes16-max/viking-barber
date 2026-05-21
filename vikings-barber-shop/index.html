@@ -110,14 +110,14 @@ section{padding:6rem 2.5rem}
 
 /* SERVICOS */
 .services-section{background:var(--black)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
-.service-item{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1.8rem;transition:transform .2s,border-color .2s}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.service-item{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1rem .9rem;transition:transform .2s,border-color .2s}
 .service-item:hover{transform:translateY(-3px);border-color:rgba(192,41,42,.3)}
-.service-icon{font-size:2rem;margin-bottom:.8rem}
-.service-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--white);margin-bottom:.5rem}
-.service-desc{color:var(--gray);font-size:.85rem;line-height:1.5;margin-bottom:1rem;min-height:50px}
-.service-price{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);letter-spacing:1px}
-.service-price small{font-size:.7rem;color:var(--gray);font-family:'Barlow',sans-serif;letter-spacing:1px}
+.service-icon{font-size:1.5rem;margin-bottom:.4rem}
+.service-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1.5px;color:var(--white);margin-bottom:.3rem}
+.service-desc{display:none}
+.service-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);letter-spacing:1px}
+.service-price small{font-size:.65rem;color:var(--gray);font-family:'Barlow',sans-serif;letter-spacing:1px}
 
 /* PLANOS */
 .planos-section{background:var(--dark);position:relative}
@@ -185,20 +185,65 @@ section{padding:6rem 2.5rem}
 .q-field label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
 .q-field input,.q-field textarea{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.7rem;border-radius:2px;font-family:'Barlow',sans-serif;font-size:.95rem}
 .q-field input:focus,.q-field textarea:focus{outline:none;border-color:var(--red)}
-.q-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-.q-svc-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:2px;padding:.7rem;cursor:pointer;transition:all .2s;text-align:center}
+.q-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
+.q-svc-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:2px;padding:.5rem .3rem;cursor:pointer;transition:all .2s;text-align:center}
 .q-svc-card.selected{border-color:var(--red);background:rgba(192,41,42,.15)}
-.q-svc-card .ic{font-size:1.3rem;margin-bottom:.2rem}
-.q-svc-card .nm{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--white);font-weight:600;letter-spacing:1px}
-.q-svc-card .pr{font-size:.75rem;color:var(--gold);margin-top:.2rem}
+.q-svc-card .ic{font-size:1.1rem;margin-bottom:.1rem}
+.q-svc-card .nm{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--white);font-weight:600;letter-spacing:.8px;line-height:1.2}
+.q-svc-card .pr{font-size:.7rem;color:var(--gold);margin-top:.15rem}
 .q-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .q-total{background:var(--dark3);border-left:3px solid var(--gold);padding:.8rem 1rem;margin:.8rem 0;display:none;border-radius:2px}
 .q-total.show{display:block}
 .q-total-label{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase}
 .q-total-val{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold)}
-.modal-btns{display:flex;gap:.5rem;margin-top:1rem}
+.modal-btns{display:flex;gap:.5rem;margin-top:1.2rem}
 .modal-close{background:none;border:1px solid rgba(255,255,255,.2);color:var(--gray);padding:.7rem 1.2rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;cursor:pointer}
 .modal-send{flex:1;background:#25D366;color:var(--white);border:none;padding:.7rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600}
+.q-steps{display:flex;align-items:center;margin-bottom:1.5rem;gap:0}
+.q-step{width:28px;height:28px;border-radius:50%;background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:var(--gray);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.q-step.active{background:var(--red);border-color:var(--red);color:#fff}
+.q-step.done{background:rgba(192,41,42,.2);border-color:rgba(192,41,42,.3);color:var(--red-light)}
+.q-step-line{flex:1;height:1px;background:rgba(255,255,255,.1)}
+/* Confirmação resumo */
+.q-confirm-box{background:var(--dark3);border-radius:3px;padding:1rem;margin-bottom:.8rem}
+.q-confirm-box .q-ln{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.85rem}
+.q-confirm-box .q-ln:last-child{border-bottom:none}
+.q-confirm-box .q-ln span:first-child{color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;font-size:.75rem}
+.q-confirm-box .q-ln span:last-child{color:var(--white);font-weight:600;text-align:right;max-width:60%}
+.q-aviso{background:rgba(201,146,42,.08);border-left:3px solid var(--gold);padding:.7rem .9rem;font-family:'Barlow',sans-serif;font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.5;border-radius:2px;margin-bottom:.8rem}
+/* Rodapé discreto de conta */
+.q-footer-account{text-align:center;margin-top:1.2rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.06);font-family:'Barlow',sans-serif;font-size:.78rem;color:rgba(255,255,255,.25)}
+.q-footer-account button{background:none;border:none;color:rgba(255,255,255,.4);font-family:'Barlow',sans-serif;font-size:.78rem;cursor:pointer;text-decoration:underline;padding:0}
+.q-footer-account button:hover{color:rgba(255,255,255,.7)}
+/* Barber grid */
+.q-barber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1rem}
+.q-barber-card{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.8rem .4rem;background:var(--dark3);border:2px solid transparent;border-radius:3px;cursor:pointer;transition:all .2s}
+.q-barber-card:hover{border-color:rgba(192,41,42,.4)}
+.q-barber-card.selected{border-color:var(--red);background:rgba(192,41,42,.12)}
+.q-barber-photo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.1)}
+.q-barber-card.selected .q-barber-photo{border-color:var(--red)}
+.q-barber-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1.5px;color:var(--white);text-align:center}
+.q-barber-sem{grid-column:1/-1;flex-direction:row;justify-content:center;gap:.6rem;padding:.6rem}
+/* Calendar */
+.q-cal{background:var(--dark3);border-radius:3px;overflow:hidden;margin-bottom:1rem}
+.q-cal-header{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;background:var(--red)}
+.q-cal-month{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:3px;color:#fff}
+.q-cal-nav{background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;padding:.1rem .5rem;opacity:.85;line-height:1}
+.q-cal-nav:hover{opacity:1}
+.q-cal-wdays{display:grid;grid-template-columns:repeat(7,1fr);background:rgba(0,0,0,.25)}
+.q-cal-wday{text-align:center;padding:.35rem 0;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:1.5px;color:rgba(255,255,255,.35);text-transform:uppercase}
+.q-cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:.5rem}
+.q-cal-day{text-align:center;padding:.4rem .1rem;font-family:'Barlow',sans-serif;font-size:.82rem;color:var(--white);cursor:pointer;border-radius:2px;transition:background .15s}
+.q-cal-day:hover{background:rgba(192,41,42,.3)}
+.q-cal-day.selected{background:var(--red);color:#fff;font-weight:700}
+.q-cal-day.today{border:1px solid rgba(192,41,42,.5)}
+.q-cal-day.empty,.q-cal-day.past{color:rgba(255,255,255,.18);cursor:default;pointer-events:none}
+/* Time slots */
+.q-time-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:1.5px;color:var(--gray);text-transform:uppercase;margin-bottom:.4rem}
+.q-time-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.35rem;margin-bottom:.8rem}
+.q-time-slot{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:2px;padding:.45rem .2rem;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:1px;color:var(--white);cursor:pointer;transition:all .15s}
+.q-time-slot:hover{border-color:var(--red);color:var(--red)}
+.q-time-slot.selected{background:var(--red);border-color:var(--red);color:#fff}
 
 /* LIGHTBOX */
 .lb-bg{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;padding:2rem}
@@ -275,7 +320,9 @@ section{padding:6rem 2.5rem}
 .barber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.7rem;margin-bottom:1rem}
 .barber-card{background:var(--dark3);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:1rem;cursor:pointer;text-align:center;transition:all .2s}
 .barber-card.selected{border-color:var(--red);background:rgba(192,41,42,.12)}
-.barber-av{width:50px;height:50px;border-radius:50%;background:var(--red);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;margin:0 auto .5rem}
+.barber-av{width:56px;height:56px;border-radius:50%;background:var(--dark2);border:2px solid rgba(255,255,255,.1);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto .5rem}
+.barber-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.1);display:block;margin:0 auto .5rem}
+.barber-card.selected .barber-photo{border-color:var(--red)}
 .barber-nm{font-family:'Bebas Neue',sans-serif;color:var(--white);font-size:1rem;letter-spacing:1px}
 .dt-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 .dt-row label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
@@ -294,12 +341,18 @@ section{padding:6rem 2.5rem}
 .success-msg h3{font-family:'Bebas Neue',sans-serif;color:#7be07b;font-size:1.5rem;letter-spacing:2px;margin-bottom:.3rem}
 
 /* HISTORICO */
-.hist-item{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--red);padding:1rem 1.2rem;margin-bottom:.7rem;border-radius:2px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.hist-item{background:var(--dark3);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--red);padding:1rem 1.2rem;margin-bottom:.7rem;border-radius:2px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.hist-item.cancelado{border-left-color:#555;opacity:.7}
 .hist-empty{text-align:center;color:var(--gray);padding:2rem;font-size:.9rem}
 .hist-info{flex:1;min-width:200px}
-.hist-svc{color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:1px}
-.hist-dt{color:var(--gray);font-size:.82rem;margin-top:.2rem}
+.hist-svc{color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;margin-bottom:.3rem}
+.hist-dt{color:var(--gray);font-size:.82rem;line-height:1.7}
+.hist-dt span{margin-right:.6rem}
+.hist-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
 .hist-status{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;padding:.3rem .7rem;border-radius:2px;background:rgba(201,146,42,.2);color:var(--gold-light)}
+.hist-status.cancelado{background:rgba(192,41,42,.15);color:var(--red)}
+.hist-cancel-btn{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.35);font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;padding:.3rem .7rem;border-radius:2px;cursor:pointer;transition:all .2s}
+.hist-cancel-btn:hover{border-color:var(--red);color:var(--red)}
 
 /* PROFILE */
 .prof-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:3px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
@@ -421,7 +474,7 @@ section{padding:6rem 2.5rem}
   .prof-info h3{font-size:1.2rem}
   .first-cut-photos{grid-template-columns:1fr;grid-auto-rows:200px}
   .photo-main{grid-row:auto}
-  .services-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
   .quick-bar{padding:.7rem 1rem}
   .quick-bar-text{font-size:.85rem}
   input,select,textarea{font-size:16px;color-scheme:dark}
@@ -602,12 +655,25 @@ section{padding:6rem 2.5rem}
     </div>
     <div class="services-grid reveal">
       <div class="service-item"><div class="service-icon">✂️</div><div class="service-name">Corte Masculino</div><div class="service-desc">Corte completo com lavagem, finalização e styling.</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba</div><div class="service-desc">Modelagem e acabamento com navalha e produtos premium.</div><div class="service-price">R$ 35<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Corte + Barba</div><div class="service-desc">Combo completo — visual perfeito do cabelo à barba.</div><div class="service-price">R$ 70<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba</div><div class="service-desc">Modelagem e acabamento com navalha e produtos premium.</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Corte + Barba</div><div class="service-desc">Combo completo — visual perfeito do cabelo à barba.</div><div class="service-price">R$ 90<small>/sessão</small></div></div>
       <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Traçado / Design</div><div class="service-desc">Arabescos, riscos e designs artísticos.</div><div class="service-price">R$ 20<small>/adicional</small></div></div>
-      <div class="service-item"><div class="service-icon">🧒</div><div class="service-name">Corte Infantil</div><div class="service-desc">Para os pequenos vikings, com atenção especial.</div><div class="service-price">R$ 35<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">✏️</div><div class="service-name">Sobrancelha</div><div class="service-desc">Design e acabamento de sobrancelha com precisão.</div><div class="service-price">R$ 10<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🧒</div><div class="service-name">Corte Infantil</div><div class="service-desc">Para os pequenos vikings, com atenção especial.</div><div class="service-price" style="font-size:1.2rem;color:var(--gold-light)">Consultar</div></div>
+      <div class="service-item"><div class="service-icon">✏️</div><div class="service-name">Sobrancelha</div><div class="service-desc">Design e acabamento de sobrancelha com precisão.</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
       <div class="service-item"><div class="service-icon">🏅</div><div class="service-name">1° Corte da Vida</div><div class="service-desc">Experiência inesquecível com certificado incluso.</div><div class="service-price" style="font-size:1.2rem;color:var(--gold-light)">Consultar</div></div>
+      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Pezinho</div><div class="service-desc">Acabamento e alinhamento na nuca.</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba com Vaporizador de Ozônio</div><div class="service-desc">Barba completa com tratamento de ozônio.</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Barba Pigmentada</div><div class="service-desc">Pigmentação e acabamento artístico na barba.</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">👃</div><div class="service-name">Depilação Nariz e Orelha</div><div class="service-desc">Remoção de pelos com cera ou aparelho.</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🧴</div><div class="service-name">Botox Capilar</div><div class="service-desc">Tratamento de reconstrução e hidratação profunda.</div><div class="service-price">A partir de R$ 40</div></div>
+      <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Tintura</div><div class="service-desc">Coloração completa dos fios.</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Selagem</div><div class="service-desc">Selagem capilar para fios mais alinhados e brilhantes.</div><div class="service-price">A partir de R$ 40</div></div>
+      <div class="service-item"><div class="service-icon">💆</div><div class="service-name">Relaxamento</div><div class="service-desc">Tratamento para alisar e soltar os cachos.</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">💆</div><div class="service-name">Progressiva</div><div class="service-desc">Alisamento progressivo de longa duração.</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">⚗️</div><div class="service-name">Platinado</div><div class="service-desc">Descoloração total para o visual platinado.</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Luzes</div><div class="service-desc">Mechas e luzes para dar movimento e estilo.</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🧖</div><div class="service-name">Limpeza de Pele Simples</div><div class="service-desc">Limpeza e cuidado básico para a pele do rosto.</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-icon">🧖</div><div class="service-name">Limpeza de Pele Completa</div><div class="service-desc">Limpeza profunda com extração e tratamento.</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
     </div>
   </section>
 
@@ -843,18 +909,9 @@ section{padding:6rem 2.5rem}
           <!-- Step 3 -->
           <div class="step-content" id="content-step-3" style="display:none">
             <h3 style="margin-bottom:1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--white)">Escolha data e horário</h3>
-            <div class="dt-row">
-              <div><label>Data</label><input type="date" id="ap-data"></div>
-              <div><label>Horário</label>
-                <select id="ap-hora">
-                  <option value="">Selecione</option>
-                  <option>09:00</option><option>10:00</option><option>11:00</option>
-                  <option>13:00</option><option>14:00</option><option>15:00</option>
-                  <option>16:00</option><option>17:00</option><option>18:00</option>
-                  <option>19:00</option>
-                </select>
-              </div>
-            </div>
+            <div class="q-cal" id="ap-cal"></div>
+            <div class="q-time-label">Horário</div>
+            <div class="q-time-grid" id="ap-time-grid"></div>
             <div class="step-nav">
               <button class="btn-back" onclick="prevStep(2)">← Voltar</button>
               <button class="btn-next" onclick="nextStep(4)">Próximo →</button>
@@ -953,25 +1010,82 @@ section{padding:6rem 2.5rem}
 <!-- MODAL AGENDAMENTO RAPIDO -->
 <div class="modal-bg" id="modal-quick">
   <div class="modal-quick">
-    <h3>⚡ AGENDAMENTO RÁPIDO</h3>
-    <p class="sub">Preencha e envie direto pelo WhatsApp.</p>
-    <div class="q-field"><label>Seu nome</label><input type="text" id="q-nome" placeholder="Nome completo"></div>
-    <div class="q-field">
-      <label>Serviços (selecione um ou mais)</label>
-      <div class="q-svc-grid" id="q-svc-grid"></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+      <div>
+        <h3>⚡ AGENDAMENTO RÁPIDO</h3>
+        <p class="sub" id="q-sub">Passo 1 de 4 — Seus dados</p>
+      </div>
+      <button onclick="closeQuick()" style="background:none;border:none;color:var(--gray);font-size:1.6rem;cursor:pointer;line-height:1;padding:0">×</button>
     </div>
-    <div class="q-total" id="q-total">
-      <div class="q-total-label">Total estimado</div>
-      <div class="q-total-val" id="q-total-val">R$ 0</div>
+    <div class="q-steps">
+      <div class="q-step active" id="qstep-1">1</div>
+      <div class="q-step-line"></div>
+      <div class="q-step" id="qstep-2">2</div>
+      <div class="q-step-line"></div>
+      <div class="q-step" id="qstep-3">3</div>
+      <div class="q-step-line"></div>
+      <div class="q-step" id="qstep-4">4</div>
+      <div class="q-step-line"></div>
+      <div class="q-step" id="qstep-5">5</div>
     </div>
-    <div class="q-row">
-      <div class="q-field"><label>Data</label><input type="date" id="q-data"></div>
-      <div class="q-field"><label>Horário</label><input type="time" id="q-hora"></div>
+    <!-- Pane 1: Dados -->
+    <div id="q-pane-1">
+      <div class="q-field"><label>Seu nome</label><input type="text" id="q-nome" placeholder="Nome completo"></div>
+      <div class="q-field"><label>WhatsApp</label><input type="tel" id="q-wpp" placeholder="(11) 99999-9999"></div>
+      <div class="modal-btns">
+        <button class="modal-close" onclick="closeQuick()">Cancelar</button>
+        <button class="modal-send" onclick="qNext(2)">Próximo →</button>
+      </div>
     </div>
-    <div class="q-field"><label>Observações (opcional)</label><textarea id="q-obs" rows="2" placeholder="Ex: prefiro barbeiro X..."></textarea></div>
-    <div class="modal-btns">
-      <button class="modal-close" onclick="closeQuick()">Cancelar</button>
-      <button class="modal-send" onclick="sendToWhatsApp()">Enviar pelo WhatsApp</button>
+    <!-- Pane 2: Serviços -->
+    <div id="q-pane-2" style="display:none">
+      <div class="q-field">
+        <label>Serviços (selecione um ou mais)</label>
+        <div class="q-svc-grid" id="q-svc-grid"></div>
+      </div>
+      <div class="q-total" id="q-total">
+        <div class="q-total-label">Total estimado</div>
+        <div class="q-total-val" id="q-total-val">R$ 0</div>
+      </div>
+      <div class="modal-btns">
+        <button class="modal-close" onclick="qNext(1)">← Voltar</button>
+        <button class="modal-send" onclick="qNext(3)">Próximo →</button>
+      </div>
+    </div>
+    <!-- Pane 3: Barbeiro -->
+    <div id="q-pane-3" style="display:none">
+      <label style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.8rem">Escolha seu barbeiro</label>
+      <div class="q-barber-grid" id="q-barber-grid"></div>
+      <div class="modal-btns">
+        <button class="modal-close" onclick="qNext(2)">← Voltar</button>
+        <button class="modal-send" onclick="qNext(4)">Próximo →</button>
+      </div>
+    </div>
+    <!-- Pane 4: Data e hora -->
+    <div id="q-pane-4" style="display:none">
+      <div class="q-cal" id="q-cal"></div>
+      <div class="q-time-label">Horário</div>
+      <div class="q-time-grid" id="q-time-grid"></div>
+      <div class="q-field"><label>Observações (opcional)</label><textarea id="q-obs" rows="2" placeholder="Ex: observações..."></textarea></div>
+      <div class="modal-btns">
+        <button class="modal-close" onclick="qNext(3)">← Voltar</button>
+        <button class="modal-send" onclick="qNext(5)">Revisar pedido →</button>
+      </div>
+    </div>
+    <!-- Pane 5: Confirmação -->
+    <div id="q-pane-5" style="display:none">
+      <div class="q-confirm-box" id="q-confirm-box"></div>
+      <div class="q-aviso">
+        Seu pedido será enviado pelo WhatsApp. Nossa equipe vai confirmar a disponibilidade do horário em breve.
+      </div>
+      <div class="modal-btns">
+        <button class="modal-close" onclick="qNext(4)">← Voltar</button>
+        <button class="modal-send" onclick="sendToWhatsApp()">Enviar pelo WhatsApp 💬</button>
+      </div>
+    </div>
+    <!-- Rodapé discreto -->
+    <div class="q-footer-account">
+      Tem conta? <button onclick="closeQuick();showPage('auth')">Entrar / Criar conta</button>
     </div>
   </div>
 </div>
@@ -1021,17 +1135,34 @@ var infantilImgs = [
 
 var services = [
   {id:'corte', name:'Corte Masculino', icon:'✂️', price:45},
-  {id:'barba', name:'Barba', icon:'🪒', price:35},
-  {id:'combo', name:'Corte + Barba', icon:'✨', price:70},
+  {id:'barba', name:'Barba', icon:'🪒', price:45},
+  {id:'combo', name:'Corte + Barba', icon:'✨', price:90},
   {id:'tracado', name:'Traçado / Design', icon:'🎨', price:20},
-  {id:'infantil', name:'Corte Infantil', icon:'🧒', price:35},
-  {id:'sobrancelha', name:'Sobrancelha', icon:'✏️', price:10},
-  {id:'primeiro', name:'1° Corte da Vida', icon:'🏅', price:0}
+  {id:'infantil', name:'Corte Infantil', icon:'🧒', price:0},
+  {id:'sobrancelha', name:'Sobrancelha', icon:'✏️', price:20},
+  {id:'primeiro', name:'1° Corte da Vida', icon:'🏅', price:0},
+  {id:'pezinho', name:'Pezinho', icon:'🪒', price:20},
+  {id:'barba-ozonio', name:'Barba com Vaporizador de Ozônio', icon:'🪒', price:45},
+  {id:'barba-pigmentada', name:'Barba Pigmentada', icon:'🎨', price:60},
+  {id:'depilacao', name:'Depilação Nariz e Orelha', icon:'👃', price:20},
+  {id:'botox', name:'Botox Capilar', icon:'🧴', price:0},
+  {id:'tintura', name:'Tintura', icon:'🎨', price:60},
+  {id:'selagem', name:'Selagem', icon:'✨', price:0},
+  {id:'relaxamento', name:'Relaxamento', icon:'💆', price:30},
+  {id:'progressiva', name:'Progressiva', icon:'💆', price:100},
+  {id:'platinado', name:'Platinado', icon:'⚗️', price:150},
+  {id:'luzes', name:'Luzes', icon:'✨', price:150},
+  {id:'limpeza-simples', name:'Limpeza de Pele Simples', icon:'🧖', price:30},
+  {id:'limpeza-completa', name:'Limpeza de Pele Completa', icon:'🧖', price:100}
 ];
 
 var barbers = [
-  {id:'vinicius', name:'Vinicius'},
-  {id:'qualquer', name:'Sem Preferência'}
+  {id:'vinicius', name:'Vinicius',  img:'images/vinicius.jpg'},
+  {id:'pedrinho', name:'Pedrinho',  img:'images/pedrinho.jpg'},
+  {id:'maloste',  name:'Maloste',   img:'images/maloste.jpg'},
+  {id:'welton',   name:'Welton',    img:'images/welton.jpg'},
+  {id:'gabriel',  name:'Gabriel',   img:'images/gabriel.jpg'},
+  {id:'qualquer', name:'Sem Preferência', img:''}
 ];
 
 // ============ STORAGE ============
@@ -1352,7 +1483,11 @@ function renderBarberGrid(){
     var div = document.createElement('div');
     div.className = 'barber-card';
     div.setAttribute('data-id', b.id);
-    div.innerHTML = '<div class="barber-av">' + b.name.charAt(0) + '</div><div class="barber-nm">' + b.name + '</div>';
+    if (b.img) {
+      div.innerHTML = '<img class="barber-photo" src="' + b.img + '" alt="' + b.name + '"><div class="barber-nm">' + b.name + '</div>';
+    } else {
+      div.innerHTML = '<div class="barber-av">✂️</div><div class="barber-nm">' + b.name + '</div>';
+    }
     div.onclick = (function(id){ return function(){ selectBarber(id); }; })(b.id);
     grid.appendChild(div);
   }
@@ -1366,13 +1501,78 @@ function selectBarber(id){
   }
 }
 
+var apSelDate = null;
+var apSelTime = null;
+var apCalYear, apCalMonth;
+
+function renderApCal(){
+  var cal = document.getElementById('ap-cal');
+  if (!cal) return;
+  var months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  var wdays = ['D','S','T','Q','Q','S','S'];
+  var firstDay = new Date(apCalYear, apCalMonth, 1).getDay();
+  var daysInMonth = new Date(apCalYear, apCalMonth + 1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+  var html = '<div class="q-cal-header"><button class="q-cal-nav" onclick="apCalNav(-1)">&#8249;</button><div class="q-cal-month">' + months[apCalMonth] + ' ' + apCalYear + '</div><button class="q-cal-nav" onclick="apCalNav(1)">&#8250;</button></div>';
+  html += '<div class="q-cal-wdays">';
+  for (var w = 0; w < 7; w++) html += '<div class="q-cal-wday">' + wdays[w] + '</div>';
+  html += '</div><div class="q-cal-days">';
+  for (var e = 0; e < firstDay; e++) html += '<div class="q-cal-day empty"></div>';
+  for (var d = 1; d <= daysInMonth; d++){
+    var dt = new Date(apCalYear, apCalMonth, d); dt.setHours(0,0,0,0);
+    var cls = 'q-cal-day';
+    if (dt < today) cls += ' past';
+    else if (apSelDate && apSelDate.y === apCalYear && apSelDate.m === apCalMonth && apSelDate.d === d) cls += ' selected';
+    else if (dt.getTime() === today.getTime()) cls += ' today';
+    var click = (dt >= today) ? ' onclick="apSelectDay(' + d + ')"' : '';
+    html += '<div class="' + cls + '"' + click + '>' + d + '</div>';
+  }
+  html += '</div>';
+  cal.innerHTML = html;
+}
+
+function apCalNav(dir){
+  apCalMonth += dir;
+  if (apCalMonth > 11){ apCalMonth = 0; apCalYear++; }
+  if (apCalMonth < 0){ apCalMonth = 11; apCalYear--; }
+  renderApCal();
+}
+
+function apSelectDay(d){
+  apSelDate = {y: apCalYear, m: apCalMonth, d: d};
+  renderApCal();
+}
+
+function renderApTimeGrid(){
+  var grid = document.getElementById('ap-time-grid');
+  if (!grid) return;
+  var slots = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00'];
+  grid.innerHTML = '';
+  for (var i = 0; i < slots.length; i++){
+    var t = slots[i];
+    var div = document.createElement('div');
+    div.className = 'q-time-slot' + (apSelTime === t ? ' selected' : '');
+    div.textContent = t;
+    div.onclick = (function(time){ return function(){ apSelectTime(time); }; })(t);
+    grid.appendChild(div);
+  }
+}
+
+function apSelectTime(t){
+  apSelTime = t;
+  renderApTimeGrid();
+}
+
 function nextStep(n){
   if (n === 2 && selectedSvcs.length === 0){ alert('Selecione ao menos um serviço.'); return; }
   if (n === 3 && !selectedBarber){ alert('Escolha um barbeiro.'); return; }
+  if (n === 3){
+    var now = new Date();
+    apCalYear = now.getFullYear(); apCalMonth = now.getMonth();
+    setTimeout(function(){ renderApCal(); renderApTimeGrid(); }, 50);
+  }
   if (n === 4){
-    var d = document.getElementById('ap-data').value;
-    var h = document.getElementById('ap-hora').value;
-    if (!d || !h){ alert('Escolha data e horário.'); return; }
+    if (!apSelDate || !apSelTime){ alert('Escolha data e horário.'); return; }
     buildConfirmBox();
   }
   setStep(n);
@@ -1405,13 +1605,9 @@ function buildConfirmBox(){
   }
   var barberName = '';
   for (var k = 0; k < barbers.length; k++) if (barbers[k].id === selectedBarber) barberName = barbers[k].name;
-  var data = document.getElementById('ap-data').value;
-  var hora = document.getElementById('ap-hora').value;
-  var dataFmt = '';
-  if (data){
-    var p = data.split('-');
-    dataFmt = p[2] + '/' + p[1] + '/' + p[0];
-  }
+  var monthNames = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var dataFmt = apSelDate ? (apSelDate.d + ' de ' + monthNames[apSelDate.m] + ' de ' + apSelDate.y) : '';
+  var hora = apSelTime || '';
   var totalStr = hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total);
   box.innerHTML =
     '<div class="ln"><span>Serviços:</span><span>' + names.join(', ') + '</span></div>' +
@@ -1424,10 +1620,9 @@ function buildConfirmBox(){
 function confirmBooking(){
   var s = getSession();
   if (!s) return;
-  var data = document.getElementById('ap-data').value;
-  var hora = document.getElementById('ap-hora').value;
-  var p = data.split('-');
-  var dataFmt = p[2] + '/' + p[1] + '/' + p[0];
+  var mnCf = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var dataFmt = apSelDate ? (apSelDate.d + ' de ' + mnCf[apSelDate.m] + ' de ' + apSelDate.y) : '';
+  var hora = apSelTime || '';
   var names = [], total = 0, hasC = false;
   for (var i = 0; i < selectedSvcs.length; i++){
     for (var j = 0; j < services.length; j++){
@@ -1441,6 +1636,9 @@ function confirmBooking(){
   }
   var barberName = '';
   for (var k = 0; k < barbers.length; k++) if (barbers[k].id === selectedBarber) barberName = barbers[k].name;
+  var mnAp = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var dataFmt = apSelDate ? (apSelDate.d + ' de ' + mnAp[apSelDate.m] + ' de ' + apSelDate.y) : '';
+  var hora = apSelTime || '';
 
   var booking = {
     servicos: names.join(' + '),
@@ -1459,24 +1657,25 @@ function confirmBooking(){
 
   // WhatsApp do dono
   setTimeout(function(){
-    var msg = '🗓️ *NOVO AGENDAMENTO - Vikings*%0A%0A';
-    msg += '👤 *Cliente:* ' + encodeURIComponent(s.nome + ' ' + (s.sob || '')) + '%0A';
-    msg += '✉ *E-mail:* ' + encodeURIComponent(s.email) + '%0A';
-    msg += '📱 *Tel:* ' + encodeURIComponent(s.tel || '—') + '%0A';
-    msg += '✂️ *Serviços:* ' + encodeURIComponent(booking.servicos) + '%0A';
-    msg += '💈 *Barbeiro:* ' + encodeURIComponent(booking.barbeiro) + '%0A';
-    msg += '📅 *Data:* ' + encodeURIComponent(booking.data) + '%0A';
-    msg += '⏰ *Hora:* ' + encodeURIComponent(booking.hora) + '%0A';
-    msg += '💰 *Total:* ' + encodeURIComponent(booking.total) + '%0A%0A';
-    msg += 'Feito pelo site Vikings Barber Shop';
+    var msg = 'NOVO AGENDAMENTO — Vikings Barber Shop%0A';
+    msg += '————————————————%0A';
+    msg += '*Cliente:* ' + encodeURIComponent(s.nome + ' ' + (s.sob || '')) + '%0A';
+    msg += '*E-mail:* ' + encodeURIComponent(s.email) + '%0A';
+    msg += '*Tel:* ' + encodeURIComponent(s.tel || '—') + '%0A';
+    msg += '————————————————%0A';
+    msg += '*Servico:* ' + encodeURIComponent(booking.servicos) + '%0A';
+    msg += '*Barbeiro:* ' + encodeURIComponent(booking.barbeiro) + '%0A';
+    msg += '*Data:* ' + encodeURIComponent(booking.data) + '%0A';
+    msg += '*Hora:* ' + encodeURIComponent(booking.hora) + '%0A';
+    msg += '*Total:* ' + encodeURIComponent(booking.total) + '%0A';
+    msg += '————————————————%0A';
+    msg += '_Agendamento feito pelo site_';
     window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
   }, 1500);
 
   // Reset
   setTimeout(function(){
-    selectedSvcs = []; selectedBarber = null;
-    document.getElementById('ap-data').value = '';
-    document.getElementById('ap-hora').value = '';
+    selectedSvcs = []; selectedBarber = null; apSelDate = null; apSelTime = null;
     if (suc) suc.classList.remove('show');
     setStep(1);
     renderServiceGrid();
@@ -1490,7 +1689,7 @@ function renderHistorico(){
   if (!s) return;
   var list = document.getElementById('hist-list');
   if (!list) return;
-  var bks = cleanBookings(s.email);
+  var bks = getBookings(s.email);
   if (bks.length === 0){
     list.innerHTML = '<div class="hist-empty">Nenhum agendamento ainda.<br><br><button class="btn-primary" onclick="switchDashView(\'agendar\',document.querySelector(\'.dash-menu li[data-view=agendar]\'))">+ Novo Agendamento</button></div>';
     return;
@@ -1498,16 +1697,51 @@ function renderHistorico(){
   list.innerHTML = '';
   for (var i = bks.length - 1; i >= 0; i--){
     var b = bks[i];
+    var idx = i;
+    var isCancelled = b.status === 'cancelado';
+    var isPast = isExpired(b) && !isCancelled;
     var div = document.createElement('div');
-    div.className = 'hist-item';
+    div.className = 'hist-item' + (isCancelled ? ' cancelado' : '');
+    var statusLabel = isCancelled ? 'Cancelado' : (isPast ? 'Realizado' : 'Confirmado');
+    var statusClass = isCancelled ? ' cancelado' : (isPast ? ' realizado' : '');
     div.innerHTML =
       '<div class="hist-info">' +
-        '<div class="hist-svc">' + b.servicos + '</div>' +
-        '<div class="hist-dt">' + b.data + ' às ' + b.hora + ' · ' + b.barbeiro + ' · ' + b.total + '</div>' +
+        '<div class="hist-svc">✂️ ' + b.servicos + '</div>' +
+        '<div class="hist-dt">' +
+          '<span>📅 ' + b.data + '</span>' +
+          '<span>⏰ ' + b.hora + '</span>' +
+          '<span>💈 ' + b.barbeiro + '</span>' +
+          '<span>💰 ' + b.total + '</span>' +
+        '</div>' +
       '</div>' +
-      '<div class="hist-status">Confirmado</div>';
+      '<div class="hist-actions">' +
+        (!isCancelled && !isPast ? '<button class="hist-cancel-btn" onclick="cancelBooking(' + idx + ')">Cancelar</button>' : '') +
+        '<div class="hist-status' + statusClass + '">' + statusLabel + '</div>' +
+      '</div>';
     list.appendChild(div);
   }
+}
+
+function cancelBooking(idx){
+  var s = getSession();
+  if (!s) return;
+  if (!confirm('Cancelar este agendamento?')) return;
+  var bks = getBookings(s.email);
+  if (!bks[idx]) return;
+  bks[idx].status = 'cancelado';
+  saveBookings(s.email, bks);
+  renderHistorico();
+  var b = bks[idx];
+  var msg = '*CANCELAMENTO — Vikings Barber Shop*%0A';
+  msg += '————————————————%0A';
+  msg += '*Cliente:* ' + encodeURIComponent(s.nome + ' ' + (s.sob || '')) + '%0A';
+  msg += '*Servico:* ' + encodeURIComponent(b.servicos) + '%0A';
+  msg += '*Barbeiro:* ' + encodeURIComponent(b.barbeiro) + '%0A';
+  msg += '*Data:* ' + encodeURIComponent(b.data) + '%0A';
+  msg += '*Hora:* ' + encodeURIComponent(b.hora) + '%0A';
+  msg += '————————————————%0A';
+  msg += '*AGENDAMENTO CANCELADO PELO CLIENTE*';
+  window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
 }
 
 // ============ PLANOS ============
@@ -1525,16 +1759,178 @@ function assinarPlano(nome, valor){
 // ============ AGENDAMENTO RAPIDO ============
 var qServices = [];
 var qTotal = 0;
+var qCurrentPane = 1;
+var qSelDate = null;
+var qSelTime = null;
+var qSelBarber = null;
+var qCalYear, qCalMonth;
+var qTimeSlots = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00'];
+var qBarbers = [
+  {id:'vinicius',  name:'Vinicius',  img:'images/vinicius.jpg'},
+  {id:'pedrinho',  name:'Pedrinho',  img:'images/pedrinho.jpg'},
+  {id:'maloste',   name:'Maloste',   img:'images/maloste.jpg'},
+  {id:'welton',    name:'Welton',    img:'images/welton.jpg'},
+  {id:'gabriel',   name:'Gabriel',   img:'images/gabriel.jpg'},
+  {id:'sem',       name:'Sem preferência', img:''}
+];
 
 function openQuick(){
   var m = document.getElementById('modal-quick');
   if (m) m.classList.add('active');
+  var now = new Date();
+  qCalYear = now.getFullYear();
+  qCalMonth = now.getMonth();
+  qSelDate = null;
+  qSelTime = null;
+  qSelBarber = null;
+  qGoPane(1);
   renderQuickServices();
 }
 
 function closeQuick(){
   var m = document.getElementById('modal-quick');
   if (m) m.classList.remove('active');
+}
+
+function qNext(n){
+  if (n > qCurrentPane){
+    if (qCurrentPane === 1){
+      var nome = ((document.getElementById('q-nome')||{}).value||'').trim();
+      if (!nome){ alert('Informe seu nome.'); return; }
+    }
+    if (qCurrentPane === 2){
+      if (qServices.length === 0){ alert('Selecione ao menos um serviço.'); return; }
+    }
+  }
+  qGoPane(n);
+}
+
+function qGoPane(n){
+  for (var i = 1; i <= 5; i++){
+    var pane = document.getElementById('q-pane-' + i);
+    var step = document.getElementById('qstep-' + i);
+    if (pane) pane.style.display = (i === n ? 'block' : 'none');
+    if (step){
+      step.className = 'q-step';
+      if (i < n) step.classList.add('done');
+      else if (i === n) step.classList.add('active');
+    }
+  }
+  var subs = {1:'Passo 1 de 5 — Seus dados', 2:'Passo 2 de 5 — Serviços', 3:'Passo 3 de 5 — Barbeiro', 4:'Passo 4 de 5 — Data e horário', 5:'Passo 5 de 5 — Confirmar pedido'};
+  var sub = document.getElementById('q-sub');
+  if (sub) sub.textContent = subs[n] || '';
+  qCurrentPane = n;
+  if (n === 3) renderQBarbers();
+  if (n === 4){ renderQCal(); renderQTimeGrid(); }
+  if (n === 5) renderQConfirm();
+}
+
+function renderQConfirm(){
+  var box = document.getElementById('q-confirm-box');
+  if (!box) return;
+  var nome = ((document.getElementById('q-nome')||{}).value||'').trim();
+  var svc = qServices.map(function(s){ return s.name; }).join(' + ') || '—';
+  var barberLabel = 'Sem preferência';
+  if (qSelBarber){ for (var b = 0; b < qBarbers.length; b++) if (qBarbers[b].id === qSelBarber){ barberLabel = qBarbers[b].name; break; } }
+  var mnths = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var dataFmt = qSelDate ? (qSelDate.d + ' de ' + mnths[qSelDate.m] + ' de ' + qSelDate.y) : 'A definir';
+  var hora = qSelTime || 'A definir';
+  var hasC = false; var total = 0;
+  for (var i = 0; i < qServices.length; i++){ if (qServices[i].price === 0) hasC = true; else total += qServices[i].price; }
+  var totStr = hasC ? ('R$ ' + total + ' + Consultar') : ('R$ ' + total);
+  box.innerHTML =
+    '<div class="q-ln"><span>Nome</span><span>' + nome + '</span></div>' +
+    '<div class="q-ln"><span>Serviço</span><span>' + svc + '</span></div>' +
+    '<div class="q-ln"><span>Barbeiro</span><span>' + barberLabel + '</span></div>' +
+    '<div class="q-ln"><span>Data</span><span>' + dataFmt + '</span></div>' +
+    '<div class="q-ln"><span>Hora</span><span>' + hora + '</span></div>' +
+    '<div class="q-ln"><span>Total</span><span style="color:var(--gold)">' + totStr + '</span></div>';
+}
+
+function renderQBarbers(){
+  var grid = document.getElementById('q-barber-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (var i = 0; i < qBarbers.length; i++){
+    var b = qBarbers[i];
+    var div = document.createElement('div');
+    div.className = 'q-barber-card' + (b.id === 'sem' ? ' q-barber-sem' : '') + (qSelBarber === b.id ? ' selected' : '');
+    div.setAttribute('data-id', b.id);
+    if (b.img){
+      div.innerHTML = '<img class="q-barber-photo" src="' + b.img + '" alt="' + b.name + '"><div class="q-barber-name">' + b.name + '</div>';
+    } else {
+      div.innerHTML = '<div style="width:40px;height:40px;border-radius:50%;background:var(--dark2);border:2px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem">✂️</div><div class="q-barber-name">' + b.name + '</div>';
+    }
+    div.onclick = (function(id){ return function(){ qSelectBarber(id); }; })(b.id);
+    grid.appendChild(div);
+  }
+}
+
+function qSelectBarber(id){
+  qSelBarber = id;
+  var cards = document.querySelectorAll('#q-barber-grid .q-barber-card');
+  for (var i = 0; i < cards.length; i++)
+    cards[i].classList.toggle('selected', cards[i].getAttribute('data-id') === id);
+}
+
+function renderQCal(){
+  var cal = document.getElementById('q-cal');
+  if (!cal) return;
+  var months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  var wdays = ['D','S','T','Q','Q','S','S'];
+  var firstDay = new Date(qCalYear, qCalMonth, 1).getDay();
+  var daysInMonth = new Date(qCalYear, qCalMonth + 1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+  var html = '<div class="q-cal-header">';
+  html += '<button class="q-cal-nav" onclick="qCalNav(-1)">&#8249;</button>';
+  html += '<div class="q-cal-month">' + months[qCalMonth] + ' ' + qCalYear + '</div>';
+  html += '<button class="q-cal-nav" onclick="qCalNav(1)">&#8250;</button>';
+  html += '</div><div class="q-cal-wdays">';
+  for (var w = 0; w < 7; w++) html += '<div class="q-cal-wday">' + wdays[w] + '</div>';
+  html += '</div><div class="q-cal-days">';
+  for (var e = 0; e < firstDay; e++) html += '<div class="q-cal-day empty"></div>';
+  for (var d = 1; d <= daysInMonth; d++){
+    var dt = new Date(qCalYear, qCalMonth, d); dt.setHours(0,0,0,0);
+    var cls = 'q-cal-day';
+    if (dt < today) cls += ' past';
+    else if (qSelDate && qSelDate.y === qCalYear && qSelDate.m === qCalMonth && qSelDate.d === d) cls += ' selected';
+    else if (dt.getTime() === today.getTime()) cls += ' today';
+    var click = (dt >= today) ? ' onclick="qSelectDay(' + d + ')"' : '';
+    html += '<div class="' + cls + '"' + click + '>' + d + '</div>';
+  }
+  html += '</div>';
+  cal.innerHTML = html;
+}
+
+function qCalNav(dir){
+  qCalMonth += dir;
+  if (qCalMonth > 11){ qCalMonth = 0; qCalYear++; }
+  if (qCalMonth < 0){ qCalMonth = 11; qCalYear--; }
+  renderQCal();
+}
+
+function qSelectDay(d){
+  qSelDate = {y: qCalYear, m: qCalMonth, d: d};
+  renderQCal();
+}
+
+function renderQTimeGrid(){
+  var grid = document.getElementById('q-time-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (var i = 0; i < qTimeSlots.length; i++){
+    var t = qTimeSlots[i];
+    var div = document.createElement('div');
+    div.className = 'q-time-slot' + (qSelTime === t ? ' selected' : '');
+    div.textContent = t;
+    div.onclick = (function(time){ return function(){ qSelectTime(time); }; })(t);
+    grid.appendChild(div);
+  }
+}
+
+function qSelectTime(t){
+  qSelTime = t;
+  renderQTimeGrid();
 }
 
 function renderQuickServices(){
@@ -1593,31 +1989,38 @@ function updateQuickTotal(){
 }
 
 function sendToWhatsApp(){
-  var nomeEl = document.getElementById('q-nome');
-  var dataEl = document.getElementById('q-data');
-  var horaEl = document.getElementById('q-hora');
-  var obsEl = document.getElementById('q-obs');
-  var nome = nomeEl ? nomeEl.value.trim() : '';
-  var data = dataEl ? dataEl.value : '';
-  var hora = horaEl ? horaEl.value : '';
-  var obs = obsEl ? obsEl.value.trim() : '';
-  if (!nome){ alert('Informe seu nome.'); return; }
-  if (qServices.length === 0){ alert('Selecione ao menos um serviço.'); return; }
+  var nome = ((document.getElementById('q-nome')||{}).value||'').trim();
+  var wpp  = ((document.getElementById('q-wpp')||{}).value||'').trim();
+  var obs  = ((document.getElementById('q-obs')||{}).value||'').trim();
   var dataFmt = 'a definir';
-  if (data){ var p = data.split('-'); dataFmt = p[2] + '/' + p[1] + '/' + p[0]; }
+  if (qSelDate){
+    var months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    dataFmt = qSelDate.d + ' de ' + months[qSelDate.m] + ' de ' + qSelDate.y;
+  }
+  var hora = qSelTime || 'a definir';
   var svc = '';
   for (var i = 0; i < qServices.length; i++) svc += (i > 0 ? ' + ' : '') + qServices[i].name;
   var hasC = false;
   for (var j = 0; j < qServices.length; j++) if (qServices[j].price === 0) hasC = true;
   var totStr = hasC ? ('R$ ' + qTotal + ' + Consultar') : ('R$ ' + qTotal);
-  var msg = 'Olá! Gostaria de agendar na Vikings Barber Shop%0A%0A';
+  var barberName = 'Sem preferência';
+  if (qSelBarber){
+    for (var b = 0; b < qBarbers.length; b++) if (qBarbers[b].id === qSelBarber){ barberName = qBarbers[b].name; break; }
+  }
+  var msg = 'AGENDAMENTO — Vikings Barber Shop%0A';
+  msg += '————————————————%0A';
   msg += '*Nome:* ' + encodeURIComponent(nome) + '%0A';
-  msg += '*Serviço:* ' + encodeURIComponent(svc) + '%0A';
+  if (wpp) msg += '*WhatsApp:* ' + encodeURIComponent(wpp) + '%0A';
+  msg += '————————————————%0A';
+  msg += '*Servico:* ' + encodeURIComponent(svc) + '%0A';
+  msg += '*Barbeiro:* ' + encodeURIComponent(barberName) + '%0A';
   msg += '*Total:* ' + encodeURIComponent(totStr) + '%0A';
   msg += '*Data:* ' + encodeURIComponent(dataFmt) + '%0A';
-  msg += '*Horário:* ' + encodeURIComponent(hora || 'a definir') + '%0A';
+  msg += '*Hora:* ' + encodeURIComponent(hora || 'a definir') + '%0A';
   if (obs) msg += '*Obs:* ' + encodeURIComponent(obs) + '%0A';
-  msg += '%0AAguardo confirmação!';
+  msg += '————————————————%0A';
+  msg += 'Aguarde a confirmacao do horario.%0A';
+  msg += 'Se precisar cancelar%2C avise-nos.';
   window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
   closeQuick();
 }
