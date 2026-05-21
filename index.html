@@ -603,6 +603,27 @@ section{padding:6rem 2.5rem}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .svc-card .svc-nm{font-size:.68rem}
 }
+/* iPhone SE / telas muito pequenas */
+@media(max-width:375px){
+  .services-grid{grid-template-columns:repeat(2,1fr);gap:.35rem}
+  .service-item{padding:.5rem .4rem}
+  .service-name{font-size:.72rem}
+  .service-price{font-size:.85rem}
+  .mq-dates-grid,.mq-slots-grid{grid-template-columns:repeat(3,1fr)}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .barber-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-quick{padding:1rem}
+  .hero h1{font-size:2.8rem}
+}
+/* Tablets e iPads (portrait) */
+@media(min-width:600px) and (max-width:767px){
+  .services-grid{grid-template-columns:repeat(3,1fr);gap:.6rem}
+  .service-item{padding:.75rem .6rem}
+  .service-name{font-size:.9rem}
+  .service-price{font-size:1.1rem}
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .mq-barber-grid{grid-template-columns:repeat(3,1fr)}
+}
 /* iOS/Android touch fixes */
 *{-webkit-tap-highlight-color:transparent}
 button,[role="button"],.svc-card,.barber-card,.mq-barber-card,.mq-slot,.mq-date,.dbn-item,.dash-menu li,.hist-cancel-btn,.plano-btn,.q-svc-card{touch-action:manipulation}
@@ -850,12 +871,12 @@ button{-webkit-appearance:none}
       <div class="hours-card">
         <h3>Horário de Funcionamento</h3>
         <ul class="hours-list">
-          <li><span>Segunda</span><span>09:00 - 20:00</span></li>
-          <li><span>Terça</span><span>09:00 - 20:00</span></li>
-          <li><span>Quarta</span><span>09:00 - 20:00</span></li>
-          <li><span>Quinta</span><span>09:00 - 20:00</span></li>
-          <li><span>Sexta</span><span>09:00 - 20:00</span></li>
-          <li><span>Sábado</span><span>09:00 - 18:00</span></li>
+          <li><span>Segunda</span><span>08:00 - 19:00</span></li>
+          <li><span>Terça</span><span>08:00 - 19:00</span></li>
+          <li><span>Quarta</span><span>08:00 - 19:00</span></li>
+          <li><span>Quinta</span><span>08:00 - 19:00</span></li>
+          <li><span>Sexta</span><span>08:00 - 19:00</span></li>
+          <li><span>Sábado</span><span>08:00 - 18:00</span></li>
           <li><span>Domingo</span><span style="color:var(--red-light)">Fechado</span></li>
         </ul>
         <p style="color:var(--gray);font-size:.85rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.05)">📍 Rua José Alvim, 287 — Centro, Atibaia - SP</p>
@@ -1857,9 +1878,10 @@ function renderApDates(){
   var dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
   var meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   var hoje = new Date(); hoje.setHours(0,0,0,0);
-  for (var i = 1; i <= 14; i++){
-    var d = new Date(hoje);
-    d.setDate(hoje.getDate() + i);
+  var count2 = 0, offset2 = 1;
+  while (count2 < 14){
+    var d = new Date(hoje); d.setDate(hoje.getDate() + offset2); offset2++;
+    if (d.getDay() === 0){ continue; } // pula domingo
     var yyyy = d.getFullYear();
     var mm = String(d.getMonth()+1).padStart(2,'0');
     var dd = String(d.getDate()).padStart(2,'0');
@@ -1879,6 +1901,7 @@ function renderApDates(){
       };
     })(valor, btn);
     grid.appendChild(btn);
+    count2++;
   }
 }
 
@@ -1892,7 +1915,7 @@ function renderApSlots(data){
   if (label) label.textContent = 'Horário — ' + p[2]+'/'+p[1]+'/'+p[0];
   grid.innerHTML = '';
   document.getElementById('ap-hora').value = '';
-  HORARIOS_DISP.forEach(function(hora){
+  getHorariosDia(data).forEach(function(hora){
     var btn = document.createElement('button');
     btn.className = 'mq-slot';
     btn.textContent = hora;
@@ -1922,7 +1945,13 @@ var FB_CONFIG = {
 };
 
 var SECRETARIA_WPP = WPP_NUMBER;
-var HORARIOS_DISP = ['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
+var HORARIOS_SEG_SEX = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+var HORARIOS_SAB     = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+var HORARIOS_DISP    = HORARIOS_SEG_SEX; // fallback
+function getHorariosDia(dataStr){
+  var d = new Date(dataStr + 'T12:00:00');
+  return d.getDay() === 6 ? HORARIOS_SAB : HORARIOS_SEG_SEX;
+}
 var mqState = {nome:'',tel:'',barbeiroId:null,barbeiroNome:'',svcs:[],data:'',hora:''};
 var fbDb = null;
 
@@ -2008,30 +2037,28 @@ function mqRenderDates(){
   mqState.data = '';
   var dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
   var meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  var hoje = new Date();
-  hoje.setHours(0,0,0,0);
-  for (var i = 1; i <= 14; i++){
-    var d = new Date(hoje);
-    d.setDate(hoje.getDate() + i);
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
+  var count = 0, offset = 1;
+  while (count < 14){
+    var d = new Date(hoje); d.setDate(hoje.getDate() + offset); offset++;
+    if (d.getDay() === 0){ continue; } // pula domingo
     var yyyy = d.getFullYear();
-    var mm   = String(d.getMonth()+1).padStart(2,'0');
-    var dd   = String(d.getDate()).padStart(2,'0');
+    var mm = String(d.getMonth()+1).padStart(2,'0');
+    var dd = String(d.getDate()).padStart(2,'0');
     var valor = yyyy+'-'+mm+'-'+dd;
     var btn = document.createElement('button');
     btn.className = 'mq-date';
     btn.setAttribute('data-val', valor);
-    btn.innerHTML =
-      '<span class="dw">'+dias[d.getDay()]+'</span>'+
-      '<span class="dd">'+dd+'</span>'+
-      '<span class="dm">'+meses[d.getMonth()]+'</span>';
-    btn.onclick = (function(v){
+    btn.innerHTML = '<span class="dw">'+dias[d.getDay()]+'</span><span class="dd">'+dd+'</span><span class="dm">'+meses[d.getMonth()]+'</span>';
+    btn.onclick = (function(v, b2){
       return function(){
-        document.querySelectorAll('.mq-date').forEach(function(b){ b.classList.remove('selected'); });
-        this.classList.add('selected');
+        document.querySelectorAll('#mq-dates-grid .mq-date').forEach(function(b){ b.classList.remove('selected'); });
+        b2.classList.add('selected');
         mqState.data = v;
       };
-    })(valor);
+    })(valor, btn);
     grid.appendChild(btn);
+    count++;
   }
 }
 
@@ -2079,7 +2106,7 @@ function mqCarregarSlots(){
     if (!grid) return;
     grid.innerHTML = '';
     mqState.hora = '';
-    HORARIOS_DISP.forEach(function(hora){
+    getHorariosDia(data).forEach(function(hora){
       var taken = takenSlots.indexOf(hora) >= 0;
       var btn = document.createElement('button');
       btn.className = 'mq-slot' + (taken ? ' taken' : '');
