@@ -113,8 +113,8 @@ section{padding:6rem 2.5rem}
 
 /* SERVICOS */
 .services-section{background:var(--black)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
-.service-item{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1.8rem;transition:transform .2s,border-color .2s}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.service-item{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:2px;padding:1rem .9rem;transition:transform .2s,border-color .2s}
 .service-item:hover{transform:translateY(-3px);border-color:rgba(192,41,42,.3)}
 .service-icon{font-size:2rem;margin-bottom:.8rem}
 .service-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--white);margin-bottom:.5rem}
@@ -181,7 +181,51 @@ section{padding:6rem 2.5rem}
 /* MODAL QUICK */
 .modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-bg.active{display:flex}
-.modal-quick{background:var(--dark2);border:1px solid rgba(192,41,42,.3);border-radius:4px;padding:2rem;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-quick{background:var(--dark2);border:1px solid rgba(192,41,42,.3);border-radius:4px;padding:2rem;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
+/* MODAL NOVO — AGENDAMENTO SEM CONTA */
+.mq-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem}
+.mq-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:2px}
+.mq-close-btn{background:none;border:none;color:var(--gray);font-size:2rem;cursor:pointer;line-height:1;padding:0 .2rem;margin-top:-.2rem}
+.mq-close-btn:hover{color:var(--white)}
+.mq-sub{color:var(--gray);font-size:.82rem;margin-bottom:1.2rem}
+.mq-progress{height:3px;background:rgba(255,255,255,.08);margin-bottom:1.5rem;border-radius:2px}
+.mq-prog-bar{height:100%;background:var(--red);transition:width .3s ease;border-radius:2px}
+.mq-barber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.5rem}
+.mq-barber-card{background:var(--dark3);border:2px solid transparent;border-radius:3px;padding:.8rem .4rem;text-align:center;cursor:pointer;transition:border-color .15s}
+.mq-barber-card:hover{border-color:rgba(192,41,42,.5)}
+.mq-barber-card.selected{border-color:var(--red)}
+.mq-barber-av{width:52px;height:52px;border-radius:50%;margin:0 auto .5rem;background:var(--dark2);background-size:cover;background-position:center top;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white)}
+.mq-barber-nm{font-size:.72rem;color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;line-height:1.3}
+.mq-barber-card.selected .mq-barber-nm{color:var(--white)}
+.mq-fnav{display:flex;gap:.5rem;margin-top:1rem}
+.mq-btn-next{flex:1;background:var(--red);color:var(--white);border:none;padding:.75rem 1rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600;transition:background .2s}
+.mq-btn-next:hover{background:var(--red-light)}
+.mq-btn-back{background:none;border:1px solid rgba(255,255,255,.15);color:var(--gray);padding:.7rem 1rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.mq-btn-back:hover{border-color:rgba(255,255,255,.4);color:var(--white)}
+.mq-slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.5rem}
+.mq-slot{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.75rem .3rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;letter-spacing:1px;cursor:pointer;text-align:center;transition:all .15s}
+.mq-slot:hover:not(:disabled){border-color:var(--red);background:rgba(192,41,42,.15)}
+.mq-slot.selected{background:var(--red);border-color:var(--red)}
+.mq-slot.taken{background:rgba(255,255,255,.02);color:rgba(255,255,255,.18);cursor:not-allowed;text-decoration:line-through;border-color:transparent;font-size:.82rem}
+.mq-resumo{background:var(--dark3);padding:1rem 1.2rem;border-radius:2px;font-size:.87rem;color:var(--gray);line-height:2;border-left:2px solid var(--red)}
+.mq-resumo strong{color:var(--white)}
+.mq-loading{text-align:center;color:var(--gray);padding:2rem;font-size:.9rem;letter-spacing:1px}
+.mq-dates-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.5rem}
+.mq-date{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.6rem .3rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.5px;cursor:pointer;text-align:center;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:1px}
+.mq-date:hover{border-color:var(--red);background:rgba(192,41,42,.15)}
+.mq-date.selected{background:var(--red);border-color:var(--red)}
+.mq-date .dd{font-size:1.2rem;font-weight:700;line-height:1}
+.mq-date .dm{font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+.mq-date.selected .dm{color:rgba(255,255,255,.8)}
+.mq-date .dw{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px}
+.mq-date.selected .dw{color:rgba(255,255,255,.7)}
+.mq-conta-hint{margin-top:1.2rem;padding:.8rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:2px;font-size:.8rem;color:var(--gray);display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.mq-conta-hint a{color:var(--gold);cursor:pointer;text-decoration:none;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;white-space:nowrap}
+.mq-conta-hint a:hover{color:var(--white)}
+.mq-success-box{text-align:center;padding:2rem 0}
+.mq-success-box .ic{font-size:3rem;margin-bottom:1rem}
+.mq-success-box h3{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:3px;color:var(--white)}
+.mq-success-box p{color:var(--gray);font-size:.9rem;margin-top:.5rem;line-height:1.7}
 .modal-quick h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:2px;margin-bottom:.3rem}
 .modal-quick .sub{color:var(--gray);font-size:.85rem;margin-bottom:1.5rem}
 .q-field{margin-bottom:1rem}
@@ -515,6 +559,16 @@ section{padding:6rem 2.5rem}
   .cta-btns .btn-wpp,.cta-btns .btn-outline{width:100%;justify-content:center;text-align:center}
   .cta-info{gap:1rem}
   .cta-section{padding:4rem 1.2rem}
+  /* modal agendamento rápido mobile */
+  .mq-dates-grid{grid-template-columns:repeat(3,1fr)}
+  .mq-slots-grid{grid-template-columns:repeat(3,1fr)}
+  .mq-barber-grid{grid-template-columns:repeat(2,1fr)}
+  .mq-barber-av{width:44px;height:44px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .service-item{padding:.8rem .7rem}
+  .service-icon{font-size:1.5rem;margin-bottom:.4rem}
+  .service-name{font-size:1.1rem}
+  .service-price{font-size:1.5rem}
 }
 @media(max-width:360px){
   .hero h1{font-size:2.6rem}
@@ -524,6 +578,10 @@ section{padding:6rem 2.5rem}
   .svc-grid{grid-template-columns:1fr}
   .barber-grid{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr}
+  .mq-dates-grid{grid-template-columns:repeat(2,1fr)}
+  .mq-slots-grid{grid-template-columns:repeat(3,1fr)}
+  .mq-barber-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(min-width:1400px){
   .hero-content{max-width:800px}
@@ -547,7 +605,7 @@ section{padding:6rem 2.5rem}
   </ul>
   <div class="nav-actions" id="nav-actions">
     <button class="nav-login" onclick="showPage('auth')">Entrar</button>
-    <button class="nav-cta" onclick="showPage('auth')">Agendar</button>
+    <button class="nav-cta" onclick="openQuick()">Agendar</button>
   </div>
   <button class="nav-burger" id="nav-burger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -564,7 +622,7 @@ section{padding:6rem 2.5rem}
   <a onclick="closeMobileMenu();goTo('#horarios')">Horários</a>
   <div class="mobile-menu-btns" id="mobile-menu-btns">
     <button class="nav-login" onclick="closeMobileMenu();showPage('auth')">Entrar</button>
-    <button class="nav-cta" onclick="closeMobileMenu();showPage('auth')">Agendar</button>
+    <button class="nav-cta" onclick="closeMobileMenu();openQuick()">Agendar</button>
   </div>
 </div>
 
@@ -1024,28 +1082,71 @@ section{padding:6rem 2.5rem}
   </div>
 </div>
 
-<!-- MODAL AGENDAMENTO RAPIDO -->
+<!-- MODAL AGENDAMENTO -->
 <div class="modal-bg" id="modal-quick">
   <div class="modal-quick">
-    <h3>⚡ AGENDAMENTO RÁPIDO</h3>
-    <p class="sub">Preencha e envie direto pelo WhatsApp.</p>
-    <div class="q-field"><label>Seu nome</label><input type="text" id="q-nome" placeholder="Nome completo"></div>
-    <div class="q-field">
-      <label>Serviços (selecione um ou mais)</label>
-      <div class="q-svc-grid" id="q-svc-grid"></div>
+    <div class="mq-header">
+      <div>
+        <h3>⚡ AGENDAR AGORA</h3>
+        <p class="mq-sub" id="mq-sub-text">Sem cadastro · rápido e direto</p>
+      </div>
+      <button class="mq-close-btn" onclick="closeQuick()">×</button>
     </div>
-    <div class="q-total" id="q-total">
-      <div class="q-total-label">Total estimado</div>
-      <div class="q-total-val" id="q-total-val">R$ 0</div>
+    <div class="mq-progress"><div class="mq-prog-bar" id="mq-prog-bar" style="width:25%"></div></div>
+
+    <!-- Step 1: Dados pessoais -->
+    <div id="mqc-1">
+      <div class="q-field"><label>Seu nome</label><input type="text" id="mq-nome" placeholder="Nome completo" autocomplete="name"></div>
+      <div class="q-field"><label>WhatsApp</label><input type="tel" id="mq-tel" placeholder="(11) 99999-9999" autocomplete="tel"></div>
+      <button class="mq-btn-next" onclick="mqGoTo(2)">Próximo →</button>
+      <div class="mq-conta-hint">
+        <span>Tem conta? Agende ainda mais rápido.</span>
+        <a onclick="closeQuick();showPage('auth')">Entrar →</a>
+      </div>
     </div>
-    <div class="q-row">
-      <div class="q-field"><label>Data</label><input type="date" id="q-data"></div>
-      <div class="q-field"><label>Horário</label><input type="time" id="q-hora"></div>
+
+    <!-- Step 2: Barbeiro -->
+    <div id="mqc-2" style="display:none">
+      <div class="mq-barber-grid" id="mq-barber-grid"></div>
+      <div class="mq-fnav">
+        <button class="mq-btn-back" onclick="mqGoTo(1)">← Voltar</button>
+        <button class="mq-btn-next" onclick="mqGoTo(3)">Próximo →</button>
+      </div>
     </div>
-    <div class="q-field"><label>Observações (opcional)</label><textarea id="q-obs" rows="2" placeholder="Ex: prefiro barbeiro X..."></textarea></div>
-    <div class="modal-btns">
-      <button class="modal-close" onclick="closeQuick()">Cancelar</button>
-      <button class="modal-send" onclick="sendToWhatsApp()">Enviar pelo WhatsApp</button>
+
+    <!-- Step 3: Serviço + Data -->
+    <div id="mqc-3" style="display:none">
+      <div class="q-field"><label>Serviço(s)</label><div class="q-svc-grid" id="mq-svc-grid"></div></div>
+      <div class="q-field" style="margin-top:1.2rem">
+        <label>Data</label>
+        <div class="mq-dates-grid" id="mq-dates-grid"></div>
+      </div>
+      <div class="mq-fnav">
+        <button class="mq-btn-back" onclick="mqGoTo(2)">← Voltar</button>
+        <button class="mq-btn-next" onclick="mqCarregarSlots()">Ver horários →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Horários -->
+    <div id="mqc-4" style="display:none">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:1rem" id="mq-slot-info"></p>
+      <div class="mq-slots-grid" id="mq-slots-grid"></div>
+      <div id="mq-confirm-area" style="display:none">
+        <div class="mq-resumo" id="mq-resumo" style="margin-top:1rem"></div>
+        <button class="mq-btn-next" style="width:100%;margin-top:1rem" onclick="mqConfirmar()">✓ Confirmar Agendamento</button>
+      </div>
+      <div class="mq-fnav">
+        <button class="mq-btn-back" onclick="mqGoTo(3)">← Voltar</button>
+      </div>
+    </div>
+
+    <!-- Sucesso -->
+    <div id="mqc-success" style="display:none">
+      <div class="mq-success-box">
+        <div class="ic">✓</div>
+        <h3>AGENDADO!</h3>
+        <p>Abrindo WhatsApp da secretaria...<br>Aguarde a confirmação.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1061,6 +1162,10 @@ section{padding:6rem 2.5rem}
     <div class="lb-counter" id="lb-counter"></div>
   </div>
 </div>
+
+<!-- Firebase SDK v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script>
 // ============ DADOS ============
@@ -1624,14 +1729,40 @@ function assinarPlano(nome, valor){
   window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
 }
 
-// ============ AGENDAMENTO RAPIDO ============
-var qServices = [];
-var qTotal = 0;
+// ============ FIREBASE AGENDAMENTO ============
+// Para bloquear horários em tempo real, crie um projeto em console.firebase.google.com
+// Ative o Firestore e cole sua configuração aqui:
+var FB_CONFIG = {
+  apiKey: "COLE_SUA_API_KEY",
+  authDomain: "COLE_SEU_PROJETO.firebaseapp.com",
+  projectId: "COLE_SEU_PROJETO_ID",
+  storageBucket: "COLE_SEU_PROJETO.appspot.com",
+  messagingSenderId: "COLE_SEU_SENDER_ID",
+  appId: "COLE_SEU_APP_ID"
+};
+
+var SECRETARIA_WPP = WPP_NUMBER;
+var HORARIOS_DISP = ['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
+var mqState = {nome:'',tel:'',barbeiroId:null,barbeiroNome:'',svcs:[],data:'',hora:''};
+var fbDb = null;
+
+(function(){
+  try {
+    if (typeof firebase !== 'undefined' && FB_CONFIG.apiKey !== 'COLE_SUA_API_KEY'){
+      firebase.initializeApp(FB_CONFIG);
+      fbDb = firebase.firestore();
+    }
+  } catch(e){ console.log('Firebase: configure FB_CONFIG para ativar bloqueio de horários.'); }
+})();
 
 function openQuick(){
+  mqState = {nome:'',tel:'',barbeiroId:null,barbeiroNome:'',svcs:[],data:'',hora:''};
   var m = document.getElementById('modal-quick');
   if (m) m.classList.add('active');
-  renderQuickServices();
+  mqShowStep(1);
+  mqRenderBarbers();
+  mqRenderServices();
+  mqRenderDates();
 }
 
 function closeQuick(){
@@ -1639,89 +1770,231 @@ function closeQuick(){
   if (m) m.classList.remove('active');
 }
 
-function renderQuickServices(){
-  var grid = document.getElementById('q-svc-grid');
+function mqShowStep(step){
+  [1,2,3,4,'success'].forEach(function(s){
+    var el = document.getElementById('mqc-'+s);
+    if (el) el.style.display = (s === step ? 'block' : 'none');
+  });
+  var pcts = {1:25, 2:50, 3:75, 4:90, 'success':100};
+  var bar = document.getElementById('mq-prog-bar');
+  if (bar) bar.style.width = (pcts[step] || 100) + '%';
+  var subs = {1:'Sem cadastro · rápido e direto', 2:'Escolha seu barbeiro', 3:'Serviço e data', 4:'Horários disponíveis', 'success':'Concluído'};
+  var sub = document.getElementById('mq-sub-text');
+  if (sub) sub.textContent = subs[step] || '';
+}
+
+function mqGoTo(step){
+  if (step === 2){
+    var nome = (document.getElementById('mq-nome')||{}).value || '';
+    var tel  = (document.getElementById('mq-tel') ||{}).value || '';
+    if (!nome.trim()){ alert('Informe seu nome.'); return; }
+    if (!tel.trim()){ alert('Informe seu WhatsApp.'); return; }
+    mqState.nome = nome.trim();
+    mqState.tel  = tel.trim();
+  }
+  if (step === 3 && !mqState.barbeiroId){ alert('Escolha um barbeiro.'); return; }
+  mqShowStep(step);
+}
+
+function mqRenderBarbers(){
+  var grid = document.getElementById('mq-barber-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  for (var i = 0; i < services.length; i++){
-    var s = services[i];
-    var priceStr = s.price > 0 ? 'R$ ' + s.price : 'Consultar';
+  barbers.forEach(function(b){
+    var div = document.createElement('div');
+    div.className = 'mq-barber-card';
+    div.setAttribute('data-id', b.id);
+    var av = b.photo
+      ? '<div class="mq-barber-av" style="background-image:url('+b.photo+')"></div>'
+      : '<div class="mq-barber-av">'+b.name.charAt(0)+'</div>';
+    div.innerHTML = av + '<div class="mq-barber-nm">'+b.name+'</div>';
+    div.onclick = (function(id,nm){ return function(){ mqSelectBarber(id,nm); }; })(b.id, b.name);
+    grid.appendChild(div);
+  });
+}
+
+function mqSelectBarber(id, nome){
+  mqState.barbeiroId   = id;
+  mqState.barbeiroNome = nome;
+  document.querySelectorAll('.mq-barber-card').forEach(function(c){
+    c.classList.toggle('selected', c.getAttribute('data-id') === id);
+  });
+}
+
+function mqRenderDates(){
+  var grid = document.getElementById('mq-dates-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  mqState.data = '';
+  var dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  var meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  for (var i = 1; i <= 14; i++){
+    var d = new Date(hoje);
+    d.setDate(hoje.getDate() + i);
+    var yyyy = d.getFullYear();
+    var mm   = String(d.getMonth()+1).padStart(2,'0');
+    var dd   = String(d.getDate()).padStart(2,'0');
+    var valor = yyyy+'-'+mm+'-'+dd;
+    var btn = document.createElement('button');
+    btn.className = 'mq-date';
+    btn.setAttribute('data-val', valor);
+    btn.innerHTML =
+      '<span class="dw">'+dias[d.getDay()]+'</span>'+
+      '<span class="dd">'+dd+'</span>'+
+      '<span class="dm">'+meses[d.getMonth()]+'</span>';
+    btn.onclick = (function(v){
+      return function(){
+        document.querySelectorAll('.mq-date').forEach(function(b){ b.classList.remove('selected'); });
+        this.classList.add('selected');
+        mqState.data = v;
+      };
+    })(valor);
+    grid.appendChild(btn);
+  }
+}
+
+function mqRenderServices(){
+  var grid = document.getElementById('mq-svc-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  mqState.svcs = [];
+  services.forEach(function(s){
+    var priceStr = s.price > 0 ? 'R$ '+s.price : 'Consultar';
     var div = document.createElement('div');
     div.className = 'q-svc-card';
     div.setAttribute('data-id', s.id);
-    div.innerHTML = '<div class="ic">' + s.icon + '</div><div class="nm">' + s.name + '</div><div class="pr">' + priceStr + '</div>';
-    div.onclick = (function(id){ return function(){ toggleQuickSvc(id); }; })(s.id);
+    div.innerHTML = '<div class="ic">'+s.icon+'</div><div class="nm">'+s.name+'</div><div class="pr">'+priceStr+'</div>';
+    div.onclick = (function(sv){ return function(){ mqToggleSvc(sv); }; })(s);
     grid.appendChild(div);
-  }
-  qServices = [];
-  qTotal = 0;
-  updateQuickTotal();
+  });
 }
 
-function toggleQuickSvc(id){
-  var found = -1;
-  for (var i = 0; i < qServices.length; i++) if (qServices[i].id === id) { found = i; break; }
-  if (found >= 0) qServices.splice(found, 1);
-  else {
-    for (var j = 0; j < services.length; j++){
-      if (services[j].id === id){
-        qServices.push({id:services[j].id, name:services[j].name, price:services[j].price});
-        break;
+function mqToggleSvc(svc){
+  var idx = -1;
+  mqState.svcs.forEach(function(s,i){ if (s.id === svc.id) idx = i; });
+  if (idx >= 0) mqState.svcs.splice(idx, 1);
+  else mqState.svcs.push({id:svc.id, name:svc.name, price:svc.price});
+  document.querySelectorAll('#mq-svc-grid .q-svc-card').forEach(function(c){
+    var on = mqState.svcs.some(function(s){ return s.id === c.getAttribute('data-id'); });
+    c.classList.toggle('selected', on);
+  });
+}
+
+function mqCarregarSlots(){
+  var data = mqState.data;
+  if (mqState.svcs.length === 0){ alert('Selecione ao menos um serviço.'); return; }
+  if (!data){ alert('Escolha uma data.'); return; }
+  mqShowStep(4);
+
+  var grid = document.getElementById('mq-slots-grid');
+  var info = document.getElementById('mq-slot-info');
+  var p = data.split('-');
+  if (info) info.textContent = mqState.barbeiroNome + ' · ' + p[2]+'/'+p[1]+'/'+p[0];
+  if (grid) grid.innerHTML = '<div class="mq-loading">Verificando disponibilidade...</div>';
+  document.getElementById('mq-confirm-area').style.display = 'none';
+
+  function renderSlots(takenSlots){
+    if (!grid) return;
+    grid.innerHTML = '';
+    mqState.hora = '';
+    HORARIOS_DISP.forEach(function(hora){
+      var taken = takenSlots.indexOf(hora) >= 0;
+      var btn = document.createElement('button');
+      btn.className = 'mq-slot' + (taken ? ' taken' : '');
+      btn.textContent = hora;
+      btn.disabled = taken;
+      if (!taken){
+        btn.onclick = function(){
+          document.querySelectorAll('.mq-slot').forEach(function(s){ s.classList.remove('selected'); });
+          btn.classList.add('selected');
+          mqState.hora = hora;
+          mqMostrarResumo();
+        };
       }
-    }
+      grid.appendChild(btn);
+    });
   }
-  var cards = document.querySelectorAll('#q-svc-grid .q-svc-card');
-  for (var k = 0; k < cards.length; k++){
-    var on = false;
-    for (var l = 0; l < qServices.length; l++) if (qServices[l].id === cards[k].getAttribute('data-id')) on = true;
-    cards[k].classList.toggle('selected', on);
+
+  if (fbDb){
+    fbDb.collection('agendamentos')
+      .where('barbeiroId','==',mqState.barbeiroId)
+      .where('data','==',mqState.data)
+      .get()
+      .then(function(snap){
+        var taken = [];
+        snap.forEach(function(doc){ taken.push(doc.data().hora); });
+        renderSlots(taken);
+      })
+      .catch(function(){ renderSlots([]); });
+  } else {
+    renderSlots([]);
   }
-  updateQuickTotal();
 }
 
-function updateQuickTotal(){
-  qTotal = 0;
-  var hasC = false;
-  for (var i = 0; i < qServices.length; i++){
-    if (qServices[i].price === 0) hasC = true;
-    else qTotal += qServices[i].price;
-  }
-  var box = document.getElementById('q-total');
-  var val = document.getElementById('q-total-val');
-  if (!box) return;
-  if (qServices.length === 0){ box.classList.remove('show'); return; }
-  box.classList.add('show');
-  if (val) val.textContent = hasC ? ('R$ ' + qTotal + ' + Consultar') : ('R$ ' + qTotal);
+function mqMostrarResumo(){
+  var area   = document.getElementById('mq-confirm-area');
+  var resumo = document.getElementById('mq-resumo');
+  if (!area || !resumo) return;
+  var svcs  = mqState.svcs.map(function(s){ return s.name; }).join(' + ');
+  var total = mqState.svcs.reduce(function(acc,s){ return acc+(s.price||0); }, 0);
+  var p = mqState.data.split('-');
+  var dataFmt = p[2]+'/'+p[1]+'/'+p[0];
+  resumo.innerHTML =
+    '<strong>'+mqState.nome+'</strong> · '+mqState.tel+'<br>'+
+    '✂️ '+svcs+'<br>'+
+    '💈 '+mqState.barbeiroNome+'<br>'+
+    '📅 '+dataFmt+' às <strong>'+mqState.hora+'</strong><br>'+
+    '💰 R$ '+total;
+  area.style.display = 'block';
 }
 
-function sendToWhatsApp(){
-  var nomeEl = document.getElementById('q-nome');
-  var dataEl = document.getElementById('q-data');
-  var horaEl = document.getElementById('q-hora');
-  var obsEl = document.getElementById('q-obs');
-  var nome = nomeEl ? nomeEl.value.trim() : '';
-  var data = dataEl ? dataEl.value : '';
-  var hora = horaEl ? horaEl.value : '';
-  var obs = obsEl ? obsEl.value.trim() : '';
-  if (!nome){ alert('Informe seu nome.'); return; }
-  if (qServices.length === 0){ alert('Selecione ao menos um serviço.'); return; }
-  var dataFmt = 'a definir';
-  if (data){ var p = data.split('-'); dataFmt = p[2] + '/' + p[1] + '/' + p[0]; }
-  var svc = '';
-  for (var i = 0; i < qServices.length; i++) svc += (i > 0 ? ' + ' : '') + qServices[i].name;
-  var hasC = false;
-  for (var j = 0; j < qServices.length; j++) if (qServices[j].price === 0) hasC = true;
-  var totStr = hasC ? ('R$ ' + qTotal + ' + Consultar') : ('R$ ' + qTotal);
-  var msg = 'Olá! Gostaria de agendar na Vikings Barber Shop%0A%0A';
-  msg += '*Nome:* ' + encodeURIComponent(nome) + '%0A';
-  msg += '*Serviço:* ' + encodeURIComponent(svc) + '%0A';
-  msg += '*Total:* ' + encodeURIComponent(totStr) + '%0A';
-  msg += '*Data:* ' + encodeURIComponent(dataFmt) + '%0A';
-  msg += '*Horário:* ' + encodeURIComponent(hora || 'a definir') + '%0A';
-  if (obs) msg += '*Obs:* ' + encodeURIComponent(obs) + '%0A';
-  msg += '%0AAguardo confirmação!';
-  window.open('https://wa.me/' + WPP_NUMBER + '?text=' + msg, '_blank');
-  closeQuick();
+function mqConfirmar(){
+  if (!mqState.hora){ alert('Selecione um horário.'); return; }
+
+  function enviar(){
+    var p = mqState.data.split('-');
+    var dataFmt = p[2]+'/'+p[1]+'/'+p[0];
+    var svcs = mqState.svcs.map(function(s){ return s.name; }).join(' + ');
+    var msg = 'AGENDAMENTO — Vikings Barber Shop%0A';
+    msg += '----%0A';
+    msg += '*Nome:* '+encodeURIComponent(mqState.nome)+'%0A';
+    if (mqState.tel) msg += '*WhatsApp:* '+encodeURIComponent(mqState.tel)+'%0A';
+    msg += '----%0A';
+    msg += '*Servico:* '+encodeURIComponent(svcs)+'%0A';
+    msg += '*Barbeiro:* '+encodeURIComponent(mqState.barbeiroNome)+'%0A';
+    msg += '*Data:* '+encodeURIComponent(dataFmt)+'%0A';
+    msg += '*Hora:* '+encodeURIComponent(mqState.hora)+'%0A';
+    msg += '----%0A';
+    msg += 'Aguarde a confirmacao do horario.%0A';
+    msg += 'Se precisar cancelar%2C avise-nos.';
+    window.open('https://wa.me/'+SECRETARIA_WPP+'?text='+msg, '_blank');
+    setTimeout(closeQuick, 3000);
+  }
+
+  if (fbDb){
+    var p2 = mqState.data.split('-');
+    fbDb.collection('agendamentos').add({
+      nome:         mqState.nome,
+      tel:          mqState.tel,
+      barbeiroId:   mqState.barbeiroId,
+      barbeiroNome: mqState.barbeiroNome,
+      servicos:     mqState.svcs.map(function(s){ return s.name; }).join(' + '),
+      data:         mqState.data,
+      hora:         mqState.hora,
+      timestamp:    firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function(){
+      mqShowStep('success');
+      setTimeout(enviar, 800);
+    }).catch(function(){
+      mqShowStep('success');
+      setTimeout(enviar, 800);
+    });
+  } else {
+    mqShowStep('success');
+    setTimeout(enviar, 800);
+  }
 }
 
 // ============ GALERIA ============
