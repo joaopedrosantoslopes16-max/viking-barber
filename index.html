@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -17,7 +17,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
   --black:#0A0A0A;--dark:#111;--dark2:#1A1A1A;--dark3:#242424;
   --gray:#888;--white:#fff;--light:#F0EDE8;
 }
-body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--light);padding-bottom:80px}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--light);padding-bottom:80px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
 img{display:block;max-width:100%}
 a{color:inherit}
 
@@ -690,7 +690,7 @@ button{-webkit-appearance:none}
       <p class="hero-sub">Barbearia em Centro, Atibaia - SP</p>
       <p>Cortes precisos, traçados artísticos e um ambiente único. Do primeiro corte da vida até o estilo da semana.</p>
       <div class="hero-btns">
-        <button class="btn-wpp" onclick="openQuick()">⚡ Agendamento Rápido</button>
+        <button class="btn-wpp" onclick="openQuick()">Agendamento Rápido</button>
         <button class="btn-outline" onclick="showPage('auth')">Entrar / Criar conta</button>
       </div>
     </div>
@@ -776,28 +776,28 @@ button{-webkit-appearance:none}
       <p style="color:var(--gray);font-size:.9rem;margin-top:1rem">Valores de referência — confirme na hora do agendamento.</p>
     </div>
     <div class="services-grid reveal">
-      <div class="service-item"><div class="service-icon">✂️</div><div class="service-name">Corte Masculino</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Corte + Barba</div><div class="service-price">R$ 90<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Traçado / Design</div><div class="service-price">R$ 20<small>/adicional</small></div></div>
-      <div class="service-item"><div class="service-icon">✂️</div><div class="service-name">Pezinho</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">✏️</div><div class="service-name">Sobrancelha</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🧴</div><div class="service-name">Depilação Nariz e Orelha</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🪒</div><div class="service-name">Barba c/ Vaporizador</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">💈</div><div class="service-name">Barba Terapia</div><div class="service-price">R$ 75<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🖌️</div><div class="service-name">Barba Pigmentada</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">💆</div><div class="service-name">Relaxamento</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🧴</div><div class="service-name">Limpeza de Pele Simples</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">💉</div><div class="service-name">Botox Capilar</div><div class="service-price" style="font-size:1rem">A partir de R$ 40</div></div>
-      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Selagem</div><div class="service-price" style="font-size:1rem">A partir de R$ 40</div></div>
-      <div class="service-item"><div class="service-icon">🎨</div><div class="service-name">Tintura</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">💫</div><div class="service-name">Progressiva</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🧖</div><div class="service-name">Limpeza de Pele Completa</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">💉</div><div class="service-name">Micropigmentação</div><div class="service-price">R$ 300<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">⚡</div><div class="service-name">Platinado</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">✨</div><div class="service-name">Luzes</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
-      <div class="service-item"><div class="service-icon">🧒</div><div class="service-name">Corte Infantil</div><div class="service-price" style="color:var(--gold-light)">Consultar</div></div>
-      <div class="service-item"><div class="service-icon">🏅</div><div class="service-name">1° Corte da Vida</div><div class="service-price" style="color:var(--gold-light)">Consultar</div></div>
+      <div class="service-item"><div class="service-name">Corte Masculino</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Barba</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Corte + Barba</div><div class="service-price">R$ 90<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Traçado / Design</div><div class="service-price">R$ 20<small>/adicional</small></div></div>
+      <div class="service-item"><div class="service-name">Pezinho</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Sobrancelha</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Depilação Nariz e Orelha</div><div class="service-price">R$ 20<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Barba c/ Vaporizador</div><div class="service-price">R$ 45<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Barba Terapia</div><div class="service-price">R$ 75<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Barba Pigmentada</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Relaxamento</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Limpeza de Pele Simples</div><div class="service-price">R$ 30<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Botox Capilar</div><div class="service-price" style="font-size:1rem">A partir de R$ 40</div></div>
+      <div class="service-item"><div class="service-name">Selagem</div><div class="service-price" style="font-size:1rem">A partir de R$ 40</div></div>
+      <div class="service-item"><div class="service-name">Tintura</div><div class="service-price">R$ 60<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Progressiva</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Limpeza de Pele Completa</div><div class="service-price">R$ 100<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Micropigmentação</div><div class="service-price">R$ 300<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Platinado</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Luzes</div><div class="service-price">R$ 150<small>/sessão</small></div></div>
+      <div class="service-item"><div class="service-name">Corte Infantil</div><div class="service-price" style="color:var(--gold-light)">Consultar</div></div>
+      <div class="service-item"><div class="service-name">1° Corte da Vida</div><div class="service-price" style="color:var(--gold-light)">Consultar</div></div>
     </div>
   </section>
 
@@ -810,12 +810,12 @@ button{-webkit-appearance:none}
       <p style="color:var(--gray);line-height:1.7;font-size:.95rem;margin-top:1rem">Assine e economize todo mês. Cancele quando quiser.</p>
     </div>
     <div class="planos-grid reveal">
-      <div class="plano-card"><div class="plano-icon">✂️</div><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li><li>Sem taxa de cancelamento</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
-      <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-icon">👑</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li><li>Fila preferencial</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
-      <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
-      <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li><li>Atendimento exclusivo</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
-      <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-icon">✨</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
-      <div class="plano-card"><div class="plano-icon">💎</div><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li><li>Sem taxa de cancelamento</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li><li>Fila preferencial</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li><li>Atendimento exclusivo</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
+      <div class="plano-card"><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="showPage('auth')">Assinar agora</button></div>
     </div>
   </section>
 
@@ -896,7 +896,7 @@ button{-webkit-appearance:none}
       <h2 class="cta-title">PRONTO PARA<br><span>AGENDAR?</span></h2>
       <p class="cta-sub">Sem espera, sem complicação. Agende agora pelo WhatsApp ou crie sua conta e gerencie seus horários online.</p>
       <div class="cta-btns">
-        <button class="btn-wpp" onclick="openQuick()">⚡ Agendamento Rápido</button>
+        <button class="btn-wpp" onclick="openQuick()">Agendamento Rápido</button>
         <button class="btn-outline" onclick="showPage('auth')">Criar Conta / Entrar</button>
       </div>
       <div class="cta-info">
@@ -1089,12 +1089,12 @@ button{-webkit-appearance:none}
         <h2 class="welcome-title">PLANOS VIKINGS</h2>
         <p class="welcome-sub">Assine e economize.</p>
         <div class="planos-grid" style="margin-top:1rem">
-          <div class="plano-card"><div class="plano-icon">✂️</div><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Ilimitado','R$ 81,90')">Assinar pelo WhatsApp</button></div>
-          <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-icon">👑</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
-          <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Ilimitado','R$ 99,99')">Assinar pelo WhatsApp</button></div>
-          <div class="plano-card"><div class="plano-icon">🪒</div><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
-          <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-icon">✨</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Vip','R$ 199,99')">Assinar pelo WhatsApp</button></div>
-          <div class="plano-card"><div class="plano-icon">💎</div><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Ilimitado','R$ 154,90')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-name">Corte Ilimitado</div><div class="plano-price">R$ 81,90<span>/mês</span></div><ul class="plano-features"><li>Cortes ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Ilimitado','R$ 81,90')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card featured"><div class="plano-badge">Mais popular</div><div class="plano-name">Corte Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Cortes VIP ilimitados</li><li>Atendimento exclusivo</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Corte Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-name">Barba Ilimitado</div><div class="plano-price">R$ 99,99<span>/mês</span></div><ul class="plano-features"><li>Barba ilimitada</li><li>Navalha e finalização</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Ilimitado','R$ 99,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-name">Barba Vip</div><div class="plano-price">R$ 129,99<span>/mês</span></div><ul class="plano-features"><li>Barba VIP ilimitada</li><li>Produtos premium</li></ul><button class="plano-btn" onclick="assinarPlano('Barba Vip','R$ 129,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card featured"><div class="plano-badge">Completo</div><div class="plano-name">Cabelo + Barba Vip</div><div class="plano-price">R$ 199,99<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba VIP</li><li>Produtos premium</li><li>Prioridade máxima</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Vip','R$ 199,99')">Assinar pelo WhatsApp</button></div>
+          <div class="plano-card"><div class="plano-name">Cabelo + Barba Ilimitado</div><div class="plano-price">R$ 154,90<span>/mês</span></div><ul class="plano-features"><li>Corte + Barba ilimitados</li><li>Agendamento online</li></ul><button class="plano-btn" onclick="assinarPlano('Cabelo + Barba Ilimitado','R$ 154,90')">Assinar pelo WhatsApp</button></div>
         </div>
       </div>
 
@@ -1140,7 +1140,7 @@ button{-webkit-appearance:none}
 
 <!-- QUICK BAR (HOME ONLY) -->
 <div class="quick-bar" id="quick-bar">
-  <div class="quick-bar-text">⚡ Quer agendar agora?<small>Sem cadastro · direto no WhatsApp</small></div>
+  <div class="quick-bar-text">Quer agendar agora?<small>Sem cadastro · direto no WhatsApp</small></div>
   <div class="quick-bar-actions">
     <button class="quick-btn-1" onclick="openQuick()">Agendamento Rápido</button>
     <button class="quick-btn-2" onclick="showPage('auth')">Entrar / Criar Conta</button>
@@ -1264,28 +1264,28 @@ var infantilImgs = [
 ];
 
 var services = [
-  {id:'corte',          name:'Corte Masculino',          icon:'✂️',  price:45},
-  {id:'barba',          name:'Barba',                    icon:'🪒',  price:45},
-  {id:'combo',          name:'Corte + Barba',            icon:'✨',  price:90},
-  {id:'tracado',        name:'Traçado / Design',         icon:'🎨',  price:20},
-  {id:'pezinho',        name:'Pezinho',                  icon:'✂️',  price:20},
-  {id:'sobrancelha',    name:'Sobrancelha',              icon:'✏️',  price:20},
-  {id:'depilacao',      name:'Depilação Nariz/Orelha',   icon:'🧴',  price:20},
-  {id:'barba-ozon',     name:'Barba c/ Vaporizador',     icon:'🪒',  price:45},
-  {id:'barba-terapia',  name:'Barba Terapia',             icon:'💈',  price:75},
-  {id:'barba-pig',      name:'Barba Pigmentada',         icon:'🖌️', price:60},
-  {id:'relaxamento',    name:'Relaxamento',              icon:'💆',  price:30},
-  {id:'limpeza-simples',name:'Limpeza de Pele Simples',  icon:'🧴',  price:30},
-  {id:'botox',          name:'Botox Capilar',            icon:'💉',  price:40, priceStr:'A partir de R$ 40'},
-  {id:'selagem',        name:'Selagem',                  icon:'✨',  price:40, priceStr:'A partir de R$ 40'},
-  {id:'tintura',        name:'Tintura',                  icon:'🎨',  price:60},
-  {id:'progressiva',    name:'Progressiva',              icon:'💫',  price:100},
-  {id:'limpeza-comp',   name:'Limpeza de Pele Completa', icon:'🧖',  price:100},
-  {id:'micropigmentacao',name:'Micropigmentação',         icon:'💉',  price:300},
-  {id:'platinado',      name:'Platinado',                icon:'⚡',  price:150},
-  {id:'luzes',          name:'Luzes',                    icon:'✨',  price:150},
-  {id:'infantil',       name:'Corte Infantil',           icon:'🧒',  price:0,  priceStr:'Consultar'},
-  {id:'primeiro',       name:'1° Corte da Vida',         icon:'🏅',  price:0,  priceStr:'Consultar'}
+  {id:'corte',          name:'Corte Masculino',          price:45},
+  {id:'barba',          name:'Barba',                    price:45},
+  {id:'combo',          name:'Corte + Barba',            price:90},
+  {id:'tracado',        name:'Traçado / Design',         price:20},
+  {id:'pezinho',        name:'Pezinho',                  price:20},
+  {id:'sobrancelha',    name:'Sobrancelha',              price:20},
+  {id:'depilacao',      name:'Depilação Nariz/Orelha',   price:20},
+  {id:'barba-ozon',     name:'Barba c/ Vaporizador',     price:45},
+  {id:'barba-terapia',  name:'Barba Terapia',            price:75},
+  {id:'barba-pig',      name:'Barba Pigmentada',         price:60},
+  {id:'relaxamento',    name:'Relaxamento',              price:30},
+  {id:'limpeza-simples',name:'Limpeza de Pele Simples',  price:30},
+  {id:'botox',          name:'Botox Capilar',            price:40, priceStr:'A partir de R$ 40'},
+  {id:'selagem',        name:'Selagem',                  price:40, priceStr:'A partir de R$ 40'},
+  {id:'tintura',        name:'Tintura',                  price:60},
+  {id:'progressiva',    name:'Progressiva',              price:100},
+  {id:'limpeza-comp',   name:'Limpeza de Pele Completa', price:100},
+  {id:'micropigmentacao',name:'Micropigmentação',        price:300},
+  {id:'platinado',      name:'Platinado',                price:150},
+  {id:'luzes',          name:'Luzes',                    price:150},
+  {id:'infantil',       name:'Corte Infantil',           price:0,  priceStr:'Consultar'},
+  {id:'primeiro',       name:'1° Corte da Vida',         price:0,  priceStr:'Consultar'}
 ];
 
 var barbers = [
@@ -1590,7 +1590,7 @@ function renderServiceGrid(){
     var div = document.createElement('div');
     div.className = 'svc-card';
     div.setAttribute('data-id', s.id);
-    div.innerHTML = '<div class="svc-ic">' + s.icon + '</div><div class="svc-nm">' + s.name + '</div><div class="svc-pr">' + priceStr + '</div>';
+    div.innerHTML = '<div class="svc-nm">' + s.name + '</div><div class="svc-pr">' + priceStr + '</div>';
     div.onclick = (function(id){ return function(){ toggleService(id); }; })(s.id);
     grid.appendChild(div);
   }
@@ -2076,7 +2076,7 @@ function mqRenderServices(){
     var div = document.createElement('div');
     div.className = 'q-svc-card';
     div.setAttribute('data-id', s.id);
-    div.innerHTML = '<div class="ic">'+s.icon+'</div><div class="nm">'+s.name+'</div><div class="pr">'+priceStr+'</div>';
+    div.innerHTML = '<div class="nm">'+s.name+'</div><div class="pr">'+priceStr+'</div>';
     div.onclick = (function(sv){ return function(){ mqToggleSvc(sv); }; })(s);
     grid.appendChild(div);
   });
