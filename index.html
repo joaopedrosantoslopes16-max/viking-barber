@@ -157,8 +157,7 @@ section{padding:6rem 2.5rem}
 .reviews-stats{display:inline-flex;align-items:center;gap:2rem;background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-radius:3px;padding:1.5rem 2.5rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
 .review-big{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--gold);line-height:1}
 .reviews-carousel{margin-top:2.5rem;overflow:hidden;position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
-.reviews-track{display:flex;gap:.8rem;animation:scrollReviews 28s linear infinite}
-@keyframes scrollReviews{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.reviews-track{display:flex;gap:.8rem}
 .review-card{flex-shrink:0;width:260px;background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-left:3px solid var(--red);border-radius:3px;padding:1rem 1.2rem;text-align:left}
 .review-card-stars{color:var(--gold);font-size:.8rem;letter-spacing:2px;margin-bottom:.5rem}
 .review-card-text{color:#bbb;font-size:.8rem;line-height:1.6;margin-bottom:.8rem;font-style:italic}
@@ -865,12 +864,6 @@ button{-webkit-appearance:none}
     </div>
     <div class="reviews-carousel reveal">
       <div class="reviews-track">
-        <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Barbearia muito boa, ambiente massa, confortável. Mesinha de sinuca pra quem quiser jogar enquanto espera. Eu e meu filho frequentamos há mais de 3 anos e somos sempre bem atendidos pelo Vini."</p><div class="review-card-author"><span>Yan Pecci</span> · 3 anos frequentando</div></div>
-        <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Fui muito bem atendido, ambiente descolado, alto astral e muito profissional. Eles não apenas cortam e transformam cabelos, eles fazem ARTE."</p><div class="review-card-author"><span>Claudio Ferrete</span> · Google Maps</div></div>
-        <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Corto a uns 5 anos e nunca mudou. Atendimento nota 10. Eu e meus filhos somos sempre muito bem atendidos. Estão de parabéns!"</p><div class="review-card-author"><span>Diogo Gomes</span> · Cliente fiel</div></div>
-        <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Excelente! Meu marido foi pela primeira vez e amou! Profissionais competentes, bem educados e lugar muito legal. Ganhou um cliente."</p><div class="review-card-author"><span>Tatiana</span> · Google Maps</div></div>
-        <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Local aconchegante e confortável, serviços de qualidade, criteriosos em cumprir os agendamentos no horário exato. Excelentes profissionais."</p><div class="review-card-author"><span>Felipe Costa</span> · Google Maps</div></div>
-        <!-- duplicado para loop infinito -->
         <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Barbearia muito boa, ambiente massa, confortável. Mesinha de sinuca pra quem quiser jogar enquanto espera. Eu e meu filho frequentamos há mais de 3 anos e somos sempre bem atendidos pelo Vini."</p><div class="review-card-author"><span>Yan Pecci</span> · 3 anos frequentando</div></div>
         <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Fui muito bem atendido, ambiente descolado, alto astral e muito profissional. Eles não apenas cortam e transformam cabelos, eles fazem ARTE."</p><div class="review-card-author"><span>Claudio Ferrete</span> · Google Maps</div></div>
         <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Corto a uns 5 anos e nunca mudou. Atendimento nota 10. Eu e meus filhos somos sempre muito bem atendidos. Estão de parabéns!"</p><div class="review-card-author"><span>Diogo Gomes</span> · Cliente fiel</div></div>
@@ -2335,6 +2328,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Reposiciona bottom-nav ao redimensionar/rotacionar
   // Nav inferior agora é controlado por CSS (body.on-dashboard) - sem JS de resize
+
+  // Carrossel de avaliações — marquee suave sem teleporte
+  (function(){
+    var track = document.querySelector('.reviews-track');
+    if (!track) return;
+    var cards = track.children;
+    var total = cards.length;
+    for (var i = 0; i < total; i++) track.appendChild(cards[i].cloneNode(true));
+    var speed = window.innerWidth <= 768 ? 0.6 : 0.4;
+    var pos = 0;
+    var halfW = track.scrollWidth / 2;
+    function tick(){
+      pos += speed;
+      if (pos >= halfW) pos = 0;
+      track.style.transform = 'translateX(-' + pos + 'px)';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 });
 </script>
 </body>
