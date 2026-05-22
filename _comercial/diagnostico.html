@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico — Vikings Barber Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050505;font-family:'Barlow',sans-serif;display:flex;justify-content:center;padding:30px 16px;color:#F0EDE8}
+:root{--red:#C0292A;--red-light:#E8453A;--gold:#C9922A;--gold-light:#E8B04A;--gray:#888}
+.poster{width:620px;max-width:100%;background:linear-gradient(160deg,#0E0E0E 0%,#161616 100%);border:1px solid rgba(192,41,42,.3);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+
+.head{position:relative;padding:34px 34px 28px;background:linear-gradient(135deg,rgba(192,41,42,.2),rgba(10,10,10,.5));border-bottom:2px solid var(--red)}
+.head::after{content:'';position:absolute;top:0;right:0;width:160px;height:100%;background:radial-gradient(circle at top right,rgba(201,146,42,.15),transparent 70%)}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:4px;color:#fff;line-height:.95}
+.brand span{color:var(--red)}
+.tag{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-top:6px}
+.title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:#fff;margin-top:18px;line-height:1}
+.title b{color:var(--red-light)}
+
+.sec{padding:22px 34px 6px}
+.sec-h{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-h::after{content:'';flex:1;height:1px;background:rgba(192,41,42,.25)}
+
+.diag-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.05)}
+.diag-item.bad{background:rgba(192,41,42,.07);border-color:rgba(192,41,42,.2)}
+.diag-item.ok{background:rgba(201,146,42,.07);border-color:rgba(201,146,42,.2)}
+.diag-item.good{background:rgba(0,180,80,.07);border-color:rgba(0,180,80,.2)}
+.d-ic{flex-shrink:0;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
+.bad .d-ic{background:rgba(192,41,42,.2);color:#ff7070}
+.ok .d-ic{background:rgba(201,146,42,.2);color:var(--gold-light)}
+.good .d-ic{background:rgba(0,180,80,.2);color:#5de89a}
+.d-tx b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.98rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;margin-bottom:3px}
+.d-tx span{font-size:.83rem;color:#aaa;line-height:1.45}
+.d-label{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-top:4px;display:inline-block;padding:2px 7px;border-radius:3px}
+.bad .d-label{background:rgba(192,41,42,.2);color:#ff9090}
+.ok .d-label{background:rgba(201,146,42,.2);color:var(--gold-light)}
+.good .d-label{background:rgba(0,180,80,.2);color:#5de89a}
+
+.compare{margin:4px 34px 20px;border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden}
+.compare-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:#111}
+.compare-head div{padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);border-bottom:1px solid rgba(255,255,255,.07)}
+.compare-head div:first-child{color:#666}
+.compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,.05)}
+.compare-row:last-child{border:none}
+.compare-row div{padding:9px 14px;font-size:.82rem;color:#aaa}
+.compare-row div:first-child{color:#777;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;text-transform:uppercase;font-size:.78rem}
+.no{color:#ff7070!important}
+.yes{color:#5de89a!important}
+
+.foot{padding:18px 34px 28px;text-align:center;border-top:1px solid rgba(255,255,255,.06);margin-top:6px}
+.foot .big{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:1px;color:#fff;line-height:1.1}
+.foot .big b{color:var(--red-light)}
+.foot .sm{font-size:.78rem;color:var(--gray);margin-top:8px;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="head">
+    <div class="brand">VIKINGS <span>BARBER SHOP</span></div>
+    <div class="tag">Diagnóstico Digital · Atibaia - SP</div>
+    <div class="title">ONDE VOCÊ ESTÁ <b>PERDENDO CLIENTES</b></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">Situação atual do negócio online</div>
+
+    <div class="diag-item bad">
+      <div class="d-ic">✗</div>
+      <div class="d-tx">
+        <b>Invisível no Google</b>
+        <span>O site atual usa a plataforma CashBarber — sites de terceiros não são indexados pelo Google. Quem pesquisa "barbearia em Atibaia" não encontra a Vikings.</span>
+        <div class="d-label">Crítico</div>
+      </div>
+    </div>
+
+    <div class="diag-item bad">
+      <div class="d-ic">✗</div>
+      <div class="d-tx">
+        <b>Você não possui o site</b>
+        <span>O código, o domínio e o conteúdo são da plataforma. Se parar de pagar a mensalidade, tudo some. Você não tem nada em mãos.</span>
+        <div class="d-label">Crítico</div>
+      </div>
+    </div>
+
+    <div class="diag-item bad">
+      <div class="d-ic">✗</div>
+      <div class="d-tx">
+        <b>Visual genérico</b>
+        <span>A plataforma define o layout para todas as barbearias. Não reflete a identidade da Vikings — parece igual ao concorrente.</span>
+        <div class="d-label">Importante</div>
+      </div>
+    </div>
+
+    <div class="diag-item ok">
+      <div class="d-ic">!</div>
+      <div class="d-tx">
+        <b>4.9 estrelas no Google — não está sendo aproveitado</b>
+        <span>269 avaliações reais e nenhum site próprio para exibir isso. Esse número poderia estar convertendo novos clientes todo dia.</span>
+        <div class="d-label">Oportunidade</div>
+      </div>
+    </div>
+
+    <div class="diag-item good">
+      <div class="d-ic">✓</div>
+      <div class="d-tx">
+        <b>Negócio sólido com estrutura real</b>
+        <span>7 profissionais, loja de roupas, arcade, sinuca, cadeirinha kids — um espaço completo que merece uma presença digital à altura.</span>
+        <div class="d-label">Ponto forte</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">CashBarber vs Site Próprio</div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-head">
+      <div></div>
+      <div>CashBarber</div>
+      <div>Site Próprio</div>
+    </div>
+    <div class="compare-row">
+      <div>Aparece no Google</div>
+      <div class="no">Não</div>
+      <div class="yes">Sim</div>
+    </div>
+    <div class="compare-row">
+      <div>Design exclusivo</div>
+      <div class="no">Não</div>
+      <div class="yes">Sim</div>
+    </div>
+    <div class="compare-row">
+      <div>Você é dono</div>
+      <div class="no">Não</div>
+      <div class="yes">Sim</div>
+    </div>
+    <div class="compare-row">
+      <div>Galeria de cortes</div>
+      <div class="no">Limitado</div>
+      <div class="yes">Completa</div>
+    </div>
+    <div class="compare-row">
+      <div>Planos e assinaturas</div>
+      <div class="ok">Básico</div>
+      <div class="yes">Completo</div>
+    </div>
+    <div class="compare-row">
+      <div>Avaliações visíveis</div>
+      <div class="no">Não</div>
+      <div class="yes">Carrossel Google</div>
+    </div>
+    <div class="compare-row">
+      <div>Controle total</div>
+      <div class="no">Não</div>
+      <div class="yes">Sim</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="big">O SITE JÁ EXISTE.<br>ESTÁ <b>PRONTO E NO AR</b> AGORA.</div>
+    <div class="sm">vikings-barber.netlify.app · Diagnóstico Vikings Barber Shop · 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

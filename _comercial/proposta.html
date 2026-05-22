@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta — Vikings Barber Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050505;font-family:'Barlow',sans-serif;display:flex;justify-content:center;padding:30px 16px;color:#F0EDE8}
+:root{--red:#C0292A;--red-light:#E8453A;--gold:#C9922A;--gold-light:#E8B04A;--dark:#111;--dark2:#1A1A1A;--gray:#888}
+.poster{width:620px;max-width:100%;background:linear-gradient(160deg,#0E0E0E 0%,#161616 100%);border:1px solid rgba(192,41,42,.3);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+
+.head{position:relative;padding:34px 34px 28px;background:linear-gradient(135deg,rgba(192,41,42,.2),rgba(10,10,10,.5));border-bottom:2px solid var(--red)}
+.head::after{content:'';position:absolute;top:0;right:0;width:160px;height:100%;background:radial-gradient(circle at top right,rgba(201,146,42,.15),transparent 70%)}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:4px;color:#fff;line-height:.95}
+.brand span{color:var(--red)}
+.tag{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-top:6px}
+.title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:#fff;margin-top:18px;line-height:1}
+.title b{color:var(--red-light)}
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,200,80,.12);border:1px solid rgba(0,200,80,.3);border-radius:4px;padding:5px 12px;margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:#4ddb8a}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#4ddb8a;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.prices{display:flex;gap:12px;padding:22px 34px 8px}
+.price-card{flex:1;background:#0C0C0C;border:1px solid rgba(255,255,255,.08);border-top:3px solid var(--red);border-radius:10px;padding:18px 16px;text-align:center}
+.price-card.gold{border-top-color:var(--gold)}
+.pc-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.pc-value{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#fff;line-height:.9}
+.pc-value small{font-size:1rem;color:var(--gold-light)}
+.pc-sub{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-top:5px}
+
+.sec{padding:20px 34px 4px}
+.sec-h{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-h::after{content:'';flex:1;height:1px;background:rgba(192,41,42,.25)}
+
+.benefit{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.b-ic{flex-shrink:0;width:36px;height:36px;border-radius:8px;background:rgba(192,41,42,.14);border:1px solid rgba(192,41,42,.3);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--red-light)}
+.b-ic.bad{background:rgba(192,41,42,.22);border-color:rgba(192,41,42,.5);color:#ff6060}
+.b-ic.good{background:rgba(201,146,42,.12);border-color:rgba(201,146,42,.3);color:var(--gold-light)}
+.b-tx b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.98rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;margin-bottom:2px}
+.b-tx span{font-size:.83rem;color:#aaa;line-height:1.45}
+
+.site-features{margin:4px 34px 0;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.feat{background:#0e0e0e;border:1px solid rgba(255,255,255,.07);border-left:2px solid var(--red);border-radius:6px;padding:9px 12px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;color:#ccc}
+.feat b{display:block;color:#fff;font-size:.88rem;margin-bottom:1px}
+
+.maint{margin:16px 34px;background:linear-gradient(135deg,rgba(201,146,42,.1),rgba(10,10,10,.3));border:1px solid rgba(201,146,42,.25);border-radius:10px;padding:16px 20px}
+.maint .mh{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px}
+.maint ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.maint li{font-size:.81rem;color:#bbb;padding-left:16px;position:relative;line-height:1.3}
+.maint li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700}
+
+.stats-row{display:flex;gap:10px;margin:0 34px 4px}
+.stat-box{flex:1;background:#0c0c0c;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);line-height:1}
+.stat-l{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-top:2px}
+
+.foot{padding:18px 34px 28px;text-align:center;border-top:1px solid rgba(255,255,255,.06);margin-top:10px}
+.foot .big{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:#fff;line-height:1.05}
+.foot .big b{color:var(--red-light)}
+.foot .sm{font-size:.78rem;color:var(--gray);margin-top:8px;letter-spacing:.5px}
+.foot .url{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;letter-spacing:1px;color:var(--gold-light);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="head">
+    <div class="brand">VIKINGS <span>BARBER SHOP</span></div>
+    <div class="tag">Proposta Comercial · Atibaia - SP</div>
+    <div class="title">SEU SITE JÁ ESTÁ <b>PRONTO E NO AR</b></div>
+    <div class="live-badge"><span class="live-dot"></span> vikings-barber.netlify.app</div>
+  </div>
+
+  <div class="prices">
+    <div class="price-card">
+      <div class="pc-label">Criação do Site</div>
+      <div class="pc-value"><small>R$</small> 800</div>
+      <div class="pc-sub">Pagamento único</div>
+    </div>
+    <div class="price-card gold">
+      <div class="pc-label">Manutenção Mensal</div>
+      <div class="pc-value"><small>R$</small> 250<small>/mês</small></div>
+      <div class="pc-sub">Suporte + atualizações</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">O que está no site</div>
+  </div>
+  <div class="site-features">
+    <div class="feat"><b>Galeria de Cortes</b>13 fotos dos trabalhos reais</div>
+    <div class="feat"><b>22 Serviços com Preço</b>Corte, barba, micro e mais</div>
+    <div class="feat"><b>Planos de Assinatura</b>Mensal com agendamento</div>
+    <div class="feat"><b>Seção 1º Corte</b>Certificado + foto família</div>
+    <div class="feat"><b>Avaliações do Google</b>Carrossel com 5 clientes reais</div>
+    <div class="feat"><b>Horários e Mapa</b>Localização integrada</div>
+    <div class="feat"><b>O Espaço Vikings</b>Fotos da barbearia e loja</div>
+    <div class="feat"><b>Agendamento WhatsApp</b>Direto pelo site, sem app</div>
+  </div>
+
+  <div class="sec" style="margin-top:16px">
+    <div class="sec-h">Por que sair do CashBarber</div>
+
+    <div class="benefit">
+      <div class="b-ic bad">✗</div>
+      <div class="b-tx"><b>Invisível no Google</b><span>Plataformas de terceiros como CashBarber não aparecem nas buscas. Quem pesquisa "barbearia em Atibaia" não te encontra.</span></div>
+    </div>
+    <div class="benefit">
+      <div class="b-ic bad">✗</div>
+      <div class="b-tx"><b>Visual genérico</b><span>A plataforma define o layout. Você não tem controle — o site parece igual ao de qualquer outra barbearia.</span></div>
+    </div>
+    <div class="benefit">
+      <div class="b-ic bad">✗</div>
+      <div class="b-tx"><b>Paga mensalidade sem ter nada</b><span>Se parar de pagar, o site some. Você não tem o código, o domínio nem o conteúdo.</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">O que você passa a ter</div>
+
+    <div class="benefit">
+      <div class="b-ic good">★</div>
+      <div class="b-tx"><b>Aparece no Google</b><span>Site próprio com SEO — quem pesquisar "barbearia em Atibaia" encontra a Vikings antes do concorrente.</span></div>
+    </div>
+    <div class="benefit">
+      <div class="b-ic good">★</div>
+      <div class="b-tx"><b>Site 100% seu</b><span>Código, domínio e conteúdo pertencem a você. Não depende de nenhuma plataforma de terceiro.</span></div>
+    </div>
+    <div class="benefit">
+      <div class="b-ic good">★</div>
+      <div class="b-tx"><b>Identidade Vikings</b><span>Design exclusivo com as cores, fotos e personalidade da barbearia. Nada genérico.</span></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-n">4.9</div><div class="stat-l">Nota Google</div></div>
+    <div class="stat-box"><div class="stat-n">269</div><div class="stat-l">Avaliações</div></div>
+    <div class="stat-box"><div class="stat-n">+5K</div><div class="stat-l">Clientes</div></div>
+    <div class="stat-box"><div class="stat-n">7</div><div class="stat-l">Profissionais</div></div>
+  </div>
+
+  <div class="maint">
+    <div class="mh">O que entra na manutenção mensal — R$ 250</div>
+    <ul>
+      <li>Site sempre no ar e seguro</li>
+      <li>Atualização de fotos e preços</li>
+      <li>Novos barbeiros e serviços</li>
+      <li>Ajustes de design e conteúdo</li>
+      <li>Suporte rápido por WhatsApp</li>
+      <li>Backup e monitoramento</li>
+      <li>Novas seções quando precisar</li>
+      <li>Domínio e hospedagem inclusos</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <div class="big">O SITE JÁ EXISTE. AGORA É SÓ<br><b>COLOCAR O SEU NOME NELE.</b></div>
+    <div class="url">vikings-barber.netlify.app</div>
+    <div class="sm">Proposta Vikings Barber Shop · 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
