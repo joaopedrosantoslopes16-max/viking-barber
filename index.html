@@ -17,7 +17,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
   --black:#0A0A0A;--dark:#111;--dark2:#1A1A1A;--dark3:#242424;
   --gray:#888;--white:#fff;--light:#F0EDE8;
 }
-html{overscroll-behavior:none}body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--light);padding-bottom:80px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+html{overscroll-behavior:none;overflow-x:hidden}body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--light);padding-bottom:80px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none;overflow-x:hidden;width:100%}
 img{display:block;max-width:100%}
 a{color:inherit}
 
@@ -156,7 +156,7 @@ section{padding:6rem 2.5rem}
 .reviews-section{background:var(--dark);text-align:center}
 .reviews-stats{display:inline-flex;align-items:center;gap:2rem;background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-radius:3px;padding:1.5rem 2.5rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
 .review-big{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--gold);line-height:1}
-.reviews-carousel{margin-top:2.5rem;overflow:hidden;position:relative;margin-left:-2.5rem;margin-right:-2.5rem}
+.reviews-carousel{margin-top:2.5rem;overflow:hidden;position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
 .reviews-track{display:flex;gap:.8rem;animation:scrollReviews 28s linear infinite}
 @keyframes scrollReviews{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .review-card{flex-shrink:0;width:260px;background:var(--dark2);border:1px solid rgba(192,41,42,.2);border-left:3px solid var(--red);border-radius:3px;padding:1rem 1.2rem;text-align:left}
